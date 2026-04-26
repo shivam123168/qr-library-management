@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>librarian Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="student_management.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">🎓 Librarian/Student</div>
+
+        <ul>
+            <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
+            </li>
+            <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
+            <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
+            <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
+
+            <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
+            <li><a href="Info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
+            <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
+            <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a></li>
+            <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee Management</a>
+            </li>
+            <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
+
+        </ul>
+        <div class="logout" onclick="logout()"><img src="../images/logout.png" alt="">Logout</div>
+
+    </div>
+
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="header">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search Available book..." />
+                <div id="suggestions" class="suggestions-box"></div>
+            </div>
+            <div class="profile">
+                <img src="../images/gcoeystu.png" alt="profile">
+                <div>
+                    <strong id="short_name"></strong><br />
+                    <small><span id="department"></span> Department</small>
+                </div>
+            </div>
+            <div class="toggle_btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <div class="dropdown_manue">
+                <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
+                </li>
+                <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
+                <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
+                <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
+
+                <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
+                <li><a href="Info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
+                <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
+                <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a>
+                </li>
+                <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee
+                        Management</a></li>
+                <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
+
+                <li onclick="logout()">
+                    <img src="../images/logout.png" alt="" />Logout
+                </li>
+            </div>
+        </div>
+
+
+
+        <div class="courses" id="personal">
+            <h3>Add New Student</h3>
+            <div class="personalinfo">
+                <div class="form-card">
+                    <div class="form-container">
+                        <form>
+
+                            <div class="form-group">
+                                <div class="get_prn">
+                                    <label for="prn">PRN</label>
+                                    <button type="button" class="GetStudent" onclick="GetStudent()">Get Student</button>
+                                </div>
+                                <input type="number" id="prn" name="prn" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="fname">First Name</label>
+                                <input type="text" id="fname" name="fname" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mname">Middle Name</label>
+                                <input type="text" id="mname" name="mname">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="lname">Last Name</label>
+                                <input type="text" id="lname" name="lname" required>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="sem">semister</label>
+                                <select id="sem" name="sem" required>
+                                    <option value="">Select sem</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" id="dob" name="dob" required>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="branch">Branch</label>
+                                <select id="branch1" name="Branch" required>
+                                    <option value="">Select Branch</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email ID</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}"
+                                    placeholder="Enter 10-digit number" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <div>
+                                    <input type="password" id="password" name="password" minlength="6" required>
+                                    <button type="button" id="toggletext" onclick="togglePassword()">Show</button>
+                                </div>
+                            </div>
+                            <div class="sub-btn">
+                                <button type="button" onclick="AddStudent()" class="submit-btn">Add Student</button>
+                                <button type="button" onclick="UpdateStudent()" class="submit-btn">Update
+                                    Student</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <div class="courses">
+            <h3>Students Add through Excel</h3>
+
+            <div class="personalinfo">
+                <div class="issue-contaner">
+
+                    <div class="book-id">
+                        <h4>Students Bulk Upload</h4>
+                        <input type="file" class="input-contaner" id="StudentExcelFile"  accept=".xlsx, .xls">
+                    </div>
+
+                    <div class="delete-student">
+                        <button type="button" id="uploadBtn" class="issue-button-excel" onclick="UploadAllStudentExcel()">
+                            Upload Students Data
+                        </button>
+                        <!-- Progress UI -->
+                        <div id="uploadStatus" style="display:none; margin-top:10px;">
+                            <span id="uploadText">Uploading...</span>
+
+                            <div style="width:100%; background:#ddd; margin-top:5px;">
+                                <div id="progressBar" style="width:0%; height:10px; background:green;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+        <div class="courses">
+            <h3>Delete Student</h3>
+            <div class="personalinfo">
+                <div class="issue-contaner">
+                    <div class="book-id">
+                        <h4>Student ID</h4>
+                        <input type="text" id="delete-prn" class="input-contaner" placeholder="Enter Student PRN">
+                        <button type="button" class="button-cont">Scan Student PRN</button>
+                    </div>
+
+                    <div class="delete-student">
+                        <!-- <h4>Return</h4> -->
+                        <button type="button" onclick="DeleteStudent()" class="issue-button">Delete Student</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="courses" id="issued">
+            <h3>Student Info By Name
+                <input type="text" name="Student_Prn" id="Student_Name" class="input-studentprn"
+                    placeholder="Enter Student Name">
+                <button type="button" onclick="GenerateStudentPDFByName()" class="issue-button">Generate PDF</button>
+            </h3>
+
+            <div class="personalinfo overflowy" id="ScrollContanerByName">
+                <div class="course-card">
+                    <div class="inner-table">
+                        <table>
+                            <tr>
+                                <th>Created At</th>
+                                <th>PRN</th>
+                                <th>Name</th>
+                                <th>DOB</th>
+                                <th>Age</th>
+                                <th>Semister</th>
+                                <th>Branch</th>
+                                <th>Email</th>
+                                <th>Phone No.</th>
+                            </tr>
+                            <tbody id="StudentInfoByName"></tbody>
+
+                        </table>
+                    </div>
+                    <!-- <button>View</button> -->
+                </div>
+            </div>
+        </div>
+
+
+        <div class="courses" id="issued">
+            <h3>Student Info By PRN
+                <input type="text" name="Student_Prn" id="Student_Prn" class="input-studentprn"
+                    placeholder="Enter Student PRN">
+                <button type="button" onclick="GenerateStudentPDFByPRN()" class="issue-button">Generate PDF</button>
+            </h3>
+
+            <div class="personalinfo overflowy">
+                <div class="course-card">
+                    <div class="inner-table">
+                        <table>
+                            <tr>
+                                <th>Created At</th>
+                                <th>PRN</th>
+                                <th>Name</th>
+                                <th>DOB</th>
+                                <th>Age</th>
+                                <th>Semister</th>
+                                <th>Branch</th>
+                                <th>Email</th>
+                                <th>Phone No.</th>
+                            </tr>
+                            <tbody id="StudentInfoByPRN"></tbody>
+
+                        </table>
+                    </div>
+                    <!-- <button>View</button> -->
+                </div>
+            </div>
+        </div>
+
+
+        <div class="courses" id="issued">
+            <h3>Student Info
+                <select class="requester_type" id="branch2">
+                    <option value="">All (Select Branch)</option>
+                </select>
+                <select class="requester_type" id="semFilter">
+                    <option value="">All (Select Semister)</option>
+                    <option value="1">1 Semister</option>
+                    <option value="2">2 Semister</option>
+                    <option value="3">3 Semister</option>
+                    <option value="4">4 Semister</option>
+                    <option value="5">5 Semister</option>
+                    <option value="6">6 Semister</option>
+                    <option value="7">7 Semister</option>
+                    <option value="8">8 Semister</option>
+
+                </select>
+                <button type="button" onclick="GenerateAllStudentPDF()" class="issue-button">Generate PDF</button>
+            </h3>
+
+            <div class="personalinfo overflowy" id="ScrollContaner">
+                <div class="course-card">
+                    <div class="inner-table">
+                        <table>
+                            <tr>
+                                <th>PRN</th>
+                                <th>Name</th>
+                                <th>DOB</th>
+                                <th>Age</th>
+                                <th>Semister</th>
+                                <th>Branch</th>
+                                <th>Email</th>
+                                <th>Phone No.</th>
+                            </tr>
+                            <tbody id="AllStudentInfo"></tbody>
+
+                        </table>
+                    </div>
+                    <!-- <button>View</button> -->
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    </div>
+
+    <script src="student_management.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    <script src="student_data_excel_base_upload.js"></script>
+    <script src="student_management_PDF_Generate.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,305 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    /* stack children vertically */
+    align-items: center;
+    /* center horizontally */
+    justify-content: center;
+    /* start from the top */
+    min-height: 100vh;
+    padding: 2rem 1.5rem 2rem 1.5rem;
+    /* top padding creates free space above title */
+    position: relative;
+    background-color: #0f1a1f;
+}
+
+.bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+}
+
+.bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(20, 10, 40, 0.65), rgba(20, 5, 35, 0.7));
+    pointer-events: none;
+}
+
+/* ----- PAGE TITLE AT THE TOP (with its own spacing) ----- */
+.page-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    /* free space between title and card */
+    color: white;
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    text-shadow: 0 4px 18px rgba(128, 0, 255, 0.9), 0 2px 4px black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
+
+.page-title i {
+    color: #f0d3ff;
+    filter: drop-shadow(0 4px 8px #4a1e7a);
+    font-size: 2.8rem;
+}
+
+.login-card {
+    max-width: 480px;
+    width: 100%;
+    border-radius: 36px;
+    box-shadow: 0 20px 40px -6px rgba(138, 43, 226, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.2),
+        0 10px 40px -10px rgba(100, 13, 173, 0.6);
+    padding: 2.4rem 2.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: all 0.25s ease;
+    position: relative;
+    z-index: 1;
+    background: transparent;
+    margin-bottom: 2rem;
+    /* a little breathing below the card */
+}
+
+.login-card:hover {
+    box-shadow: 0 30px 60px -8px rgba(155, 48, 255, 0.6),
+        0 0 0 1.5px rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.field {
+    margin-bottom: 1.8rem;
+}
+
+label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
+    margin-bottom: 0.4rem;
+}
+
+label i {
+    color: #e9c6ff;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.2));
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background: transparent !important;
+    border: 1.5px solid rgba(255, 255, 255, 0.4);
+    border-radius: 60px;
+    padding: 0.1rem;
+    transition: 0.2s;
+}
+
+.input-wrapper:focus-within {
+    border-color: #d6b0ff;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 0 0 3px rgba(200, 130, 255, 0.25);
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 0.85rem 1.2rem;
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    outline: none;
+}
+
+.input-wrapper input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Password toggle button */
+.password-toggle {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.2rem;
+    padding: 0 1rem 0 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+    line-height: 1;
+}
+
+.password-toggle:hover {
+    color: white;
+}
+
+.password-toggle i {
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.3));
+}
+
+/* PRN meta (digit counter) */
+.prn-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.6rem;
+    padding-left: 0.6rem;
+    font-size: 0.7rem;
+}
+
+.digit-hint {
+    color: rgba(255, 235, 255, 0.95);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    text-shadow: 0 1px 3px black;
+}
+
+.digit-counter {
+    background: rgba(30, 15, 50, 0.5);
+    backdrop-filter: blur(4px);
+    padding: 0.2rem 1.2rem;
+    border-radius: 40px;
+    font-weight: 700;
+    color: #fff1e6;
+    border: 1px solid rgba(255, 215, 255, 0.6);
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+}
+
+.digit-counter.valid {
+    background: rgba(103, 58, 183, 0.7);
+    border-color: #e7b9ff;
+    box-shadow: 0 0 8px #c56aff;
+}
+
+/* message area */
+.msg {
+    padding: 0.9rem 1.4rem;
+    border-radius: 60px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 1.2rem;
+    display: none;
+    align-items: center;
+    gap: 0.7rem;
+    border: 1px solid;
+}
+
+.msg.error {
+    display: flex;
+    background: rgba(180, 60, 80, 0.35);
+    border-color: #ffa098;
+    color: #ffe1e1;
+}
+
+.msg.success {
+    display: flex;
+    background: rgba(90, 60, 150, 0.4);
+    border-color: #e9adff;
+    color: #f3e5ff;
+}
+
+.login-btn {
+    width: 100%;
+    background: rgba(128, 0, 255, 0.75);
+    backdrop-filter: blur(6px);
+    border: none;
+    padding: 1rem 1.2rem;
+    border-radius: 60px;
+    font-weight: 800;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.9rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 6px 18px rgba(106, 13, 173, 0.4);
+    transition: all 0.15s;
+    cursor: pointer;
+    text-shadow: 0 1px 2px black;
+    color: white;
+}
+
+.login-btn:hover {
+    background: rgba(155, 48, 255, 0.9);
+    transform: translateY(1px);
+    box-shadow: 0 10px 24px rgba(170, 0, 255, 0.6);
+}
+
+.login-btn:active {
+    transform: translateY(3px);
+    border-bottom-width: 1px;
+}
+
+.footer-simple {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.9);
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    padding-top: 1.3rem;
+    text-shadow: 0 1px 6px #1e0a2e;
+    letter-spacing: 0.8px;
+}
+
+.footer-simple i {
+    margin-right: 6px;
+    color: #f3daff;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 1.5rem 1rem;
+    }
+
+    .page-title {
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+        gap: 10px;
+    }
+
+    .page-title i {
+        font-size: 2rem;
+    }
+
+    .login-card {
+        padding: 1.8rem 1.5rem;
+    }
+}

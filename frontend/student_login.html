@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Login · PRN & Password</title>
+    <!-- Inter font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="student_login.css">
+</head>
+
+<body>
+    <div class="bg-container">
+        <img class="bg-img" src="../images/Student login Image.jpeg" alt="Library background">
+        <div class="bg-overlay"></div>
+    </div>
+    <!-- TITLE AT THE TOP with free space above (from body padding) and below (margin-bottom) -->
+    <div class="page-title">
+        <i class="fas fa-graduation-cap"></i> Student Login
+    </div>
+    <br>
+    <div class="login-card">
+        <form id="loginForm" novalidate>
+            <!-- PRN field -->
+            <div class="field">
+                <label for="prn">
+                    <i class="fas fa-qrcode" style="margin-right: 6px;"></i> PRN No
+                </label>
+                <div class="input-wrapper">
+                    <input type="text" id="prn" name="prn" inputmode="numeric" maxlength="14"
+                        placeholder="Enter Your PRN No" autocomplete="off">
+                </div>
+            </div>
+
+            <!-- Password field -->
+            <div class="field">
+                <label for="password">
+                    <i class="fas fa-lock"></i> Password
+                </label>
+                <div class="input-wrapper">
+                    <input type="password" id="password" name="password" placeholder="Enter your password"
+                        autocomplete="current-password">
+                    <button type="button" class="password-toggle" id="togglePassword" tabindex="-1"
+                        aria-label="Toggle password visibility">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Login button -->
+            <button type="submit" class="login-btn">
+                <i class="fas fa-arrow-right-to-bracket"></i> LOGIN
+            </button>
+        </form>
+        <div id="message" class="msg" style="display:none;"></div>
+        <div class="footer-simple">
+            <i class="fas fa-shield"></i> Official login · PRN required
+        </div>
+    </div>
+
+    <script src="student_login.js"></script>
+</body>
+
+</html>

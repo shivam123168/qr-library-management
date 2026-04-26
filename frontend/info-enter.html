@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>librarian Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="info-enter.css">
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="logo">🎓 Librarian/Student</div>
+
+        <ul>
+            <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
+            </li>
+            <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
+            <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
+            <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
+            <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
+            <li><a href="Info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
+            <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
+            <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a></li>
+            <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee Management</a>
+            </li>
+            <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
+        </ul>
+        <div class="logout" onclick="logout()"><img src="../images/logout.png" alt="" />Logout</div>
+
+    </div>
+
+
+    <!-- Main content -->
+    <div class="main-content">
+        <div class="header">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search Available book..." />
+                <div id="suggestions" class="suggestions-box"></div>
+            </div>
+            <div class="profile">
+                <img src="../images/gcoeystu.png" alt="profile">
+                <div>
+                    <strong id="short_name"></strong><br />
+                    <small><span id="department"></span> Department</small>
+                </div>
+            </div>
+            <div class="toggle_btn">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+            <div class="dropdown_manue">
+                <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
+                </li>
+                <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
+                <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
+                <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
+
+                <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
+                <li><a href="Info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
+                <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
+                <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a>
+                </li>
+                <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee
+                        Management</a></li>
+                <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
+                <li onclick="logout()">
+                    <img src="../images/logout.png" alt="" />Logout
+                </li>
+            </div>
+        </div>
+
+
+        <div class="courses" id="top-course">
+            <h3>Branch</h3>
+            <div class="personalinfo ">
+                <div class="issue-contaner">
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Branch Name</h4>
+                            <input type="text" class="input-contaner" id="BranchName" placeholder="Enter Branch Name">
+                        </div>
+
+                        <div class="delete-student">
+                            <!-- <h4>Return</h4> -->
+                            <button type="button" class="issue-button" onclick="AddBranch()">Add Branch</button>
+                        </div>
+                    </div>
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Branch ID</h4>
+                            <input type="text" class="input-contaner" id="Branchid" placeholder="Enter Branch ID">
+                        </div>
+
+                        <div class="delete-student">
+                            <!-- <h4>Return</h4> -->
+                            <button type="button" class="issue-button" onclick="DeleteBranch()">Delete Branch</button>
+                        </div>
+                    </div>
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Upload Through Excel</h4>
+
+                            <!-- File Input -->
+                            <input type="file" class="input-contaner" id="branchFile" accept=".xlsx, .xls">
+
+                            <!-- Upload Button -->
+                            <button type="button" class="issue-button-excel" onclick="UploadBranchExcel()">
+                                Upload Branch
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="pdf-button-container">
+                            <label for="Branch">Branch</label>
+
+                            <button class="issue-button-pdf" onclick="GenerateBranchPDF()">Generate PDF</button>
+                        </div>
+
+                        <div class="inner-table overflowy">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Branch</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="requestBranchBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="courses">
+            <h3>Department</h3>
+            <div class="personalinfo ">
+                <div class="issue-contaner">
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Department Name</h4>
+                            <input type="text" class="input-contaner" id="departmentName"
+                                placeholder="Enter Department Name">
+                        </div>
+
+                        <div class="delete-student">
+                            <!-- <h4>Return</h4> -->
+                            <button type="button" class="issue-button" onclick="AddDepartment()">Add Department</button>
+                        </div>
+                    </div>
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Department ID</h4>
+                            <input type="text" class="input-contaner" id="DepartmentId"
+                                placeholder="Enter Department ID">
+
+                        </div>
+
+                        <div class="delete-student">
+                            <!-- <h4>Return</h4> -->
+                            <button type="button" class="issue-button" onclick="DeleteDepartment()">Delete
+                                Department</button>
+                        </div>
+                    </div>
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Upload Through Excel</h4>
+
+                            <!-- File Input -->
+                            <input type="file" class="input-contaner" id="departmentFile" accept=".xlsx, .xls">
+
+                            <!-- Upload Button -->
+                            <button type="button" class="issue-button-excel" onclick="UploadDepartmentExcel()">
+                                Upload Department
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="pdf-button-container"> 
+                            <label for="department">Department</label>
+                            <button class="issue-button-pdf" onclick="GenerateDepartmentPDF()">Generate PDF</button>
+                        </div>
+                       
+                        <div class="inner-table overflowy">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Department</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody id="requestDepartmentBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="courses">
+            <h3>Post</h3>
+            <div class="personalinfo ">
+                <div class="issue-contaner">
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Post Name</h4>
+                            <input type="text" class="input-contaner" id="postName" placeholder="Enter Post Name">
+                        </div>
+
+                        <div class="delete-student">
+                            <!-- <h4>Return</h4> -->
+                            <button type="button" class="issue-button" onclick="addPost()">Add Post</button>
+                        </div>
+                    </div>
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Post ID</h4>
+                            <input type="text" class="input-contaner" id="Postid" placeholder="Enter Post ID">
+
+                        </div>
+
+                        <div class="delete-student">
+                            <!-- <h4>Return</h4> -->
+                            <button type="button" class="issue-button" onclick="DeletePost()">Delete Post</button>
+                        </div>
+                    </div>
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Upload Through Excel</h4>
+
+                            <!-- File Input -->
+                            <input type="file" class="input-contaner" id="PostFile" accept=".xlsx, .xls">
+
+                            <!-- Upload Button -->
+                            <button type="button" class="issue-button-excel" onclick="UploadPostExcel()">
+                                Upload Post
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="pdf-button-container"> 
+                            <label for="department">Post</label>
+                            <button class="issue-button-pdf" onclick="GeneratePostPDF()">Generate PDF</button>
+                        </div>
+                        <div class="inner-table overflowy">
+                            <table>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Post</th>
+
+                                </tr>
+                                </thead>
+                                <tbody id="requestPostBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="courses">
+            <h3>Publisher</h3>
+            <div class="personalinfo ">
+                <div class="issue-contaner">
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Publisher Name</h4>
+                            <input type="text" class="input-contaner" id="publisherNamr"
+                                placeholder="Enter Publisher Name">
+                        </div>
+
+                        <div class="delete-student">
+                            <!-- <h4>Return</h4> -->
+                            <button type="button" class="issue-button" onclick="addpublisher()">Add Publisher</button>
+                        </div>
+                    </div>
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Publisher ID</h4>
+                            <input type="text" class="input-contaner" id="publisherid" placeholder="Enter Publisher ID">
+
+                        </div>
+
+                        <div class="delete-student">
+                            <!-- <h4>Return</h4> -->
+                            <button type="button" class="issue-button" onclick="deletepublisher()">Delete
+                                Publisher</button>
+                        </div>
+                    </div>
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Upload Through Excel</h4>
+
+                            <!-- File Input -->
+                            <input type="file" class="input-contaner" id="publisherFile" accept=".xlsx, .xls">
+
+                            <!-- Upload Button -->
+                            <button type="button" class="issue-button-excel" onclick="UploadPublisherExcel()">
+                                Upload Publisher
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="pdf-button-container">
+                            <label for="department">Publisher</label>
+                            <button class="issue-button-pdf" onclick="GeneratePublisherPDF()">Generate PDF</button>
+                        </div>
+                        <div class="inner-table overflowy">
+                            <table>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Publisher</th>
+
+                                </tr>
+                                </thead>
+                                <tbody id="requestPublisherBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="courses">
+            <h3>Author</h3>
+            <div class="personalinfo ">
+                <div class="issue-contaner">
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Author Name</h4>
+                            <input type="text" class="input-contaner" id="authorname" placeholder="Enter Author Name">
+                        </div>
+
+                        <div class="delete-student">
+                            <!-- <h4>Return</h4> -->
+                            <button type="button" class="issue-button" onclick="addAuthor()">Add Author</button>
+                        </div>
+                    </div>
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Author ID</h4>
+                            <input type="text" class="input-contaner" id="authorid" placeholder="Enter Author ID">
+
+                        </div>
+
+                        <div class="delete-student">
+                            <!-- <h4>Return</h4> -->
+                            <button type="button" class="issue-button" onclick="deleteAuthor()">Delete Author</button>
+                        </div>
+                    </div>
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Upload Through Excel</h4>
+
+                            <!-- File Input -->
+                            <input type="file" class="input-contaner" id="AuthorFile" accept=".xlsx, .xls">
+
+                            <!-- Upload Button -->
+                            <button type="button" class="issue-button-excel" onclick="UploadAuthorExcel()">
+                                Upload Author
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="pdf-button-container">
+                            <label for="department">Author</label>
+                            <button class="issue-button-pdf" onclick="GenerateAuthorPDF()">Generate PDF</button>
+                        </div>
+                        <div class="inner-table overflowy">
+                            <table>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Author</th>
+
+                                </tr>
+                                </thead>
+                                <tbody id="requestAuthorBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="courses">
+            <h3>Penalty Amount</h3>
+            <div class="personalinfo ">
+                <div class="issue-contaner">
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Penalty Amount</h4>
+                            <input type="number" class="input-contaner" id="addpenalty"
+                                placeholder="Enter Penalty Amount">
+                        </div>
+
+                        <div class="delete-student">
+                            <!-- <h4>Return</h4> -->
+                            <button type="button" class="issue-button" onclick="addpenalty()">Add Amount</button>
+                        </div>
+                    </div>
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Penalty Amount ID</h4>
+                            <input type="text" class="input-contaner" id="penaltyAmountId"
+                                placeholder="Enter Penalty Amount ID">
+
+                        </div>
+
+                        <div class="delete-student">
+                            <!-- <h4>Return</h4> -->
+                            <button type="button" class="issue-button" onclick="DeletePenlatyAmount()">Delete
+                                Amount</button>
+                        </div>
+                    </div>
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Upload Through Excel</h4>
+
+                            <!-- File Input -->
+                            <input type="file" class="input-contaner" id="PenaltyAmountFile" accept=".xlsx, .xls">
+
+                            <!-- Upload Button -->
+                            <button type="button" class="issue-button-excel" onclick="UploadPenaltyAmountExcel()">
+                                Upload Penalty Amount
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="pdf-button-container">
+                            <label for="department">Penalty Amounts</label>
+                            <button class="issue-button-pdf" onclick="GeneratePenaltyAmountPDF()">Generate PDF</button>
+                        </div>
+                        <div class="inner-table overflowy">
+                            <table>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Amount</th>
+
+                                </tr>
+                                </thead>
+                                <tbody id="requestPenaltyBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="courses">
+            <h3>Penalty Excuse</h3>
+            <div class="personalinfo ">
+                <div class="issue-contaner">
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Penalty Excuse</h4>
+                            <input type="text" class="input-contaner" id="addexcuse" placeholder="Enter Penalty Excuse">
+                        </div>
+
+                        <div class="delete-student">
+                            <!-- <h4>Return</h4> -->
+                            <button type="button" class="issue-button" onclick="addexcuse()">Add Excuse</button>
+                        </div>
+                    </div>
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Penalty Excuse ID</h4>
+                            <input type="text" class="input-contaner" id="excuseId"
+                                placeholder="Enter Penalty Excuse ID">
+
+                        </div>
+
+                        <div class="delete-student">
+                            <!-- <h4>Return</h4> -->
+                            <button type="button" class="issue-button" onclick="DeleteExcuse()">Delete Excuse</button>
+                        </div>
+                    </div>
+                    <div class="info-enter-div">
+                        <div class="book-id">
+                            <h4>Upload Through Excel</h4>
+
+                            <!-- File Input -->
+                            <input type="file" class="input-contaner" id="PenaltyExcuseFile" accept=".xlsx, .xls">
+
+                            <!-- Upload Button -->
+                            <button type="button" class="issue-button-excel" onclick="UploadPenaltyExcuseExcel()">
+                                Upload Penalty Excuse
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="pdf-button-container">
+                            <label for="department">Penalty Excuses</label>
+                            <button class="issue-button-pdf" onclick="GeneratePenaltyExcusePDF()">Generate PDF</button>
+                        </div>
+                        <div class="inner-table overflowy">
+                            <table>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Excuse</th>
+
+                                </tr>
+                                </thead>
+                                <tbody id="requestPenaltyExcuseBody"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+    </div>
+    <script src="info-enter.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    <script src="Excel_Upload.js"></script>
+    <script src="info_enter_PDF_generator.js"></script>
+</body>
+
+</html>

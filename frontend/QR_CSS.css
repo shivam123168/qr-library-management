@@ -1,0 +1,28 @@
+.qr-card {
+  background: #fff;
+  border: 0.5px solid #e0deda;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+}
+.qr-accent { width: 4px; flex-shrink: 0; }
+.qr-body { display: flex; align-items: center; gap: 12px; padding: 14px 14px 14px 12px; flex: 1; min-width: 0; }
+.qr-box { width: 80px; height: 80px; background: #f5f4f0; border-radius: 8px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; }
+.qr-box img { width: 64px; height: 64px; display: block; }
+.qr-prn { font-size: 9px; font-weight: 600; letter-spacing: .03em; padding: 2px 6px; border-radius: 20px; }
+.qr-info { flex: 1; min-width: 0; }
+.qr-eyebrow { font-size: 9px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: #9a9890; margin-bottom: 3px; }
+.qr-name { font-size: 14px; font-weight: 600; color: #1a1a18; margin-bottom: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.qr-meta { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 8px; }
+.meta-pair { display: flex; flex-direction: column; gap: 1px; }
+.meta-k { font-size: 9px; color: #b0aea6; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.meta-v { font-size: 11px; color: #2e2e2b; font-weight: 500; }
+.qr-footer { margin-top: 8px; padding-top: 7px; border-top: 0.5px solid #ebebea; }
+.footer-txt { font-size: 9px; color: #c0beb6; }
+.results-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; flex-wrap: wrap; gap: 8px; }
+.results-title { font-size: 13px; font-weight: 500; color: #666; }
+.badge-count { font-size: 11px; background: #eeedfe; color: #534ab7; padding: 2px 8px; border-radius: 20px; font-weight: 500; }
+#qr-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.btn-small { font-size: 12px; padding: 6px 14px; border: 0.5px solid #ccc; background: transparent; border-radius: 8px; cursor: pointer; }
+.btn-primary { background: #6c63f5; border-color: #6c63f5; color: #fff; }
