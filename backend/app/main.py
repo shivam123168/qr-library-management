@@ -7,7 +7,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
-from app.api.endpoints import auth_with_librarian, reference_endpoints, student_endpoints, employee_endpoints, book_endpoints, password_endpoints, issue_book_view_endpoints, transaction_endpoints, penalty_endpoints, book_request_endpoints, profile_endpoints
+from app.api.endpoints import auth_with_librarian, reference_endpoints, student_endpoints, employee_endpoints, book_endpoints, password_endpoints, issue_book_view_endpoints, transaction_endpoints, penalty_endpoints, book_request_endpoints, profile_endpoints, backup
 from app.core.penalty_schedular import  start_scheduler
 
 
@@ -140,6 +140,12 @@ app.include_router(
     book_request_endpoints.router,
     prefix="/api",
     tags=["📬 Book Requests"]
+)
+
+app.include_router(
+    backup.router,
+    prefix="/api/backup",
+    tags=["💾 Backup"]
 )
 
 

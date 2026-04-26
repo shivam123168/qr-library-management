@@ -72,14 +72,15 @@ document.addEventListener("DOMContentLoaded", async function () {
         loadBookStats(); // Load book stats
         loadUserStats(token); // Load student/employee stats
         loadEmployeeProfile(token); // Load librarian profile info
+        loadBookStats(); // Load book stats
         loadPendingRequests(); // Load pending book requests 
         loadDueTodayBooks(); // Load books due today
         loadPenalties(); // Load penalties
         loadIssuedBooks(); // Load issued books
         loadReturnedBooks(); // Load returned books
         loadOverdueBooks(); // Load overdue books with infinite scroll
-        
-       
+
+
 
     } catch (error) {
         console.error("Error fetching stats:", error);
@@ -212,7 +213,7 @@ async function loadEmployeeProfile(token) {
         // 🔹 Personal Info
         // setText("emp_id", data.Emp_Id);
         setText("first_name", data.First_name);
-        setText("short_name",data.First_name+ " " + data.Last_name);
+        setText("short_name", data.First_name + " " + data.Last_name);
         // setText("last_name", data.Last_name);
         // setText("email", data.Gmail);
         // setText("phone", data.Phone_no);
@@ -249,9 +250,9 @@ const tableBody = document.getElementById("requestTableBody");
 const dayLimitInput = document.getElementById("day_limit");
 
 document.getElementById("typeFilter")
-.addEventListener("change", () => {
-    loadPendingRequests(true); // TRUE = RESET
-});
+    .addEventListener("change", () => {
+        loadPendingRequests(true); // TRUE = RESET
+    });
 
 /* ================================
    LOAD PENDING REQUESTS
@@ -613,13 +614,13 @@ async function loadPenalties(reset = false) {
 // ✅ Infinite Scroll
 const scrollPenaltyContainer = document.getElementById("penaltyScrollContainer");
 
-scrollPenaltyContainer.addEventListener("scroll",async () => {
+scrollPenaltyContainer.addEventListener("scroll", async () => {
 
     if (
         scrollPenaltyContainer.scrollTop + scrollPenaltyContainer.clientHeight >=
         scrollPenaltyContainer.scrollHeight - 50
     ) {
-          console.log("Reached bottom - load more");
+        console.log("Reached bottom - load more");
         await loadPenalties();
     }
 
@@ -928,7 +929,7 @@ async function loadOverdueBooks(reset = false) {
 
 // Direct event bindings
 scrollOverdueContainer.onscroll = async function () {
-    if (scrollOverdueContainer.scrollTop + scrollOverdueContainer.clientHeight 
+    if (scrollOverdueContainer.scrollTop + scrollOverdueContainer.clientHeight
         >= scrollOverdueContainer.scrollHeight - 20) {
         await loadOverdueBooks();
     }
@@ -959,7 +960,7 @@ searchInput.addEventListener("input", async () => {
         const div = document.createElement("div");
         div.classList.add("suggestion-item");
 
-        div.textContent ="Copy No:" + book.Copy_Number + " Title:" + book.Title + " Rack:" + book.rack_location + " Self:" + book.self_location;
+        div.textContent = "Copy No:" + book.Copy_Number + " Title:" + book.Title + " Rack:" + book.rack_location + " Self:" + book.self_location;
 
 
 
