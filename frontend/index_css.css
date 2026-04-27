@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #0f1a1f;
+}
+
+/* Background */
+.bg-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.bg-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(20, 10, 40, 0.65), rgba(20, 5, 35, 0.7));
+}
+
+/* Title */
+.page-title {
+    color: white;
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    text-shadow: 0 4px 18px rgba(128, 0, 255, 0.9);
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.page-title i {
+        color: #f0d3ff;
+    filter: drop-shadow(0 4px 8px #4a1e7a);
+    font-size: 2.8rem;
+}
+
+/* Card */
+.role-card {
+    background: transparent;
+    padding: 2.5rem;
+    border-radius: 30px;
+    width: 350px;
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    box-shadow: 
+        0 20px 40px rgba(128,0,255,0.4),
+        0 0 0 1px rgba(255,255,255,0.2);
+}
+
+/* Buttons */
+.role-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    text-decoration: none;
+    margin: 15px 0;
+    padding: 14px;
+
+    border-radius: 50px;
+    font-weight: 700;
+    letter-spacing: 1px;
+
+    color: white;
+    background: rgba(128, 0, 255, 0.7);
+
+    transition: 0.2s;
+    box-shadow: 0 5px 15px rgba(128,0,255,0.4);
+}
+
+.role-btn:hover {
+    background: rgba(155, 48, 255, 0.9);
+    transform: translateY(2px);
+}
+
+/* Icons */
+.role-btn i {
+    font-size: 1.2rem;
+}

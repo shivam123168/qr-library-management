@@ -236,6 +236,31 @@ label i {
     border-bottom-width: 1px;
 }
 
+/* ----- additional links (e.g. "Forgot password?") – subtle, no blur ----- */
+
+.login-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 15px;
+    padding: 0 5px;
+}
+
+.login-links a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #7f5cff;
+    font-weight: 500;
+
+    transition: 0.3s;
+}
+
+.login-links a:hover {
+    color: #5a3fff;
+    text-decoration: underline;
+}
+
 /* ----- FOOTER – crisp, no blur ----- */
 .footer-simple {
     margin-top: 2.2rem;

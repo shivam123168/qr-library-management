@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
@@ -8,13 +9,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-   <link rel="stylesheet" href="librarian_login.css">
+    <link rel="stylesheet" href="librarian_login.css">
 </head>
+
 <body>
     <!-- background image + overlay -->
     <div class="bg-container">
-        <img class="bg-img" src="../images/Librarian_Login_Image.jpeg" 
-             alt="Library workspace – librarian login">
+        <img class="bg-img" src="../images/Librarian_Login_Image.jpeg" alt="Library workspace – librarian login">
         <div class="bg-overlay"></div>
     </div>
 
@@ -32,8 +33,8 @@
                     <i class="fas fa-id-card"></i> Librarian ID
                 </label>
                 <div class="input-wrapper">
-                    <input type="text" id="employeeId" name="employeeId" 
-                           placeholder="Enter your librarian ID" autocomplete="off" spellcheck="false">
+                    <input type="text" id="employeeId" name="employeeId" placeholder="Enter your librarian ID"
+                        autocomplete="off" spellcheck="false">
                 </div>
             </div>
 
@@ -43,9 +44,10 @@
                     <i class="fas fa-lock"></i> Password
                 </label>
                 <div class="input-wrapper">
-                    <input type="password" id="password" name="password" 
-                           placeholder="Enter your password" autocomplete="current-password">
-                    <button type="button" class="password-toggle" id="togglePassword" tabindex="-1" aria-label="Toggle password visibility">
+                    <input type="password" id="password" name="password" placeholder="Enter your password"
+                        autocomplete="current-password">
+                    <button type="button" class="password-toggle" id="togglePassword" tabindex="-1"
+                        aria-label="Toggle password visibility">
                         <i class="fas fa-eye"></i>
                     </button>
                 </div>
@@ -55,6 +57,12 @@
             <button type="submit" class="login-btn">
                 <i class="fas fa-arrow-right-to-bracket"></i> LOGIN
             </button>
+
+            <div class="login-links">
+                <a href="index.html" class="back-link">← Back</a>
+                <a href="register.html">Register</a>
+                <a href="forgot_password.html">Forgot Password?</a>
+            </div>
         </form>
         <div id="message" class="msg" style="display:none;"></div>
         <div class="footer-simple">
@@ -64,4 +72,5 @@
 
     <script src="librarian_login.js"></script>
 </body>
+
 </html>
