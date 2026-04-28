@@ -2,7 +2,6 @@ const apiBaseUrl = `https://qr-library-management-production.up.railway.app`;
 const toggleBtn = document.querySelector(".toggle_btn");
 const toggleBtnIcon = document.querySelector(".toggle_btn i");
 const dropDownManue = document.querySelector(".dropdown_manue");
-
 function navigateTo(sectionId) {
     const section = document.getElementById(sectionId);
 
