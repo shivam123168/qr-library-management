@@ -19,7 +19,7 @@ class AuthorJunction(Base):
     
     # Foreign Keys
     Books_Accession_number = Column(Integer, ForeignKey('books.Accession_number'))
-    Author_id = Column(Integer, ForeignKey('Author.Author_id'))
+    Author_id = Column(Integer, ForeignKey('author.Author_id'))
     
     # Relationships
     # book = relationship("Book", back_populates="author_junctions")

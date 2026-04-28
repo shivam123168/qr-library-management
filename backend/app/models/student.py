@@ -11,7 +11,7 @@ class Student(Base):
     """
     Student model representing student users of the library system
     """
-    __tablename__ = "Students"
+    __tablename__ = "students"
     
     # Columns
     Prn_id = Column(Integer, primary_key=True)
@@ -29,7 +29,7 @@ class Student(Base):
     student_creation_time = Column(TIMESTAMP, nullable=False)
     
     # Foreign Keys
-    Branch_id = Column(Integer, ForeignKey('Branch.Branch_id'))
+    Branch_id = Column(Integer, ForeignKey('branch.Branch_id'))
     
     # Relationships
     branch = relationship("Branch", back_populates="students")

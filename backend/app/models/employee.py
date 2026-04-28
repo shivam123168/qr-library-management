@@ -11,7 +11,7 @@ class Employee(Base):
     """
     Employee model representing library staff members
     """
-    __tablename__ = "Employees"
+    __tablename__ = "employees"
     
     # Columns
     Emp_Id = Column(Integer, primary_key=True)
@@ -25,8 +25,8 @@ class Employee(Base):
     employee_creation_time = Column(TIMESTAMP, nullable=False)
     
     # Foreign Keys
-    Employee_post_id = Column(Integer, ForeignKey('Employee_post.Employee_post_id'))
-    Department_id = Column(Integer, ForeignKey('Department.Department_id'))
+    Employee_post_id = Column(Integer, ForeignKey('employee_post.Employee_post_id'))
+    Department_id = Column(Integer, ForeignKey('department.Department_id'))
     
     # Relationships
     employee_post = relationship("EmployeePost", back_populates="employees")

@@ -12,7 +12,7 @@ class EmployeePost(Base):
     Employee Post model representing different positions/designations
     (e.g., Librarian, Assistant Librarian, Clerk, etc.)
     """
-    __tablename__ = "Employee_post"
+    __tablename__ = "employee_post"
     
     # Columns
     Employee_post_id = Column(Integer, primary_key=True)

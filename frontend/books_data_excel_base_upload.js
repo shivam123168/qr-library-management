@@ -118,7 +118,7 @@ async function UploadAllBookExcel() {
 
             await Promise.all(promises);
 
-            // 🔥 SMALL DELAY (VERY IMPORTANT FOR 8000)
+            //  SMALL DELAY (VERY IMPORTANT FOR 8000)
             await new Promise(resolve => setTimeout(resolve, 200));
         }
 

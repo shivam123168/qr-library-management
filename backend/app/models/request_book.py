@@ -21,8 +21,8 @@ class RequestBook(Base):
     
     # Foreign Keys
     Books_Accession_number = Column(Integer, ForeignKey('books.Accession_number'))
-    Employee_Emp_Id = Column(Integer, ForeignKey('Employees.Emp_Id'))
-    Student_Prn_id = Column(Integer, ForeignKey('Students.Prn_id'))
+    Employee_Emp_Id = Column(Integer, ForeignKey('employees.Emp_Id'))
+    Student_Prn_id = Column(Integer, ForeignKey('students.Prn_id'))
     
     # Relationships
     book = relationship("Book", back_populates="requests")

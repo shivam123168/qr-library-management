@@ -12,7 +12,7 @@ class Branch(Base):
     Branch model representing different branches/departments
     (e.g., Computer Science, Mechanical Engineering, etc.)
     """
-    __tablename__ = "Branch"
+    __tablename__ = "branch"
     
     # Columns
     Branch_id = Column(Integer, primary_key=True, autoincrement=True)

@@ -12,7 +12,7 @@ class Department(Base):
     Department model representing different departments where employees work
     (e.g., Library, Administration, etc.)
     """
-    __tablename__ = "Department"
+    __tablename__ = "department"
     
     # Columns
     Department_id = Column(Integer, primary_key=True, autoincrement=True)

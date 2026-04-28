@@ -25,9 +25,9 @@ class IssueBook(Base):
     )
     
     # Foreign Keys
-    Student_Prn_id = Column(Integer, ForeignKey('Students.Prn_id'))
+    Student_Prn_id = Column(Integer, ForeignKey('students.Prn_id'))
     Books_Accession_number = Column(Integer, ForeignKey('books.Accession_number'))
-    Employee_Emp_Id = Column(Integer, ForeignKey('Employees.Emp_Id'))
+    Employee_Emp_Id = Column(Integer, ForeignKey('employees.Emp_Id'))
     
     # Relationships
     student = relationship("Student", back_populates="issued_books")

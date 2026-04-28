@@ -11,7 +11,7 @@ class Author(Base):
     """
     Author model representing book authors
     """
-    __tablename__ = "Author"
+    __tablename__ = "author"
     
     # Columns
     Author_id = Column(Integer, primary_key=True, autoincrement=True)
