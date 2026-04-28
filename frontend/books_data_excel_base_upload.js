@@ -41,7 +41,7 @@ async function UploadAllBookExcel() {
 
         uploadText.innerText = "Uploading...";
 
-        // 🔥 IMPORTANT: SMALL BATCH for 8000+
+        //  IMPORTANT: SMALL BATCH for 8000+
         const batchSize = 10;
 
         function clean(val) {
@@ -72,7 +72,7 @@ async function UploadAllBookExcel() {
                     self_location: clean(row["self_location"]),
                     total_pages: row["total_pages"] ? Number(row["total_pages"]) : 0,
 
-                    // 🔥 IMPORTANT PART
+                    //  IMPORTANT PART
                     author_names: parseAuthors(row["author_names"])
                 };
 

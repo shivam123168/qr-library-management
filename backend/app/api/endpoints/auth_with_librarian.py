@@ -82,7 +82,7 @@ def login_librarian(
     Returns JWT access token on successful login
     Only works if employee has "Librarian" post
     """
-    
+    print("INPUT PASSWORD:", credentials.password)
     # Find employee by Emp_Id
     employee = db.query(Employee).filter(Employee.Emp_Id == credentials.emp_id).first()
     
