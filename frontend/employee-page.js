@@ -1,4 +1,4 @@
-const apiBaseUrl = `http://${window.location.hostname}:8000`;
+const apiBaseUrl = `qr-library-management-production.up.railway.app`;
 const toggleBtn = document.querySelector(".toggle_btn");
 const toggleBtnIcon = document.querySelector(".toggle_btn i");
 const dropDownManue = document.querySelector(".dropdown_manue");
