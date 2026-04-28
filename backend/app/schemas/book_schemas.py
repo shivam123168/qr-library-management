@@ -122,7 +122,7 @@ class BookResponse(BaseModel):
     rack_location: Optional[str] = None
     self_location: Optional[str] = None
     publisher_id: int
-    publisher_name: Optional[str] 
+    publisher_name: Optional[str] = None
     authors: List[str] = Field(alias="author_names")
     class Config:
         from_attributes = True
