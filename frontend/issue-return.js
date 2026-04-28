@@ -1,4 +1,3 @@
-
 const apiBaseUrl = `https://qr-library-management-production.up.railway.app`;
 const toggleBtn = document.querySelector('.toggle_btn')
 const toggleBtnIcon = document.querySelector('.toggle_btn i')
