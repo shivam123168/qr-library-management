@@ -1,4 +1,4 @@
- const apiBaseUrl = `qr-library-management-production.up.railway.app`;
+ const apiBaseUrl = `https://qr-library-management-production.up.railway.app`;
 (function() {
     'use strict';
 
