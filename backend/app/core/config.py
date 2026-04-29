@@ -14,6 +14,12 @@ class Settings(BaseSettings):
     
     # Database Configuration
     DATABASE_URL: str
+
+    MYSQLHOST: str | None = None
+    MYSQLUSER: str | None = None
+    MYSQLPASSWORD: str | None = None
+    MYSQLDATABASE: str | None = None
+    MYSQLPORT: int | None = 3306
     
     # JWT Security
     SECRET_KEY: str
