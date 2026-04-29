@@ -145,13 +145,31 @@ async function downloadBackup() {
 
         const blob = await response.blob();
 
+        //  Get filename from backend headers
+        const contentDisposition = response.headers.get("content-disposition");
+        let filename = "backup.sql";
+
+        if (contentDisposition && contentDisposition.includes("filename=")) {
+            filename = contentDisposition
+                .split("filename=")[1]
+                .replace(/"/g, "");
+        }
+
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = "library_backup.sql";
+
+        //  use backend filename
+        a.download = filename;
+
+        document.body.appendChild(a);
         a.click();
 
+        a.remove();
+        window.URL.revokeObjectURL(url);
+
     } catch (error) {
+        console.error(error);
         alert("Backup failed");
     }
 }
