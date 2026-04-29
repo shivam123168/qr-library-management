@@ -101,7 +101,7 @@ def get_my_profile_student(
         DOB = str(current_student.DOB),
         middle_name=current_student.Middle_name,
         last_name=current_student.last_name,
-        gmail=current_student.Gmail,
+        gmail=current_student.gmail,
         Phone_no=current_student.Phone_no,
         sem=current_student.sem,
         Branch_id=current_student.Branch_id,
@@ -140,10 +140,10 @@ def update_my_profile_student(
     updated_fields = []
     
     # Update email
-    if profile_update.Gmail is not None:
+    if profile_update.gmail is not None:
         # Check if email is already taken by another student
         existing = db.query(Student).filter(
-            Student.Gmail == profile_update.Gmail,
+            Student.gmail == profile_update.gmail,
             Student.Prn_id != current_student.Prn_id
         ).first()
         
@@ -153,7 +153,7 @@ def update_my_profile_student(
                 detail="Email is already registered to another student"
             )
         
-        current_student.Gmail = profile_update.Gmail
+        current_student.gmail = profile_update.gmail
         updated_fields.append("email")
     
     # Update phone
