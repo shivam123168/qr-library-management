@@ -17,7 +17,7 @@ class StudentProfileResponse(BaseModel):
     middle_name: str
     last_name: str
     DOB: str
-    Gmail: str
+    gmail: str
     Phone_no: str
     sem: Optional[int] = None
     Branch_id: Optional[int] = None
@@ -106,7 +106,7 @@ class EmployeeProfileResponse(BaseModel):
 
 class UpdateStudentProfileRequest(BaseModel):
     """Update student profile information"""
-    Gmail: Optional[str] = None
+    gmail: Optional[str] = None
     Phone_no: Optional[str] = None
     sem: Optional[int] = None
     
