@@ -12,10 +12,10 @@ router = APIRouter()
 
 def generate_sql_dump():
     conn = pymysql.connect(
-        host=os.getenv("MYSQLHOST"),
-        user=os.getenv("MYSQLUSER"),
-        password=os.getenv("MYSQLPASSWORD"),
-        database=os.getenv("MYSQLDATABASE"),
+        host=os.getenv("mysql.railway.internal"),
+        user=os.getenv("root"),
+        password=os.getenv("yMRswONyrTtWljNzfwSjozVXnQCqOweM"),
+        database=os.getenv("railway"),
         cursorclass=pymysql.cursors.Cursor
     )
 
