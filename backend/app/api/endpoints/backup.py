@@ -67,38 +67,33 @@ router = APIRouter()
 #     )
 
 @router.get("/backup/manual")
-def manual_backup(current_librarian = Depends(get_current_librarian)):
-    try:
-        # 🔹 Create folder if not exists
-        os.makedirs("backups", exist_ok=True)
+def manual_backup(current_librarian=Depends(get_current_librarian)):
 
-        filename = f"backup_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.sql"
-        filepath = f"backups/{filename}"
+    command = [
+        "mysqldump",
+        "-h", os.getenv("MYSQLHOST"),
+        "-u", os.getenv("MYSQLUSER"),
+        f"-p{os.getenv('MYSQLPASSWORD')}",
+        os.getenv("MYSQLDATABASE")
+    ]
 
-        command = [
-            host=os.getenv("MYSQLHOST"),
-            user=os.getenv("MYSQLUSER"),
-            password=os.getenv("MYSQLPASSWORD"),
-            database=os.getenv("MYSQLDATABASE"),
-            port=int(os.getenv("MYSQLPORT", 3306)),
-            cursorclass=pymysql.cursors.Cursor
-        ]
+    process = subprocess.Popen(
+        command,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE
+    )
 
-        with open(filepath, "w") as f:
-            result = subprocess.run(
-                command,
-                stdout=f,
-                stderr=subprocess.PIPE,
-                text=True
-            )
+    def iterfile():
+        for chunk in iter(lambda: process.stdout.read(1024), b""):
+            yield chunk
 
-        if result.returncode != 0:
-            return {"error": result.stderr}
-
-        return FileResponse(path=filepath, filename=filename)
-
-    except Exception as e:
-        return {"error": str(e)}
+    return StreamingResponse(
+        iterfile(),
+        media_type="application/sql",
+        headers={
+            "Content-Disposition": "attachment; filename=library_backup.sql"
+        }
+    )
 
 
 # @router.get("/backup/list")
