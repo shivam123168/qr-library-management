@@ -135,7 +135,8 @@ async function manual_backup() {
 
         const response = await fetch(`${apiBaseUrl}/api/backup/backup/manual`, {
             headers: {
-                "Authorization": `Bearer ${token}`
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json"
             }
         });
 
