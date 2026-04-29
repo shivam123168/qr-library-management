@@ -12,10 +12,11 @@ def manual_backup(current_librarian=Depends(get_current_librarian)):
 
     try:
         command = [
-            "mysqldump",   # IMPORTANT: use system path (Railway friendly)
-            "-u", "root",
-            "-pPass@123",
-            "qrlms"
+          "mysqldump",
+          "-h", os.getenv("mysql.railway.internal"),
+          "-u", os.getenv("root"),
+          f"-p{os.getenv('Pass@123')}",
+          os.getenv("qrlms")
         ]
 
         process = subprocess.Popen(
