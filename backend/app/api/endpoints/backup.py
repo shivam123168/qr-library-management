@@ -1,45 +1,69 @@
 import subprocess
 import os
+import pymysql
+import io
 from fastapi import APIRouter, UploadFile, File, Depends, HTTPException
 from fastapi.responses import FileResponse
+from fastapi.responses import StreamingResponse
 from datetime import datetime
 from app.api.deps_with_librarian import get_current_librarian
 
 router = APIRouter()
 
+def generate_sql_dump():
+    conn = pymysql.connect(
+        host=os.getenv("MYSQLHOST"),
+        user=os.getenv("MYSQLUSER"),
+        password=os.getenv("MYSQLPASSWORD"),
+        database=os.getenv("MYSQLDATABASE"),
+        cursorclass=pymysql.cursors.Cursor
+    )
+
+    cursor = conn.cursor()
+
+    sql_dump = ""
+
+    # Get all tables
+    cursor.execute("SHOW TABLES")
+    tables = cursor.fetchall()
+
+    for table in tables:
+        table_name = table[0]
+
+        # Create table structure
+        cursor.execute(f"SHOW CREATE TABLE {table_name}")
+        create_table_sql = cursor.fetchone()[1]
+        sql_dump += f"\n\n-- TABLE: {table_name}\n"
+        sql_dump += f"{create_table_sql};\n\n"
+
+        # Table data
+        cursor.execute(f"SELECT * FROM {table_name}")
+        rows = cursor.fetchall()
+
+        for row in rows:
+            values = ", ".join(
+                [f"'{str(v).replace('\'', '\\\'')}'" if v is not None else "NULL" for v in row]
+            )
+            sql_dump += f"INSERT INTO {table_name} VALUES ({values});\n"
+
+    conn.close()
+    return sql_dump
+
+
 @router.get("/backup/manual")
 def manual_backup(current_librarian=Depends(get_current_librarian)):
 
-    try:
-        command = [
-          "mysqldump",
-          "-h", os.getenv("mysql.railway.internal"),
-          "-u", os.getenv("root"),
-          f"-p{os.getenv('Pass@123')}",
-          os.getenv("qrlms")
-        ]
+    sql_data = generate_sql_dump()
 
-        process = subprocess.Popen(
-            command,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE
-        )
+    buffer = io.StringIO(sql_data)
 
-        def iterfile():
-            for chunk in iter(lambda: process.stdout.read(1024), b""):
-                yield chunk
-
-        return StreamingResponse(
-            iterfile(),
-            media_type="application/sql",
-            headers={
-                "Content-Disposition": "attachment; filename=library_backup.sql"
-            }
-        )
-
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-    
+    return StreamingResponse(
+        buffer,
+        media_type="application/sql",
+        headers={
+            "Content-Disposition": "attachment; filename=library_backup.sql"
+        }
+    )
 
 
 @router.get("/backup/list")
