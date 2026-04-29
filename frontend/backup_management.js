@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 
 
-async function downloadBackup() {
+async function manual_backup() {
     try {
         const token = localStorage.getItem("access_token");
 
