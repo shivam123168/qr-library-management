@@ -17,7 +17,7 @@ class StudentProfileResponse(BaseModel):
     middle_name: str
     last_name: str
     DOB: str
-    gmail: str
+    Gmail: str
     Phone_no: str
     sem: Optional[int] = None
     Branch_id: Optional[int] = None
