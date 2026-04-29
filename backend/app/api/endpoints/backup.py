@@ -8,36 +8,36 @@ from app.api.deps_with_librarian import get_current_librarian
 router = APIRouter()
 
 @router.get("/backup/manual")
-def manual_backup(current_librarian = Depends(get_current_librarian)):
+def manual_backup(current_librarian=Depends(get_current_librarian)):
+
     try:
-        # 🔹 Create folder if not exists
-        os.makedirs("backups", exist_ok=True)
-
-        filename = f"backup_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.sql"
-        filepath = f"backups/{filename}"
-
         command = [
-            "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqldump.exe",
+            "mysqldump",   # IMPORTANT: use system path (Railway friendly)
             "-u", "root",
             "-pPass@123",
             "qrlms"
         ]
 
-        with open(filepath, "w") as f:
-            result = subprocess.run(
-                command,
-                stdout=f,
-                stderr=subprocess.PIPE,
-                text=True
-            )
+        process = subprocess.Popen(
+            command,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE
+        )
 
-        if result.returncode != 0:
-            return {"error": result.stderr}
+        def iterfile():
+            for chunk in iter(lambda: process.stdout.read(1024), b""):
+                yield chunk
 
-        return FileResponse(path=filepath, filename=filename)
+        return StreamingResponse(
+            iterfile(),
+            media_type="application/sql",
+            headers={
+                "Content-Disposition": "attachment; filename=library_backup.sql"
+            }
+        )
 
     except Exception as e:
-        return {"error": str(e)}
+        raise HTTPException(status_code=500, detail=str(e))
     
 
 
