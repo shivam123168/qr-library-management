@@ -20,7 +20,7 @@ A comprehensive QR code-based library management system designed for educational
 
 ## 📑 Table of Contents
 
-- [Overview](#overview)
+- [Overview](#🎯Overview)
 - [Key Features](#key-features)
 - [Tech Stack](#tech-stack)
 - [System Architecture](#system-architecture)
