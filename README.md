@@ -20,7 +20,7 @@ A comprehensive QR code-based library management system designed for educational
 
 ## 📑 Table of Contents
 
-- [Overview](#🎯Overview)
+- [Overview](#Overview)
 - [Key Features](#key-features)
 - [Tech Stack](#tech-stack)
 - [System Architecture](#system-architecture)
@@ -37,7 +37,7 @@ A comprehensive QR code-based library management system designed for educational
 
 ---
 
-## 🎯 Overview
+## Overview
 
 The **QR Library Management System** is a modern, scalable solution for managing library operations in educational institutions. It leverages QR code technology for quick identification of books and users, providing librarians, students, and employees with an intuitive interface to manage library transactions efficiently.
 
