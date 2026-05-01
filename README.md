@@ -36,7 +36,7 @@ A comprehensive QR code-based library management system designed for educational
 - [License](#license)
 
 ---
-#overview
+
 ## 🎯 Overview
 
 The **QR Library Management System** is a modern, scalable solution for managing library operations in educational institutions. It leverages QR code technology for quick identification of books and users, providing librarians, students, and employees with an intuitive interface to manage library transactions efficiently.
@@ -2064,7 +2064,8 @@ For support, questions, or suggestions:
 1. **GitHub Issues**: [Create an issue](https://github.com/shivam123168/qr-library-management/issues)
 2. **Documentation**: Check [INSTALL.md](INSTALL.md) for detailed setup guide
 3. **API Docs**: Visit http://localhost:8000/docs when running locally
-4. **Email**: Contact via GitHub profile
+4. **Email**: sharmas6147@gmail.com
+5. **Portfolio**: [Click to move on My Portfolio](https://shivamsharma-ten.vercel.app/)
 
 ---
 
