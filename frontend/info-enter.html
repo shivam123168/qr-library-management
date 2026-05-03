@@ -1,562 +1,381 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>librarian Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link rel="stylesheet" href="info-enter.css">
+    <title>Librarian — Info Enter</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared.css">
 </head>
-
 <body>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="logo">
-            <span class="logo-icon">🎓</span>
-            <span class="logo-text">Reference Info</span>
-        </div>
-
-        <ul>
-            <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
-            </li>
-            <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
-            <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
-            <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
-            <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
-            <li><a href="info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
-            <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
-            <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a></li>
-            <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee Management</a>
-            </li>
-            <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
-            <li><a href="backup_management.html"><img src="../images/backup.png" alt="B">Backup Management</a></li>
-        </ul>
-        <div class="logout" onclick="logout()"><img src="../images/logout.png" alt="" />Logout</div>
-
+<aside class="sidebar">
+    <div class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-book-open-reader"></i></span>
+        <span class="logo-text">LibraryOS</span>
     </div>
+    <nav><ul>
+        <li><a href="librarian_dashboard.html"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></li>
+        <li><a href="librarian_profile.html"><i class="fa-solid fa-circle-user"></i><span>Profile</span></a></li>
+        <li><a href="librarian_penalty.html"><i class="fa-solid fa-triangle-exclamation"></i><span>Penalty</span></a></li>
+        <li><a href="issue-return.html"><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Transaction</span></a></li>
+        <li><a href="QR-generator.html"><i class="fa-solid fa-qrcode"></i><span>QR Generator</span></a></li>
+        <li class="active"><a href="info-enter.html"><i class="fa-solid fa-keyboard"></i><span>Info Enter</span></a></li>
+        <li><a href="password_change.html"><i class="fa-solid fa-lock"></i><span>Password Change</span></a></li>
+        <li><a href="student_management.html"><i class="fa-solid fa-user-graduate"></i><span>Students</span></a></li>
+        <li><a href="employee_management.html"><i class="fa-solid fa-users"></i><span>Employees</span></a></li>
+        <li><a href="books_management.html"><i class="fa-solid fa-book"></i><span>Books</span></a></li>
+        <li><a href="backup_management.html"><i class="fa-solid fa-database"></i><span>Backup</span></a></li>
+    </ul></nav>
+    <div class="logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></div>
+</aside>
 
+<div class="main-content">
 
-    <!-- Main content -->
-    <div class="main-content">
-        <div class="header">
+    <header class="header">
+        <div class="header-left">
+            <button class="toggle_btn"><i class="fa-solid fa-bars"></i></button>
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search Available book..." />
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Search books by title…" autocomplete="off"/>
                 <div id="suggestions" class="suggestions-box"></div>
             </div>
-            <div class="profile">
-                <img src="../images/gcoeystu.png" alt="profile">
-                <div>
-                    <strong id="short_name"></strong><br />
-                    <small><span id="department"></span> Department</small>
+        </div>
+        <div class="header-right">
+            <div class="profile-chip">
+                <div class="profile-avatar"><img src="../images/gcoeystu.png" alt="profile"></div>
+                <div class="profile-info">
+                    <strong id="short_name">Your Name</strong>
+                    <small id="department">Department</small>
                 </div>
             </div>
-            <div class="toggle_btn">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-            <div class="dropdown_manue">
-                <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
-                </li>
-                <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
-                <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
-                <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
+        </div>
+        <div class="dropdown_manue">
+            <a href="librarian_dashboard.html"><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
+            <a href="librarian_profile.html"><i class="fa-solid fa-circle-user"></i>Profile</a>
+            <a href="librarian_penalty.html"><i class="fa-solid fa-triangle-exclamation"></i>Penalty</a>
+            <a href="issue-return.html"><i class="fa-solid fa-arrow-right-arrow-left"></i>Transaction</a>
+            <a href="QR-generator.html"><i class="fa-solid fa-qrcode"></i>QR Generator</a>
+            <a href="info-enter.html"><i class="fa-solid fa-keyboard"></i>Info Enter</a>
+            <a href="password_change.html"><i class="fa-solid fa-lock"></i>Password Change</a>
+            <a href="student_management.html"><i class="fa-solid fa-user-graduate"></i>Students</a>
+            <a href="employee_management.html"><i class="fa-solid fa-users"></i>Employees</a>
+            <a href="books_management.html"><i class="fa-solid fa-book"></i>Books</a>
+            <a href="backup_management.html"><i class="fa-solid fa-database"></i>Backup</a>
+            <a onclick="logout()" style="cursor:pointer;"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+        </div>
+    </header>
 
-                <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
-                <li><a href="info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
-                <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
-                <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a>
-                </li>
-                <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee
-                        Management</a></li>
-                <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
-                <li><a href="backup_management.html"><img src="../images/backup.png" alt="B">Backup Management</a></li>
-                <li onclick="logout()">
-                    <img src="../images/logout.png" alt="" />Logout
-                </li>
+    <!-- ── BRANCH ── -->
+    <section class="data-section" id="top-course">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-code-branch"></i><h2>Branch</h2></div>
+            <div class="section-controls">
+                <button class="button-cont-PDF" onclick="GenerateBranchPDF()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
             </div>
         </div>
-
-
-        <div class="courses" id="top-course">
-            <h3>Branch</h3>
-            <div class="personalinfo ">
-                <div class="issue-contaner">
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Branch Name</h4>
-                            <input type="text" class="input-contaner" id="BranchName" placeholder="Enter Branch Name">
-                        </div>
-
-                        <div class="delete-student">
-                            <!-- <h4>Return</h4> -->
-                            <button type="button" class="issue-button" onclick="AddBranch()">Add Branch</button>
-                        </div>
+        <div class="resource-section">
+            <div class="resource-actions">
+                <div class="action-group">
+                    <span class="action-label">Add Branch</span>
+                    <div class="action-row">
+                        <input type="text" class="input-contaner" id="BranchName" placeholder="Enter branch name">
+                        <button type="button" class="issue-button" onclick="AddBranch()"><i class="fa-solid fa-plus"></i> Add</button>
                     </div>
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Branch ID</h4>
-                            <input type="text" class="input-contaner" id="Branchid" placeholder="Enter Branch ID">
-                        </div>
-
-                        <div class="delete-student">
-                            <!-- <h4>Return</h4> -->
-                            <button type="button" class="issue-button" onclick="DeleteBranch()">Delete Branch</button>
-                        </div>
-                    </div>
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Upload Through Excel</h4>
-
-                            <!-- File Input -->
-                            <input type="file" class="input-contaner" id="branchFile" accept=".xlsx, .xls">
-
-                            <!-- Upload Button -->
-                            <button type="button" class="issue-button-excel" onclick="UploadBranchExcel()">
-                                Upload Branch
-                            </button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="pdf-button-container">
-                            <label for="Branch">Branch</label>
-
-                            <button class="issue-button-pdf" onclick="GenerateBranchPDF()">Generate PDF</button>
-                        </div>
-
-                        <div class="inner-table overflowy">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Branch</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody id="requestBranchBody"></tbody>
-                            </table>
-                        </div>
-                    </div>
-
                 </div>
-
-            </div>
-
-        </div>
-
-        <div class="courses">
-            <h3>Department</h3>
-            <div class="personalinfo ">
-                <div class="issue-contaner">
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Department Name</h4>
-                            <input type="text" class="input-contaner" id="departmentName"
-                                placeholder="Enter Department Name">
-                        </div>
-
-                        <div class="delete-student">
-                            <!-- <h4>Return</h4> -->
-                            <button type="button" class="issue-button" onclick="AddDepartment()">Add Department</button>
-                        </div>
+                <div class="action-group">
+                    <span class="action-label">Delete Branch</span>
+                    <div class="action-row">
+                        <input type="text" class="input-contaner" id="Branchid" placeholder="Enter branch ID">
+                        <button type="button" class="reject-btn" onclick="DeleteBranch()"><i class="fa-solid fa-trash"></i> Delete</button>
                     </div>
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Department ID</h4>
-                            <input type="text" class="input-contaner" id="DepartmentId"
-                                placeholder="Enter Department ID">
-
-                        </div>
-
-                        <div class="delete-student">
-                            <!-- <h4>Return</h4> -->
-                            <button type="button" class="issue-button" onclick="DeleteDepartment()">Delete
-                                Department</button>
-                        </div>
-                    </div>
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Upload Through Excel</h4>
-
-                            <!-- File Input -->
-                            <input type="file" class="input-contaner" id="departmentFile" accept=".xlsx, .xls">
-
-                            <!-- Upload Button -->
-                            <button type="button" class="issue-button-excel" onclick="UploadDepartmentExcel()">
-                                Upload Department
-                            </button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="pdf-button-container"> 
-                            <label for="department">Department</label>
-                            <button class="issue-button-pdf" onclick="GenerateDepartmentPDF()">Generate PDF</button>
-                        </div>
-                       
-                        <div class="inner-table overflowy">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Department</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody id="requestDepartmentBody"></tbody>
-                            </table>
-                        </div>
-                    </div>
-
                 </div>
-
-            </div>
-
-        </div>
-
-        <div class="courses">
-            <h3>Post</h3>
-            <div class="personalinfo ">
-                <div class="issue-contaner">
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Post Name</h4>
-                            <input type="text" class="input-contaner" id="postName" placeholder="Enter Post Name">
-                        </div>
-
-                        <div class="delete-student">
-                            <!-- <h4>Return</h4> -->
-                            <button type="button" class="issue-button" onclick="addPost()">Add Post</button>
-                        </div>
+                <div class="action-group">
+                    <span class="action-label">Bulk Upload</span>
+                    <div class="action-row">
+                        <input type="file" class="input-contaner" id="branchFile" accept=".xlsx,.xls">
+                        <button type="button" class="issue-button-excel" onclick="UploadBranchExcel()"><i class="fa-solid fa-upload"></i> Upload</button>
                     </div>
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Post ID</h4>
-                            <input type="text" class="input-contaner" id="Postid" placeholder="Enter Post ID">
-
-                        </div>
-
-                        <div class="delete-student">
-                            <!-- <h4>Return</h4> -->
-                            <button type="button" class="issue-button" onclick="DeletePost()">Delete Post</button>
-                        </div>
-                    </div>
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Upload Through Excel</h4>
-
-                            <!-- File Input -->
-                            <input type="file" class="input-contaner" id="PostFile" accept=".xlsx, .xls">
-
-                            <!-- Upload Button -->
-                            <button type="button" class="issue-button-excel" onclick="UploadPostExcel()">
-                                Upload Post
-                            </button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="pdf-button-container"> 
-                            <label for="department">Post</label>
-                            <button class="issue-button-pdf" onclick="GeneratePostPDF()">Generate PDF</button>
-                        </div>
-                        <div class="inner-table overflowy">
-                            <table>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Post</th>
-
-                                </tr>
-                                </thead>
-                                <tbody id="requestPostBody"></tbody>
-                            </table>
-                        </div>
-                    </div>
-
                 </div>
-
             </div>
-
-        </div>
-
-        <div class="courses">
-            <h3>Publisher</h3>
-            <div class="personalinfo ">
-                <div class="issue-contaner">
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Publisher Name</h4>
-                            <input type="text" class="input-contaner" id="publisherNamr"
-                                placeholder="Enter Publisher Name">
-                        </div>
-
-                        <div class="delete-student">
-                            <!-- <h4>Return</h4> -->
-                            <button type="button" class="issue-button" onclick="addpublisher()">Add Publisher</button>
-                        </div>
-                    </div>
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Publisher ID</h4>
-                            <input type="text" class="input-contaner" id="publisherid" placeholder="Enter Publisher ID">
-
-                        </div>
-
-                        <div class="delete-student">
-                            <!-- <h4>Return</h4> -->
-                            <button type="button" class="issue-button" onclick="deletepublisher()">Delete
-                                Publisher</button>
-                        </div>
-                    </div>
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Upload Through Excel</h4>
-
-                            <!-- File Input -->
-                            <input type="file" class="input-contaner" id="publisherFile" accept=".xlsx, .xls">
-
-                            <!-- Upload Button -->
-                            <button type="button" class="issue-button-excel" onclick="UploadPublisherExcel()">
-                                Upload Publisher
-                            </button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="pdf-button-container">
-                            <label for="department">Publisher</label>
-                            <button class="issue-button-pdf" onclick="GeneratePublisherPDF()">Generate PDF</button>
-                        </div>
-                        <div class="inner-table overflowy">
-                            <table>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Publisher</th>
-
-                                </tr>
-                                </thead>
-                                <tbody id="requestPublisherBody"></tbody>
-                            </table>
-                        </div>
-                    </div>
-
+            <div class="resource-table">
+                <div class="table-wrapper" style="max-height:220px;">
+                    <table>
+                        <thead><tr><th>ID</th><th>Branch Name</th></tr></thead>
+                        <tbody id="requestBranchBody"></tbody>
+                    </table>
                 </div>
-
             </div>
-
         </div>
+    </section>
 
-        <div class="courses">
-            <h3>Author</h3>
-            <div class="personalinfo ">
-                <div class="issue-contaner">
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Author Name</h4>
-                            <input type="text" class="input-contaner" id="authorname" placeholder="Enter Author Name">
-                        </div>
-
-                        <div class="delete-student">
-                            <!-- <h4>Return</h4> -->
-                            <button type="button" class="issue-button" onclick="addAuthor()">Add Author</button>
-                        </div>
+    <!-- ── DEPARTMENT ── -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-building"></i><h2>Department</h2></div>
+            <div class="section-controls">
+                <button class="button-cont-PDF" onclick="GenerateDepartmentPDF()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+            </div>
+        </div>
+        <div class="resource-section">
+            <div class="resource-actions">
+                <div class="action-group">
+                    <span class="action-label">Add Department</span>
+                    <div class="action-row">
+                        <input type="text" class="input-contaner" id="departmentName" placeholder="Enter department name">
+                        <button type="button" class="issue-button" onclick="AddDepartment()"><i class="fa-solid fa-plus"></i> Add</button>
                     </div>
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Author ID</h4>
-                            <input type="text" class="input-contaner" id="authorid" placeholder="Enter Author ID">
-
-                        </div>
-
-                        <div class="delete-student">
-                            <!-- <h4>Return</h4> -->
-                            <button type="button" class="issue-button" onclick="deleteAuthor()">Delete Author</button>
-                        </div>
-                    </div>
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Upload Through Excel</h4>
-
-                            <!-- File Input -->
-                            <input type="file" class="input-contaner" id="AuthorFile" accept=".xlsx, .xls">
-
-                            <!-- Upload Button -->
-                            <button type="button" class="issue-button-excel" onclick="UploadAuthorExcel()">
-                                Upload Author
-                            </button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="pdf-button-container">
-                            <label for="department">Author</label>
-                            <button class="issue-button-pdf" onclick="GenerateAuthorPDF()">Generate PDF</button>
-                        </div>
-                        <div class="inner-table overflowy">
-                            <table>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Author</th>
-
-                                </tr>
-                                </thead>
-                                <tbody id="requestAuthorBody"></tbody>
-                            </table>
-                        </div>
-                    </div>
-
                 </div>
-
-            </div>
-
-        </div>
-
-        <div class="courses">
-            <h3>Penalty Amount</h3>
-            <div class="personalinfo ">
-                <div class="issue-contaner">
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Penalty Amount</h4>
-                            <input type="number" class="input-contaner" id="addpenalty"
-                                placeholder="Enter Penalty Amount">
-                        </div>
-
-                        <div class="delete-student">
-                            <!-- <h4>Return</h4> -->
-                            <button type="button" class="issue-button" onclick="addpenalty()">Add Amount</button>
-                        </div>
+                <div class="action-group">
+                    <span class="action-label">Delete Department</span>
+                    <div class="action-row">
+                        <input type="text" class="input-contaner" id="DepartmentId" placeholder="Enter department ID">
+                        <button type="button" class="reject-btn" onclick="DeleteDepartment()"><i class="fa-solid fa-trash"></i> Delete</button>
                     </div>
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Penalty Amount ID</h4>
-                            <input type="text" class="input-contaner" id="penaltyAmountId"
-                                placeholder="Enter Penalty Amount ID">
-
-                        </div>
-
-                        <div class="delete-student">
-                            <!-- <h4>Return</h4> -->
-                            <button type="button" class="issue-button" onclick="DeletePenlatyAmount()">Delete
-                                Amount</button>
-                        </div>
-                    </div>
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Upload Through Excel</h4>
-
-                            <!-- File Input -->
-                            <input type="file" class="input-contaner" id="PenaltyAmountFile" accept=".xlsx, .xls">
-
-                            <!-- Upload Button -->
-                            <button type="button" class="issue-button-excel" onclick="UploadPenaltyAmountExcel()">
-                                Upload Penalty Amount
-                            </button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="pdf-button-container">
-                            <label for="department">Penalty Amounts</label>
-                            <button class="issue-button-pdf" onclick="GeneratePenaltyAmountPDF()">Generate PDF</button>
-                        </div>
-                        <div class="inner-table overflowy">
-                            <table>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Amount</th>
-
-                                </tr>
-                                </thead>
-                                <tbody id="requestPenaltyBody"></tbody>
-                            </table>
-                        </div>
-                    </div>
-
                 </div>
-
-            </div>
-
-        </div>
-
-        <div class="courses">
-            <h3>Penalty Excuse</h3>
-            <div class="personalinfo ">
-                <div class="issue-contaner">
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Penalty Excuse</h4>
-                            <input type="text" class="input-contaner" id="addexcuse" placeholder="Enter Penalty Excuse">
-                        </div>
-
-                        <div class="delete-student">
-                            <!-- <h4>Return</h4> -->
-                            <button type="button" class="issue-button" onclick="addexcuse()">Add Excuse</button>
-                        </div>
+                <div class="action-group">
+                    <span class="action-label">Bulk Upload</span>
+                    <div class="action-row">
+                        <input type="file" class="input-contaner" id="departmentFile" accept=".xlsx,.xls">
+                        <button type="button" class="issue-button-excel" onclick="UploadDepartmentExcel()"><i class="fa-solid fa-upload"></i> Upload</button>
                     </div>
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Penalty Excuse ID</h4>
-                            <input type="text" class="input-contaner" id="excuseId"
-                                placeholder="Enter Penalty Excuse ID">
-
-                        </div>
-
-                        <div class="delete-student">
-                            <!-- <h4>Return</h4> -->
-                            <button type="button" class="issue-button" onclick="DeleteExcuse()">Delete Excuse</button>
-                        </div>
-                    </div>
-                    <div class="info-enter-div">
-                        <div class="book-id">
-                            <h4>Upload Through Excel</h4>
-
-                            <!-- File Input -->
-                            <input type="file" class="input-contaner" id="PenaltyExcuseFile" accept=".xlsx, .xls">
-
-                            <!-- Upload Button -->
-                            <button type="button" class="issue-button-excel" onclick="UploadPenaltyExcuseExcel()">
-                                Upload Penalty Excuse
-                            </button>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="pdf-button-container">
-                            <label for="department">Penalty Excuses</label>
-                            <button class="issue-button-pdf" onclick="GeneratePenaltyExcusePDF()">Generate PDF</button>
-                        </div>
-                        <div class="inner-table overflowy">
-                            <table>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Excuse</th>
-
-                                </tr>
-                                </thead>
-                                <tbody id="requestPenaltyExcuseBody"></tbody>
-                            </table>
-                        </div>
-                    </div>
-
                 </div>
-
             </div>
-
+            <div class="resource-table">
+                <div class="table-wrapper" style="max-height:220px;">
+                    <table>
+                        <thead><tr><th>ID</th><th>Department Name</th></tr></thead>
+                        <tbody id="requestDepartmentBody"></tbody>
+                    </table>
+                </div>
+            </div>
         </div>
+    </section>
 
+    <!-- ── POST ── -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-briefcase"></i><h2>Post</h2></div>
+            <div class="section-controls">
+                <button class="button-cont-PDF" onclick="GeneratePostPDF()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+            </div>
+        </div>
+        <div class="resource-section">
+            <div class="resource-actions">
+                <div class="action-group">
+                    <span class="action-label">Add Post</span>
+                    <div class="action-row">
+                        <input type="text" class="input-contaner" id="postName" placeholder="Enter post name">
+                        <button type="button" class="issue-button" onclick="addPost()"><i class="fa-solid fa-plus"></i> Add</button>
+                    </div>
+                </div>
+                <div class="action-group">
+                    <span class="action-label">Delete Post</span>
+                    <div class="action-row">
+                        <input type="text" class="input-contaner" id="Postid" placeholder="Enter post ID">
+                        <button type="button" class="reject-btn" onclick="DeletePost()"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </div>
+                </div>
+                <div class="action-group">
+                    <span class="action-label">Bulk Upload</span>
+                    <div class="action-row">
+                        <input type="file" class="input-contaner" id="PostFile" accept=".xlsx,.xls">
+                        <button type="button" class="issue-button-excel" onclick="UploadPostExcel()"><i class="fa-solid fa-upload"></i> Upload</button>
+                    </div>
+                </div>
+            </div>
+            <div class="resource-table">
+                <div class="table-wrapper" style="max-height:220px;">
+                    <table>
+                        <thead><tr><th>ID</th><th>Post Name</th></tr></thead>
+                        <tbody id="requestPostBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- ── PUBLISHER ── -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-print"></i><h2>Publisher</h2></div>
+            <div class="section-controls">
+                <button class="button-cont-PDF" onclick="GeneratePublisherPDF()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+            </div>
+        </div>
+        <div class="resource-section">
+            <div class="resource-actions">
+                <div class="action-group">
+                    <span class="action-label">Add Publisher</span>
+                    <div class="action-row">
+                        <input type="text" class="input-contaner" id="publisherNamr" placeholder="Enter publisher name">
+                        <button type="button" class="issue-button" onclick="addpublisher()"><i class="fa-solid fa-plus"></i> Add</button>
+                    </div>
+                </div>
+                <div class="action-group">
+                    <span class="action-label">Delete Publisher</span>
+                    <div class="action-row">
+                        <input type="text" class="input-contaner" id="publisherid" placeholder="Enter publisher ID">
+                        <button type="button" class="reject-btn" onclick="deletepublisher()"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </div>
+                </div>
+                <div class="action-group">
+                    <span class="action-label">Bulk Upload</span>
+                    <div class="action-row">
+                        <input type="file" class="input-contaner" id="publisherFile" accept=".xlsx,.xls">
+                        <button type="button" class="issue-button-excel" onclick="UploadPublisherExcel()"><i class="fa-solid fa-upload"></i> Upload</button>
+                    </div>
+                </div>
+            </div>
+            <div class="resource-table">
+                <div class="table-wrapper" style="max-height:220px;">
+                    <table>
+                        <thead><tr><th>ID</th><th>Publisher Name</th></tr></thead>
+                        <tbody id="requestPublisherBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- ── AUTHOR ── -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-pen-nib"></i><h2>Author</h2></div>
+            <div class="section-controls">
+                <button class="button-cont-PDF" onclick="GenerateAuthorPDF()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+            </div>
+        </div>
+        <div class="resource-section">
+            <div class="resource-actions">
+                <div class="action-group">
+                    <span class="action-label">Add Author</span>
+                    <div class="action-row">
+                        <input type="text" class="input-contaner" id="authorname" placeholder="Enter author name">
+                        <button type="button" class="issue-button" onclick="addAuthor()"><i class="fa-solid fa-plus"></i> Add</button>
+                    </div>
+                </div>
+                <div class="action-group">
+                    <span class="action-label">Delete Author</span>
+                    <div class="action-row">
+                        <input type="text" class="input-contaner" id="authorid" placeholder="Enter author ID">
+                        <button type="button" class="reject-btn" onclick="deleteAuthor()"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </div>
+                </div>
+                <div class="action-group">
+                    <span class="action-label">Bulk Upload</span>
+                    <div class="action-row">
+                        <input type="file" class="input-contaner" id="AuthorFile" accept=".xlsx,.xls">
+                        <button type="button" class="issue-button-excel" onclick="UploadAuthorExcel()"><i class="fa-solid fa-upload"></i> Upload</button>
+                    </div>
+                </div>
+            </div>
+            <div class="resource-table">
+                <div class="table-wrapper" style="max-height:220px;">
+                    <table>
+                        <thead><tr><th>ID</th><th>Author Name</th></tr></thead>
+                        <tbody id="requestAuthorBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- ── PENALTY AMOUNT ── -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-indian-rupee-sign"></i><h2>Penalty Amount</h2></div>
+            <div class="section-controls">
+                <button class="button-cont-PDF" onclick="GeneratePenaltyAmountPDF()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+            </div>
+        </div>
+        <div class="resource-section">
+            <div class="resource-actions">
+                <div class="action-group">
+                    <span class="action-label">Add Amount</span>
+                    <div class="action-row">
+                        <input type="number" class="input-contaner" id="addpenalty" placeholder="Enter amount">
+                        <button type="button" class="issue-button" onclick="addpenalty()"><i class="fa-solid fa-plus"></i> Add</button>
+                    </div>
+                </div>
+                <div class="action-group">
+                    <span class="action-label">Delete Amount</span>
+                    <div class="action-row">
+                        <input type="text" class="input-contaner" id="penaltyAmountId" placeholder="Enter amount ID">
+                        <button type="button" class="reject-btn" onclick="DeletePenlatyAmount()"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </div>
+                </div>
+                <div class="action-group">
+                    <span class="action-label">Bulk Upload</span>
+                    <div class="action-row">
+                        <input type="file" class="input-contaner" id="PenaltyAmountFile" accept=".xlsx,.xls">
+                        <button type="button" class="issue-button-excel" onclick="UploadPenaltyAmountExcel()"><i class="fa-solid fa-upload"></i> Upload</button>
+                    </div>
+                </div>
+            </div>
+            <div class="resource-table">
+                <div class="table-wrapper" style="max-height:220px;">
+                    <table>
+                        <thead><tr><th>ID</th><th>Amount (₹)</th></tr></thead>
+                        <tbody id="requestPenaltyBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- ── PENALTY EXCUSE ── -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-comment-slash"></i><h2>Penalty Excuse</h2></div>
+            <div class="section-controls">
+                <button class="button-cont-PDF" onclick="GeneratePenaltyExcusePDF()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+            </div>
+        </div>
+        <div class="resource-section">
+            <div class="resource-actions">
+                <div class="action-group">
+                    <span class="action-label">Add Excuse</span>
+                    <div class="action-row">
+                        <input type="text" class="input-contaner" id="addexcuse" placeholder="Enter excuse text">
+                        <button type="button" class="issue-button" onclick="addexcuse()"><i class="fa-solid fa-plus"></i> Add</button>
+                    </div>
+                </div>
+                <div class="action-group">
+                    <span class="action-label">Delete Excuse</span>
+                    <div class="action-row">
+                        <input type="text" class="input-contaner" id="excuseId" placeholder="Enter excuse ID">
+                        <button type="button" class="reject-btn" onclick="DeleteExcuse()"><i class="fa-solid fa-trash"></i> Delete</button>
+                    </div>
+                </div>
+                <div class="action-group">
+                    <span class="action-label">Bulk Upload</span>
+                    <div class="action-row">
+                        <input type="file" class="input-contaner" id="PenaltyExcuseFile" accept=".xlsx,.xls">
+                        <button type="button" class="issue-button-excel" onclick="UploadPenaltyExcuseExcel()"><i class="fa-solid fa-upload"></i> Upload</button>
+                    </div>
+                </div>
+            </div>
+            <div class="resource-table">
+                <div class="table-wrapper" style="max-height:220px;">
+                    <table>
+                        <thead><tr><th>ID</th><th>Excuse</th></tr></thead>
+                        <tbody id="requestPenaltyExcuseBody"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
 
+</div>
 
-    </div>
-
-    </div>
-    <script src="info-enter.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="info-enter.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
-    <script src="Excel_Upload.js"></script>
-    <script src="info_enter_PDF_generator.js"></script>
-</body>
+<script src="Excel_Upload.js"></script>
+<script src="info_enter_PDF_generator.js"></script>
 
+</body>
 </html>

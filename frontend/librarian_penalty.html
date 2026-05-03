@@ -1,237 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>librarian Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link rel="stylesheet" href="librarian_penalty.css">
+    <title>Librarian — Penalty</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared.css">
 </head>
-
 <body>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="logo">
-            <span class="logo-icon">🎓</span>
-            <span class="logo-text">Penalty</span>
-        </div>
-
-        <ul>
-            <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
-            </li>
-            <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
-            <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
-            <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
-
-            <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
-            <li><a href="info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
-            <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
-            <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a></li>
-            <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee Management</a>
-            </li>
-            <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
-            <li><a href="backup_management.html"><img src="../images/backup.png" alt="B">Backup Management</a></li>
-
-        </ul>
-        <div class="logout" onclick="logout()"><img src="../images/logout.png" alt="">Logout</div>
-
+<aside class="sidebar">
+    <div class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-book-open-reader"></i></span>
+        <span class="logo-text">LibraryOS</span>
     </div>
+    <nav>
+        <ul>
+            <li><a href="librarian_dashboard.html"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></li>
+            <li><a href="librarian_profile.html"><i class="fa-solid fa-circle-user"></i><span>Profile</span></a></li>
+            <li class="active"><a href="librarian_penalty.html"><i class="fa-solid fa-triangle-exclamation"></i><span>Penalty</span></a></li>
+            <li><a href="issue-return.html"><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Transaction</span></a></li>
+            <li><a href="QR-generator.html"><i class="fa-solid fa-qrcode"></i><span>QR Generator</span></a></li>
+            <li><a href="info-enter.html"><i class="fa-solid fa-keyboard"></i><span>Info Enter</span></a></li>
+            <li><a href="password_change.html"><i class="fa-solid fa-lock"></i><span>Password Change</span></a></li>
+            <li><a href="student_management.html"><i class="fa-solid fa-user-graduate"></i><span>Students</span></a></li>
+            <li><a href="employee_management.html"><i class="fa-solid fa-users"></i><span>Employees</span></a></li>
+            <li><a href="books_management.html"><i class="fa-solid fa-book"></i><span>Books</span></a></li>
+            <li><a href="backup_management.html"><i class="fa-solid fa-database"></i><span>Backup</span></a></li>
+        </ul>
+    </nav>
+    <div class="logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></div>
+</aside>
 
+<div class="main-content">
 
-    <!-- Main content -->
-    <div class="main-content">
-        <div class="header">
+    <header class="header">
+        <div class="header-left">
+            <button class="toggle_btn"><i class="fa-solid fa-bars"></i></button>
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search Available book..." />
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Search books by title…" autocomplete="off"/>
                 <div id="suggestions" class="suggestions-box"></div>
             </div>
-            <div class="profile">
-                <img src="../images/gcoeystu.png" alt="profile">
-                <div>
-                    <strong id="short_name"></strong><br />
-                    <small><span id="department"></span> Department</small>
+        </div>
+        <div class="header-right">
+            <div class="profile-chip">
+                <div class="profile-avatar"><img src="../images/gcoeystu.png" alt="profile"></div>
+                <div class="profile-info">
+                    <strong id="short_name">Your Name</strong>
+                    <small id="department">Department</small>
                 </div>
-            </div>
-            <div class="toggle_btn">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-            <div class="dropdown_manue">
-
-                <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
-                </li>
-                <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
-                <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
-                <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
-
-                <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
-                <li><a href="info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
-                <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
-                <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a>
-                </li>
-                <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee
-                        Management</a></li>
-                <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
-                <li><a href="backup_management.html"><img src="../images/backup.png" alt="B">Backup Management</a></li>
-
-                <li onclick="logout()">
-                    <img src="../images/logout.png" alt="" />Logout
-                </li>
             </div>
         </div>
+        <div class="dropdown_manue">
+            <a href="librarian_dashboard.html"><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
+            <a href="librarian_profile.html"><i class="fa-solid fa-circle-user"></i>Profile</a>
+            <a href="librarian_penalty.html"><i class="fa-solid fa-triangle-exclamation"></i>Penalty</a>
+            <a href="issue-return.html"><i class="fa-solid fa-arrow-right-arrow-left"></i>Transaction</a>
+            <a href="QR-generator.html"><i class="fa-solid fa-qrcode"></i>QR Generator</a>
+            <a href="info-enter.html"><i class="fa-solid fa-keyboard"></i>Info Enter</a>
+            <a href="password_change.html"><i class="fa-solid fa-lock"></i>Password Change</a>
+            <a href="student_management.html"><i class="fa-solid fa-user-graduate"></i>Students</a>
+            <a href="employee_management.html"><i class="fa-solid fa-users"></i>Employees</a>
+            <a href="books_management.html"><i class="fa-solid fa-book"></i>Books</a>
+            <a href="backup_management.html"><i class="fa-solid fa-database"></i>Backup</a>
+            <a onclick="logout()" style="cursor:pointer;"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+        </div>
+    </header>
 
-        <div class="courses" id="Student-Penalty">
-            <h3>Student Penalty</h3>
-            <div class="personalinfo">
-                <div class="issue-contaner">
-                    <div class="book-id">
-                        <h4>Student PRN</h4>
-                        <input type="text" id="studentPrnInput" class="input-contaner" placeholder="Enter Student PRN">
-                        <button type="button" class="button-cont" onclick="findstudentpenalty()">Find Penalty</button>
-                    </div>
-                    <div class="user-id">
-                        <h4>Excuse</h4>
-                        <select class="excuse_filter" id="excuseFilter1"></select>
-                    </div>
-                    <div class="book-id">
-                        <h4>Report Generate</h4>
-                        <button type="button" class="button-cont-PDF" onclick="GenrateStudentPenaltyPDF()">Generate
-                            PDF</button>
-                    </div>
-                </div>
-            </div>
-            <div class="personalinfo overflowy">
-                <div class="course-card">
-                    <div class="inner-table">
-                        <table>
-                            <tr>
-                                <th>Penalty Id</th>
-                                <th>Accession Number</th>
-                                <th>Book</th>
-                                <th>Borrower Id</th>
-                                <th>Borrower Name</th>
-                                <th>Borrower Type</th>
-                                <th>Penalty Amount</th>
-                                <th>Status</th>
-                                <th>Excuse</th>
-                                <th>Issued Date</th>
-                                <th>Due Date</th>
-                                <th>Mark Paid</th>
-                                <th>Mark Excused</th>
-                            </tr>
-                            <tbody id="StudentpenaltyInfoBody">
-                            </tbody>
-
-                        </table>
-                    </div>
-                </div>
-
+    <!-- Student Penalty -->
+    <section class="data-section" id="Student-Penalty">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-user-graduate"></i>
+                <h2>Student Penalty</h2>
             </div>
         </div>
-        <div class="courses" id="Employee-Penalty">
-            <h3>Employee Penalty</h3>
-            <div class="personalinfo">
-                <div class="issue-contaner">
-                    <div class="book-id">
-                        <h4>Employee ID</h4>
-                        <input type="text" id="employeePrnInput" class="input-contaner" placeholder="Enter Employee ID">
-                        <button type="button" class="button-cont" onclick="findEmployepenalty()">Find Penalty</button>
-                    </div>
-                    <div class="user-id">
-                        <h4>Excuse</h4>
-                        <select class="excuse_filter" id="excuseFilter2">
-
-                        </select>
-                    </div>
-                    <div class="book-id">
-                        <h4>Report Generate</h4>
-                        <button type="button" class="button-cont-PDF" onclick="GenrateEmployeePenaltyPDF()">Generate
-                            PDF</button>
-                    </div>
+        <div class="action-bar">
+            <div class="action-group">
+                <span class="action-label">Student PRN</span>
+                <div class="action-row">
+                    <input type="text" id="studentPrnInput" class="input-contaner" placeholder="Enter Student PRN">
+                    <button type="button" class="button-cont" onclick="findstudentpenalty()">
+                        <i class="fa-solid fa-magnifying-glass"></i> Find
+                    </button>
                 </div>
             </div>
-            <div class="personalinfo overflowy">
-                <div class="course-card">
-                    <div class="inner-table">
-                        <table>
-                            <tr>
-                                <th>Penalty Id</th>
-                                <th>Accession Number</th>
-                                <th>Book</th>
-                                <th>Borrower Id</th>
-                                <th>Borrower Name</th>
-                                <th>Borrower Type</th>
-                                <th>Penalty Amount</th>
-                                <th>Status</th>
-                                <th>Excuse</th>
-                                <th>Issued Date</th>
-                                <th>Due Date</th>
-                                <th>Mark Paid</th>
-                                <th>Mark Excused</th>
-                            </tr>
-                            <tbody id="EmployeePenaltyInfoBody">
-                            </tbody>
-
-                        </table>
-                    </div>
-                </div>
-
+            <div class="action-group">
+                <span class="action-label">Excuse</span>
+                <select class="excuse_filter" id="excuseFilter1"></select>
             </div>
-
+            <div class="action-group">
+                <span class="action-label">Report</span>
+                <button type="button" class="button-cont-PDF" onclick="GenrateStudentPenaltyPDF()">
+                    <i class="fa-solid fa-file-pdf"></i> Generate PDF
+                </button>
+            </div>
         </div>
-        <div class="courses" id="course">
-            <h3>Penalty Info
-                <select class="status_filter" id="statusFilter">
-                    <option value="">All (Select Status)</option>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Penalty ID</th><th>Accession No.</th><th>Book</th>
+                        <th>Borrower ID</th><th>Name</th><th>Type</th>
+                        <th>Amount</th><th>Status</th><th>Excuse</th>
+                        <th>Issued</th><th>Due</th><th>Mark Paid</th><th>Excuse</th>
+                    </tr>
+                </thead>
+                <tbody id="StudentpenaltyInfoBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Employee Penalty -->
+    <section class="data-section" id="Employee-Penalty">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-users"></i>
+                <h2>Employee Penalty</h2>
+            </div>
+        </div>
+        <div class="action-bar">
+            <div class="action-group">
+                <span class="action-label">Employee ID</span>
+                <div class="action-row">
+                    <input type="text" id="employeePrnInput" class="input-contaner" placeholder="Enter Employee ID">
+                    <button type="button" class="button-cont" onclick="findEmployepenalty()">
+                        <i class="fa-solid fa-magnifying-glass"></i> Find
+                    </button>
+                </div>
+            </div>
+            <div class="action-group">
+                <span class="action-label">Excuse</span>
+                <select class="excuse_filter" id="excuseFilter2"></select>
+            </div>
+            <div class="action-group">
+                <span class="action-label">Report</span>
+                <button type="button" class="button-cont-PDF" onclick="GenrateEmployeePenaltyPDF()">
+                    <i class="fa-solid fa-file-pdf"></i> Generate PDF
+                </button>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Penalty ID</th><th>Accession No.</th><th>Book</th>
+                        <th>Borrower ID</th><th>Name</th><th>Type</th>
+                        <th>Amount</th><th>Status</th><th>Excuse</th>
+                        <th>Issued</th><th>Due</th><th>Mark Paid</th><th>Excuse</th>
+                    </tr>
+                </thead>
+                <tbody id="EmployeePenaltyInfoBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- All Penalties -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-list-check"></i>
+                <h2>All Penalties</h2>
+            </div>
+            <div class="section-controls">
+                <select id="statusFilter" class="filter-select">
+                    <option value="">All Status</option>
                     <option value="not paid">Not Paid</option>
                     <option value="paid">Paid</option>
                 </select>
-                <select class="borrower_filter" id="borrowerFilter">
-                    <option value="">All (Select Borrower type)</option>
+                <select id="borrowerFilter" class="filter-select">
+                    <option value="">All Types</option>
                     <option value="student">Student</option>
                     <option value="employee">Employee</option>
                 </select>
-                <div class="book-id">
-                    <button type="button" class="button-cont-PDF" onclick="GenrateAllPenaltyPDF()">Generate PDF</button>
-                </div>
-            </h3>
-            <div class="personalinfo overflowy" id="penaltyScrollContainer">
-                <div class="course-card">
-                    <div class="inner-table">
-                        <table>
-                            <tr>
-                                <th>Penalty Id</th>
-                                <th>Accession Number</th>
-                                <th>Book</th>
-                                <th>Borrower Id</th>
-                                <th>Borrower Name</th>
-                                <th>Borrower Type</th>
-                                <th>Penalty Amount</th>
-                                <th>Status</th>
-                                <th>Issued Date</th>
-                                <th>Due Date</th>
-                            </tr>
-                            <tbody id="penaltyInfoBody">
-                            </tbody>
-
-                        </table>
-                    </div>
-                </div>
-
+                <button type="button" class="button-cont-PDF" onclick="GenrateAllPenaltyPDF()">
+                    <i class="fa-solid fa-file-pdf"></i> PDF
+                </button>
             </div>
         </div>
+        <div class="table-wrapper" id="penaltyScrollContainer">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Penalty ID</th><th>Accession No.</th><th>Book</th>
+                        <th>Borrower ID</th><th>Name</th><th>Type</th>
+                        <th>Amount</th><th>Status</th><th>Issued</th><th>Due</th>
+                    </tr>
+                </thead>
+                <tbody id="penaltyInfoBody"></tbody>
+            </table>
+        </div>
+    </section>
 
-    </div>
+</div>
 
-    <script src="librarian_penalty.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="librarian_penalty.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
-    <script src="librarian_Penalty_PDF_genrator.js"></script>
+<script src="librarian_Penalty_PDF_genrator.js"></script>
 </body>
-</body>
-
 </html>

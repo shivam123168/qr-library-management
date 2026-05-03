@@ -1,4 +1,4 @@
- const apiBaseUrl = `https://qr-library-management-production.up.railway.app`;
+ const apiBaseUrl = `http://${window.location.hostname}:8000`;
 (function () {
     'use strict';
 

@@ -1,300 +1,385 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>librarian Dashboard</title>
+    <title>Librarian Dashboard</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-<link rel="stylesheet" href="librarian_dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="librarian_dashboard.css">
 </head>
-
 <body>
 
     <!-- Sidebar -->
-    <div class="sidebar">
+    <aside class="sidebar">
         <div class="logo">
-            <span class="logo-icon">🎓</span>
-            <span class="logo-text">Dashboard</span>
+            <span class="logo-icon"><i class="fa-solid fa-book-open-reader"></i></span>
+            <span class="logo-text">LibraryOS</span>
         </div>
 
-        <ul>
-            <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
-            </li>
-            <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
-            <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
-            <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
-        
-            <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
-            <li><a href="info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
-            <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
-            <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a></li>
-            <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee Management</a>
-            </li>
-            <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
-            <li><a href="backup_management.html"><img src="../images/backup.png" alt="B">Backup Management</a></li>
-            
-        </ul>
-        <div class="logout" onclick="logout()"><img src="../images/logout.png" alt="">Logout</div>
+        <nav>
+            <ul>
+                <li class="active"><a href="librarian_dashboard.html"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></li>
+                <li><a href="librarian_profile.html"><i class="fa-solid fa-circle-user"></i><span>Profile</span></a></li>
+                <li><a href="librarian_penalty.html"><i class="fa-solid fa-triangle-exclamation"></i><span>Penalty</span></a></li>
+                <li><a href="issue-return.html"><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Transaction</span></a></li>
+                <li><a href="QR-generator.html"><i class="fa-solid fa-qrcode"></i><span>QR Generator</span></a></li>
+                <li><a href="info-enter.html"><i class="fa-solid fa-keyboard"></i><span>Info Enter</span></a></li>
+                <li><a href="password_change.html"><i class="fa-solid fa-lock"></i><span>Password Change</span></a></li>
+                <li><a href="student_management.html"><i class="fa-solid fa-user-graduate"></i><span>Students</span></a></li>
+                <li><a href="employee_management.html"><i class="fa-solid fa-users"></i><span>Employees</span></a></li>
+                <li><a href="books_management.html"><i class="fa-solid fa-book"></i><span>Books</span></a></li>
+                <li><a href="backup_management.html"><i class="fa-solid fa-database"></i><span>Backup</span></a></li>
+            </ul>
+        </nav>
 
-    </div>
-
+        <div class="logout" onclick="logout()">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </div>
+    </aside>
 
     <!-- Main content -->
     <div class="main-content">
-        <div class="header">
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search Available book..." />
-                <div id="suggestions" class="suggestions-box"></div>
-            </div>
-            <div class="profile">
-                <img src="../images/gcoeystu.png" alt="profile">
-                <div>
-                    <strong id="short_name">Your Name</strong><br>
-                    <small id="department">department</small>
+
+        <!-- Top Header -->
+        <header class="header">
+            <div class="header-left">
+                <button class="toggle_btn" aria-label="Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="search-container">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="searchInput" placeholder="Search books by title…" autocomplete="off" />
+                    <div id="suggestions" class="suggestions-box"></div>
                 </div>
             </div>
-            <div class="toggle_btn">
-                <i class="fa-solid fa-bars"></i>
+            <div class="header-right">
+                <div class="profile-chip">
+                    <div class="profile-avatar">
+                        <img src="../images/gcoeystu.png" alt="profile">
+                    </div>
+                    <div class="profile-info">
+                        <strong id="short_name">Your Name</strong>
+                        <small id="department">Department</small>
+                    </div>
+                </div>
             </div>
+
+            <!-- Mobile dropdown -->
             <div class="dropdown_manue">
-
-                <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
-                </li>
-                <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
-                <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
-                <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
-            
-                <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
-                <li><a href="info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
-                <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
-                <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a>
-                </li>
-                <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee
-                        Management</a></li>
-                <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
-                <li><a href="backup_management.html"><img src="../images/backup.png" alt="B">Backup Management</a></li>
-                
-                <li onclick="logout()">
-                    <img src="../images/logout.png" alt="" />Logout
-                </li>
+                <a href="librarian_dashboard.html"><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
+                <a href="librarian_profile.html"><i class="fa-solid fa-circle-user"></i>Profile</a>
+                <a href="librarian_penalty.html"><i class="fa-solid fa-triangle-exclamation"></i>Penalty</a>
+                <a href="issue-return.html"><i class="fa-solid fa-arrow-right-arrow-left"></i>Transaction</a>
+                <a href="QR-generator.html"><i class="fa-solid fa-qrcode"></i>QR Generator</a>
+                <a href="info-enter.html"><i class="fa-solid fa-keyboard"></i>Info Enter</a>
+                <a href="password_change.html"><i class="fa-solid fa-lock"></i>Password Change</a>
+                <a href="student_management.html"><i class="fa-solid fa-user-graduate"></i>Students</a>
+                <a href="employee_management.html"><i class="fa-solid fa-users"></i>Employees</a>
+                <a href="books_management.html"><i class="fa-solid fa-book"></i>Books</a>
+                <a href="backup_management.html"><i class="fa-solid fa-database"></i>Backup</a>
+                <a onclick="logout()" style="cursor:pointer;"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
             </div>
-        </div>
+        </header>
 
-        <div class="welcome">
-            <div class="wel1">
-                <div>
-                    <h2>Welcome back,<span id="first_name">Librarian</span>!</h2>
-                    <p>Always stay updated in your Librarian portal</p>
-                </div>
-
-                <div class="total-user">
-                    <h3>Total Student:<span id="total_student">0</span></h3>
-                    <h3>Total Librarian:<span id="total_librarian">0</span></h3>
-                    <h3>Total Employee:<span id="total_employee">0</span></h3>
-                    <h3>Total Books:<span id="total_books">0</span></h3>
-                </div>
+        <!-- Welcome Banner -->
+        <section class="welcome-banner">
+            <div class="welcome-text">
+                <p class="welcome-label">Good day, Librarian</p>
+                <h1>Welcome back, <span id="first_name">—</span></h1>
+                <p class="welcome-sub">Here's what's happening in your library today.</p>
             </div>
-            <div class="total-book">
-                <h3>Currently Issued:<span id="currently_issued">0</span></h3>
-                <h3>Total Overdue Books:<span id="total_overdue">0</span></h3>
-                <h3>Total Issued Books:<span id="total_issued">0</span></h3>
-                <h3>Total Available Books:<span id="total_available">0</span></h3>
-                <h3>Total Returned Books:<span id="total_returned">0</span></h3>
-            </div>
-        </div>
-
-
-        <div class="courses">
-            <h3>Book Request <span><label for="day_limit" class="day_limit">Day Limit:</label><input type="number"
-                        name="day_limit" id="day_limit" placeholder="Enter day limit if approving"></span>
-                <select class="requester_type" id="typeFilter">
-                    <option value="">All (Select requester type)</option>
-                    <option value="student">Student</option>
-                    <option value="employee">Employee</option>
-                </select>
-            </h3>
-            <div class="personalinfo overflowy" id="RequestScrollContainer">
-                <div class="course-card">
-                    <div class="inner-table">
-                        <table>
-                            <tr>
-                                <th>Request ID</th>
-                                <th>Accession Number</th>
-                                <th>Book</th>
-                                <th>Requester Id</th>
-                                <th>Requester Name</th>
-                                <th>Requester Type</th>
-                                <th>Request Time</th>
-                                <th>Approved</th>
-                                <th>Reject</th>
-                            </tr>
-                            </thead>
-                            <tbody id="requestTableBody"></tbody>
-                        </table>
-                    </div>
-                    <!-- <button>View</button> -->
-                </div>
-
-            </div>
-        </div>
-
-        <div class="courses" id="course">
-            <h3>Books Todays DeadLine</h3>
-            <div class="personalinfo overflowy">
-                <div class="course-card">
-                    <div class="inner-table">
-                        <table>
-                            <tr>
-                                <th>Accession Number</th>
-                                <th>Book</th>
-                                <th>Borrower Name</th>
-                                <th>Borrower Id</th>
-                                <th>Issued Date</th>
-                                <th>Returned Date</th>
-                            </tr>
-                            <tbody id="dueTodayTableBody"></tbody>
-
-                        </table>
-                    </div>
-                    <!-- <button>View</button> -->
-                </div>
-
-            </div>
-        </div>
-
-        <div class="courses" id="course">
-            <h3>Penalty Info
-                <select class="status_filter" id="statusFilter">
-                    <option value="">All (Select Status)</option>
-                    <option value="not paid">Not Paid</option>
-                    <option value="paid">Paid</option>
-                </select>
-                <select class="borrower_filter" id="borrowerFilter">
-                    <option value="">All (Select Borrower type)</option>
-                    <option value="student">Student</option>
-                    <option value="employee">Employee</option>
-                </select>
-            </h3>
-            <div class="personalinfo overflowy" id="penaltyScrollContainer">
-                <div class="course-card">
-                    <div class="inner-table">
-                        <table>
-                            <tr>
-                                <th>Penalty Id</th>
-                                <th>Accession Number</th>
-                                <th>Book</th>
-                                <th>Borrower Id</th>
-                                <th>Borrower Name</th>
-                                <th>Borrower Type</th>
-                                <th>Penalty Amount</th>
-                                <th>Status</th>
-                                <th>Issued Date</th>
-                                <th>Due Date</th>
-                            </tr>
-                            <tbody id="penaltyInfoBody">
-                            </tbody>
-
-                        </table>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon teal"><i class="fa-solid fa-user-graduate"></i></div>
+                    <div>
+                        <div class="stat-value" id="total_student">0</div>
+                        <div class="stat-label">Students</div>
                     </div>
                 </div>
-
-            </div>
-        </div>
-
-        <div class="courses" id="course">
-            <h3>Issued Info <select class="requester_type" id="borrowerIssuedFilter">
-                    <option value="">All (Select User type)</option>
-                    <option value="student">Student</option>
-                    <option value="employee">Employee</option>
-                </select></h3>
-            <div class="personalinfo overflowy" id="issuedScrollContainer">
-                <div class="course-card">
-                    <div class="inner-table">
-                        <table>
-                            <tr>
-                                <th>Accession Number</th>
-                                <th>Book</th>
-                                <th>Borrower Id</th>
-                                <th>Borrower Name</th>
-                                <th>Borrower Type</th>
-                                <th>Issued Date</th>
-                                <th>Due Date</th>
-                            </tr>
-                            <tbody id="IssuedBookInfo"></tbody>
-
-                        </table>
+                <div class="stat-card">
+                    <div class="stat-icon indigo"><i class="fa-solid fa-users"></i></div>
+                    <div>
+                        <div class="stat-value" id="total_librarian">0</div>
+                        <div class="stat-label">Librarians</div>
                     </div>
                 </div>
-
-            </div>
-        </div>
-
-        <div class="courses" id="course">
-            <h3>Overdue Info <select class="requester_type" id="borrowerOverdueFilter">
-                    <option value="">All (Select User type)</option>
-                    <option value="student">Student</option>
-                    <option value="employee">Employee</option>
-                </select></h3>
-            <div class="personalinfo overflowy" id="OverdueScrollContainer">
-                <div class="course-card">
-                    <div class="inner-table">
-                        <table>
-                            <tr>
-                                
-                                <th>Accession Number</th>
-                                <th>Book</th>
-                                <th>Borrower Id</th>
-                                <th>Borrower Name</th>
-                                <th>Borrower Type</th>
-                                <th>Borrower Phone Number</th>
-                                <th>Borrower Email Id</th>
-                                <th>Issued Date</th>
-                                <th>Due Date</th>
-                            </tr>
-                            <tbody id="OverdueBookInfo"></tbody>
-
-                        </table>
+                <div class="stat-card">
+                    <div class="stat-icon amber"><i class="fa-solid fa-id-badge"></i></div>
+                    <div>
+                        <div class="stat-value" id="total_employee">0</div>
+                        <div class="stat-label">Employees</div>
                     </div>
                 </div>
-
-            </div>
-        </div>
-
-        <div class="courses" id="course">
-            <h3>Returned Info <select class="requester_type" id="borrowerReturnedFilter">
-                    <option value="">All (Select User type)</option>
-                    <option value="student">Student</option>
-                    <option value="employee">Employee</option>
-                </select></h3>
-            <div class="personalinfo overflowy" id="returnedScrollContainer">
-                <div class="course-card">
-                    <div class="inner-table">
-                        <table>
-                            <tr>
-                                <th>Accession Number</th>
-                                <th>Book</th>
-                                <th>Borrower Id</th>
-                                <th>Borrower Name</th>
-                                <th>Borrower Type</th>
-                                <th>Issued Date</th>
-                                <th>Due Date</th>
-                                <th>Returned Date</th>
-                            </tr>
-                            <tbody id="returnedInfoBody"></tbody>
-
-                        </table>
+                <div class="stat-card">
+                    <div class="stat-icon rose"><i class="fa-solid fa-book"></i></div>
+                    <div>
+                        <div class="stat-value" id="total_books">0</div>
+                        <div class="stat-label">Total Books</div>
                     </div>
                 </div>
-
+                <div class="stat-card">
+                    <div class="stat-icon teal"><i class="fa-solid fa-book-open"></i></div>
+                    <div>
+                        <div class="stat-value" id="currently_issued">0</div>
+                        <div class="stat-label">Currently Issued</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon rose"><i class="fa-solid fa-clock"></i></div>
+                    <div>
+                        <div class="stat-value" id="total_overdue">0</div>
+                        <div class="stat-label">Overdue</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon indigo"><i class="fa-solid fa-circle-check"></i></div>
+                    <div>
+                        <div class="stat-value" id="total_issued">0</div>
+                        <div class="stat-label">Total Issued</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon amber"><i class="fa-solid fa-layer-group"></i></div>
+                    <div>
+                        <div class="stat-value" id="total_available">0</div>
+                        <div class="stat-label">Available</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon teal"><i class="fa-solid fa-rotate-left"></i></div>
+                    <div>
+                        <div class="stat-value" id="total_returned">0</div>
+                        <div class="stat-label">Returned</div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Book Requests -->
+        <section class="data-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <i class="fa-solid fa-inbox"></i>
+                    <h2>Book Requests</h2>
+                </div>
+                <div class="section-controls">
+                    <div class="control-group">
+                        <label for="day_limit">Day Limit</label>
+                        <input type="number" id="day_limit" placeholder="e.g. 7" min="1">
+                    </div>
+                    <select id="typeFilter" class="filter-select">
+                        <option value="">All Types</option>
+                        <option value="student">Student</option>
+                        <option value="employee">Employee</option>
+                    </select>
+                </div>
+            </div>
+            <div class="table-wrapper" id="RequestScrollContainer">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Req. ID</th>
+                            <th>Accession No.</th>
+                            <th>Book</th>
+                            <th>Requester ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Requested At</th>
+                            <th>Approve</th>
+                            <th>Reject</th>
+                        </tr>
+                    </thead>
+                    <tbody id="requestTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Today's Deadline -->
+        <section class="data-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <i class="fa-solid fa-calendar-day"></i>
+                    <h2>Due Today</h2>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Accession No.</th>
+                            <th>Book</th>
+                            <th>Borrower Name</th>
+                            <th>Borrower ID</th>
+                            <th>Issued Date</th>
+                            <th>Due Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="dueTodayTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Penalty Info -->
+        <section class="data-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <h2>Penalties</h2>
+                </div>
+                <div class="section-controls">
+                    <select id="statusFilter" class="filter-select">
+                        <option value="">All Status</option>
+                        <option value="not paid">Not Paid</option>
+                        <option value="paid">Paid</option>
+                    </select>
+                    <select id="borrowerFilter" class="filter-select">
+                        <option value="">All Types</option>
+                        <option value="student">Student</option>
+                        <option value="employee">Employee</option>
+                    </select>
+                </div>
+            </div>
+            <div class="table-wrapper" id="penaltyScrollContainer">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Penalty ID</th>
+                            <th>Accession No.</th>
+                            <th>Book</th>
+                            <th>Borrower ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Issued</th>
+                            <th>Due</th>
+                        </tr>
+                    </thead>
+                    <tbody id="penaltyInfoBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Issued Info -->
+        <section class="data-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <i class="fa-solid fa-book-open"></i>
+                    <h2>Issued Books</h2>
+                </div>
+                <div class="section-controls">
+                    <select id="borrowerIssuedFilter" class="filter-select">
+                        <option value="">All Types</option>
+                        <option value="student">Student</option>
+                        <option value="employee">Employee</option>
+                    </select>
+                </div>
+            </div>
+            <div class="table-wrapper" id="issuedScrollContainer">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Accession No.</th>
+                            <th>Book</th>
+                            <th>Borrower ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Issued Date</th>
+                            <th>Due Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="IssuedBookInfo"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Overdue Info -->
+        <section class="data-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <h2>Overdue Books</h2>
+                </div>
+                <div class="section-controls">
+                    <select id="borrowerOverdueFilter" class="filter-select">
+                        <option value="">All Types</option>
+                        <option value="student">Student</option>
+                        <option value="employee">Employee</option>
+                    </select>
+                </div>
+            </div>
+            <div class="table-wrapper" id="OverdueScrollContainer">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Accession No.</th>
+                            <th>Book</th>
+                            <th>Borrower ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Issued Date</th>
+                            <th>Due Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="OverdueBookInfo"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Returned Info -->
+        <section class="data-section">
+            <div class="section-header">
+                <div class="section-title">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <h2>Returned Books</h2>
+                </div>
+                <div class="section-controls">
+                    <select id="borrowerReturnedFilter" class="filter-select">
+                        <option value="">All Types</option>
+                        <option value="student">Student</option>
+                        <option value="employee">Employee</option>
+                    </select>
+                </div>
+            </div>
+            <div class="table-wrapper" id="returnedScrollContainer">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Accession No.</th>
+                            <th>Book</th>
+                            <th>Borrower ID</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Issued Date</th>
+                            <th>Due Date</th>
+                            <th>Returned Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="returnedInfoBody"></tbody>
+                </table>
+            </div>
+        </section>
 
     </div>
-    <script src="librarian_dashboard.js"></script>
-</body>
 
+    <script src="librarian_dashboard.js"></script>
+    <!-- <script>
+        // Mobile toggle
+        const toggleBtn = document.querySelector('.toggle_btn');
+        const dropDownManue = document.querySelector('.dropdown_manue');
+        const toggleIcon = toggleBtn.querySelector('i');
+
+        toggleBtn.addEventListener('click', () => {
+            dropDownManue.classList.toggle('open');
+            const isOpen = dropDownManue.classList.contains('open');
+            toggleIcon.className = isOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+        });
+    </script> -->
+</body>
 </html>

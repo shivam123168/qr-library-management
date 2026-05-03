@@ -1,139 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>librarian Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link rel="stylesheet" href="librarian_profile.css">
+    <title>Librarian — Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared.css">
 </head>
-
 <body>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="logo">
-            <span class="logo-icon">🎓</span>
-            <span class="logo-text">Librarian</span>
-        </div>
-
-        <ul>
-            <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
-            </li>
-            <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
-            <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
-            <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
-
-            <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
-            <li><a href="info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
-            <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
-            <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a></li>
-            <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee Management</a>
-            </li>
-            <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
-            <li><a href="backup_management.html"><img src="../images/backup.png" alt="B">Backup Management</a></li>
-
-        </ul>
-        <div class="logout"><img src="../images/logout.png" alt="">Logout</div>
-
+<aside class="sidebar">
+    <div class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-book-open-reader"></i></span>
+        <span class="logo-text">LibraryOS</span>
     </div>
+    <nav>
+        <ul>
+            <li><a href="librarian_dashboard.html"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></li>
+            <li class="active"><a href="librarian_profile.html"><i class="fa-solid fa-circle-user"></i><span>Profile</span></a></li>
+            <li><a href="librarian_penalty.html"><i class="fa-solid fa-triangle-exclamation"></i><span>Penalty</span></a></li>
+            <li><a href="issue-return.html"><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Transaction</span></a></li>
+            <li><a href="QR-generator.html"><i class="fa-solid fa-qrcode"></i><span>QR Generator</span></a></li>
+            <li><a href="info-enter.html"><i class="fa-solid fa-keyboard"></i><span>Info Enter</span></a></li>
+            <li><a href="password_change.html"><i class="fa-solid fa-lock"></i><span>Password Change</span></a></li>
+            <li><a href="student_management.html"><i class="fa-solid fa-user-graduate"></i><span>Students</span></a></li>
+            <li><a href="employee_management.html"><i class="fa-solid fa-users"></i><span>Employees</span></a></li>
+            <li><a href="books_management.html"><i class="fa-solid fa-book"></i><span>Books</span></a></li>
+            <li><a href="backup_management.html"><i class="fa-solid fa-database"></i><span>Backup</span></a></li>
+        </ul>
+    </nav>
+    <div class="logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></div>
+</aside>
 
+<div class="main-content">
 
-    <!-- Main content -->
-    <div class="main-content">
-        <div class="header">
+    <header class="header">
+        <div class="header-left">
+            <button class="toggle_btn"><i class="fa-solid fa-bars"></i></button>
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search Available book..." />
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Search books by title…" autocomplete="off"/>
                 <div id="suggestions" class="suggestions-box"></div>
             </div>
-            <div class="profile">
-                <img src="../images/gcoeystu.png" alt="profile">
-                <div>
-                    <strong id="short_name"></strong><br />
-                    <small><span id="department"></span> Department</small>
-                </div>
-            </div>
-            <div class="toggle_btn">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-            <div class="dropdown_manue">
-
-                <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
-                </li>
-                <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
-                <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
-                <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
-
-                <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
-                <li><a href="info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
-                <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
-                <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a>
-                </li>
-                <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee
-                        Management</a></li>
-                <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
-                <li><a href="backup_management.html"><img src="../images/backup.png" alt="B">Backup Management</a></li>
-
-                <li onclick="logout()">
-                    <img src="../images/logout.png" alt="" />Logout
-                </li>
-            </div>
         </div>
-
-        <div class="courses" id="personal">
-            <h3>Employee Identity</h3>
-            <div class="personalinfo">
-                <div class="course-card">
-                    <div class="inner-course">
-                        <h4>Employee ID: <span id="emp_id"></span></h4>
-                    </div>
-                    <div class="inner-course">
-                        <h4>Created at: <span id="employee_creation_time"></span></h4>
-                    </div>
-                    <div class="inner-course">
-                        <h4>Full Name: <span id="full_name"></span></h4>
-                    </div>
-                    <div class="inner-course">
-                        <h4>Date of Birth: <span id="dob"></span></h4>
-                    </div>
-                    <div class="inner-course">
-                        <h4>Age: <span id="age"></span></h4>
-                    </div>
-                    <div class="inner-course">
-                        <h4>Email: <span id="gmail"></span></h4>
-                    </div>
-                    <div class="inner-course">
-                        <h4>Phone No.: <span id="phone_no"></span></h4>
-                    </div>
-                    <div class="inner-course">
-                        <h4>Designation: <span id="post_name"></span></h4>
-                    </div>
+        <div class="header-right">
+            <div class="profile-chip">
+                <div class="profile-avatar"><img src="../images/gcoeystu.png" alt="profile"></div>
+                <div class="profile-info">
+                    <strong id="short_name">Your Name</strong>
+                    <small id="department">Department</small>
                 </div>
             </div>
         </div>
+        <div class="dropdown_manue">
+            <a href="librarian_dashboard.html"><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
+            <a href="librarian_profile.html"><i class="fa-solid fa-circle-user"></i>Profile</a>
+            <a href="librarian_penalty.html"><i class="fa-solid fa-triangle-exclamation"></i>Penalty</a>
+            <a href="issue-return.html"><i class="fa-solid fa-arrow-right-arrow-left"></i>Transaction</a>
+            <a href="QR-generator.html"><i class="fa-solid fa-qrcode"></i>QR Generator</a>
+            <a href="info-enter.html"><i class="fa-solid fa-keyboard"></i>Info Enter</a>
+            <a href="password_change.html"><i class="fa-solid fa-lock"></i>Password Change</a>
+            <a href="student_management.html"><i class="fa-solid fa-user-graduate"></i>Students</a>
+            <a href="employee_management.html"><i class="fa-solid fa-users"></i>Employees</a>
+            <a href="books_management.html"><i class="fa-solid fa-book"></i>Books</a>
+            <a href="backup_management.html"><i class="fa-solid fa-database"></i>Backup</a>
+            <a onclick="logout()" style="cursor:pointer;"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+        </div>
+    </header>
 
-        <div class="courses" id="work">
-            <h3>Department Info</h3>
-            <div class="personalinfo">
-                <div class="course-card">
-                    <div class="inner-course">
-                        <h4>Department Name: <span id="dept_id"></span></h4>
-                    </div>
-                    <div class="inner-course">
-                        <h4>Post Name: <span id="post_id"></span></h4>
-                    </div>
-                </div>
+    <!-- Employee Identity -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-id-card"></i>
+                <h2>Employee Identity</h2>
             </div>
         </div>
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-label">Employee ID</div>
+                <div class="info-value" id="emp_id">—</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Created At</div>
+                <div class="info-value" id="employee_creation_time">—</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Full Name</div>
+                <div class="info-value" id="full_name">—</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Date of Birth</div>
+                <div class="info-value" id="dob">—</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Age</div>
+                <div class="info-value" id="age">—</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Email</div>
+                <div class="info-value" id="gmail">—</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Phone No.</div>
+                <div class="info-value" id="phone_no">—</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Designation</div>
+                <div class="info-value" id="post_name">—</div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Department Info -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-building"></i>
+                <h2>Department Info</h2>
+            </div>
+        </div>
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-label">Department</div>
+                <div class="info-value" id="dept_id">—</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Post</div>
+                <div class="info-value" id="post_id">—</div>
+            </div>
+        </div>
+    </section>
 
-    </div>
+</div>
 
-    <script src="librarian_profile.js"></script>
+<script src="librarian_profile.js"></script>
+
 </body>
-
 </html>

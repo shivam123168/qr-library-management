@@ -1,333 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>librarian Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <link rel="stylesheet" href="employee_management.css">
+    <title>Librarian — Employee Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared.css">
 </head>
-
 <body>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="logo">
-            <span class="logo-icon">🎓</span>
-            <span class="logo-text">Employee's</span>
-        </div>
-
-        <ul>
-            <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
-            </li>
-            <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
-            <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
-            <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
-         
-            <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
-            <li><a href="info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
-            <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
-            <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a></li>
-            <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee Management</a>
-            </li>
-            <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
-            <li><a href="backup_management.html"><img src="../images/backup.png" alt="B">Backup Management</a></li>
-            
-        </ul>
-        <div class="logout" onclick="logout()"><img src="../images/logout.png" alt="" />Logout</div>
-
+<aside class="sidebar">
+    <div class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-book-open-reader"></i></span>
+        <span class="logo-text">LibraryOS</span>
     </div>
+    <nav><ul>
+        <li><a href="librarian_dashboard.html"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></li>
+        <li><a href="librarian_profile.html"><i class="fa-solid fa-circle-user"></i><span>Profile</span></a></li>
+        <li><a href="librarian_penalty.html"><i class="fa-solid fa-triangle-exclamation"></i><span>Penalty</span></a></li>
+        <li><a href="issue-return.html"><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Transaction</span></a></li>
+        <li><a href="QR-generator.html"><i class="fa-solid fa-qrcode"></i><span>QR Generator</span></a></li>
+        <li><a href="info-enter.html"><i class="fa-solid fa-keyboard"></i><span>Info Enter</span></a></li>
+        <li><a href="password_change.html"><i class="fa-solid fa-lock"></i><span>Password Change</span></a></li>
+        <li><a href="student_management.html"><i class="fa-solid fa-user-graduate"></i><span>Students</span></a></li>
+        <li class="active"><a href="employee_management.html"><i class="fa-solid fa-users"></i><span>Employees</span></a></li>
+        <li><a href="books_management.html"><i class="fa-solid fa-book"></i><span>Books</span></a></li>
+        <li><a href="backup_management.html"><i class="fa-solid fa-database"></i><span>Backup</span></a></li>
+    </ul></nav>
+    <div class="logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></div>
+</aside>
 
+<div class="main-content">
 
-    <!-- Main content -->
-    <div class="main-content">
-        <div class="header">
+    <header class="header">
+        <div class="header-left">
+            <button class="toggle_btn"><i class="fa-solid fa-bars"></i></button>
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search Available book..." />
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Search books by title…" autocomplete="off"/>
                 <div id="suggestions" class="suggestions-box"></div>
             </div>
-            <div class="profile">
-                <img src="../images/gcoeystu.png" alt="profile">
-                <div>
-                    <strong id="short_name"></strong><br />
-                    <small><span id="department"></span> Department</small>
-                </div>
-            </div>
-            <div class="toggle_btn">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-            <div class="dropdown_manue">
-                <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
-                </li>
-                <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
-                <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
-                <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
-                
-                <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
-                <li><a href="info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
-                <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
-                <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a>
-                </li>
-                <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee
-                        Management</a></li>
-                <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
-                <li><a href="backup_management.html"><img src="../images/backup.png" alt="B">Backup Management</a></li>
-                
-                <li onclick="logout()">
-                    <img src="../images/logout.png" alt="" />Logout
-                </li>
-            </div>
         </div>
-
-
-
-        <div class="courses" id="personal">
-            <h3>Add New Employee</h3>
-            <div class="personalinfo">
-                <div class="form-card">
-                    <div class="form-container">
-                        <form>
-
-                            <div class="form-group">
-                                <div class="get_prn">
-                                    <label for="Empid">Employee Id</label>
-                                    <button type="button" class="GetEmployee" onclick="GetEmployee()">Get
-                                        Employee</button>
-                                </div>
-                                <input type="number" id="Empid" name="employee-id" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="fname">First Name</label>
-                                <input type="text" id="fname" name="fname" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="mname">Middle Name</label>
-                                <input type="text" id="mname" name="mname">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="lname">Last Name</label>
-                                <input type="text" id="lname" name="lname" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="dob">Date of Birth</label>
-                                <input type="date" id="dob" name="dob" required>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label for="employee_post">Employee Post</label>
-                                <select id="employee_post" name="employee_post" required>
-                                    <option value="">Select Post</option>
-
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="department">Department</label>
-                                <select id="employee_department" name="department" required>
-                                    <option value="">Select Department</option>
-
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="email">Email ID</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="phone">Phone Number</label>
-                                <input type="tel" id="phone" name="phone" pattern="[0-9]{10}"
-                                    placeholder="Enter 10-digit number" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" id="password" name="password" minlength="6" required>
-                                <button type="button" id="toggletext" onclick="togglePassword()">Show</button>
-                            </div>
-                            <div class="sub-btn">
-                                <button type="button" class="submit-btn" onclick="AddEmployee()">Add Employee</button>
-                                <button type="button" class="submit-btn" onclick="UpdateEmployee()">Update
-                                    Employee</button>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-        <div class="courses">
-            <h3>Employees Add through Excel</h3>
-
-            <div class="personalinfo">
-                <div class="issue-contaner">
-
-                    <div class="book-id">
-                        <h4>Employees Bulk Upload</h4>
-                        <input type="file" class="input-contaner" id="EmployeeExcelFile"  accept=".xlsx, .xls">
-                    </div>
-
-                    <div class="delete-student">
-                        <button type="button" id="uploadBtn" class="issue-button-excel" onclick="UploadAllEmployeeExcel()">
-                            Upload Employees Data
-                        </button>
-                        <!-- Progress UI -->
-                        <div id="uploadStatus" style="display:none; margin-top:10px;">
-                            <span id="uploadText">Uploading...</span>
-
-                            <div style="width:100%; background:#ddd; margin-top:5px;">
-                                <div id="progressBar" style="width:0%; height:10px; background:green;"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-        </div>
-
-        <div class="courses">
-            <h3>Delete Employee</h3>
-            <div class="personalinfo">
-                <div class="issue-contaner">
-                    <div class="book-id">
-                        <h4>Employee ID</h4>
-                        <input type="text" class="input-contaner" id="EmployeeId" placeholder="Enter Employee ID">
-                        <button type="button" id="ScanEmployeeId" class="button-cont">Scan Employee Id</button>
-                    </div>
-
-                    <div class="delete-student">
-                        <button type="button" class="issue-button" onclick="DeleteEmployee()">Delete employee</button>
-                    </div>
+        <div class="header-right">
+            <div class="profile-chip">
+                <div class="profile-avatar"><img src="../images/gcoeystu.png" alt="profile"></div>
+                <div class="profile-info">
+                    <strong id="short_name">Your Name</strong>
+                    <small id="department">Department</small>
                 </div>
             </div>
         </div>
+        <div class="dropdown_manue">
+            <a href="librarian_dashboard.html"><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
+            <a href="librarian_profile.html"><i class="fa-solid fa-circle-user"></i>Profile</a>
+            <a href="librarian_penalty.html"><i class="fa-solid fa-triangle-exclamation"></i>Penalty</a>
+            <a href="issue-return.html"><i class="fa-solid fa-arrow-right-arrow-left"></i>Transaction</a>
+            <a href="QR-generator.html"><i class="fa-solid fa-qrcode"></i>QR Generator</a>
+            <a href="info-enter.html"><i class="fa-solid fa-keyboard"></i>Info Enter</a>
+            <a href="password_change.html"><i class="fa-solid fa-lock"></i>Password Change</a>
+            <a href="student_management.html"><i class="fa-solid fa-user-graduate"></i>Students</a>
+            <a href="employee_management.html"><i class="fa-solid fa-users"></i>Employees</a>
+            <a href="books_management.html"><i class="fa-solid fa-book"></i>Books</a>
+            <a href="backup_management.html"><i class="fa-solid fa-database"></i>Backup</a>
+            <a onclick="logout()" style="cursor:pointer;"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+        </div>
+    </header>
 
-
-        <div class="courses" id="issued">
-            <h3>Employee Info By Name
-                <input type="text" name="Employee_Name" id="Employee_Name" class="input-EmployeeId"
-                    placeholder="Enter Employee Name">
-                 <button type="button" class="button-cont" onclick="GeneratePDFFromName()">Generate PDF</button>
-            </h3>
-
-            <div class="personalinfo overflowy" id="ScrollContanerByName">
-                <div class="course-card">
-                    <div class="inner-table">
-                        <table>
-                            <tr>
-                                <th>Created At</th>
-                                <th>Employee Id</th>
-                                <th>Name</th>
-                                <th>DOB</th>
-                                <th>Age</th>
-                                <th>Post</th>
-                                <th>Department</th>
-                                <th>Email</th>
-                                <th>Phone No.</th>
-                            </tr>
-                            <tbody id="EmployeeInfoByName"></tbody>
-
-                        </table>
+    <!-- Add / Update Employee -->
+    <section class="data-section" id="personal">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-user-plus"></i><h2>Add / Update Employee</h2></div>
+        </div>
+        <div class="form-section">
+            <div class="form-grid">
+                <div class="form-group">
+                    <div class="get-row">
+                        <label for="Empid">Employee ID</label>
+                        <button type="button" class="GetEmployee" onclick="GetEmployee()"><i class="fa-solid fa-download"></i> Get Employee</button>
                     </div>
-                    <!-- <button>View</button> -->
+                    <input type="number" id="Empid" name="employee-id" required>
+                </div>
+                <div class="form-group">
+                    <label for="fname">First Name</label>
+                    <input type="text" id="fname" name="fname" required>
+                </div>
+                <div class="form-group">
+                    <label for="mname">Middle Name</label>
+                    <input type="text" id="mname" name="mname">
+                </div>
+                <div class="form-group">
+                    <label for="lname">Last Name</label>
+                    <input type="text" id="lname" name="lname" required>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+                <div class="form-group">
+                    <label for="employee_post">Designation</label>
+                    <select id="employee_post" name="employee_post" required>
+                        <option value="">Select Post</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="employee_department">Department</label>
+                    <select id="employee_department" name="department" required>
+                        <option value="">Select Department</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="10-digit number" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-row">
+                        <input type="password" id="password" name="password" minlength="6" required>
+                        <button type="button" id="toggletext" onclick="togglePassword()">Show</button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-actions" style="margin-top:20px;">
+                <button type="button" class="submit-btn" onclick="AddEmployee()"><i class="fa-solid fa-plus"></i> Add Employee</button>
+                <button type="button" class="submit-btn" onclick="UpdateEmployee()" style="background:var(--indigo);"><i class="fa-solid fa-pen"></i> Update Employee</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bulk Upload -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-file-excel"></i><h2>Bulk Upload via Excel</h2></div>
+        </div>
+        <div class="action-bar">
+            <div class="action-group">
+                <span class="action-label">Excel File</span>
+                <input type="file" class="input-contaner" id="EmployeeExcelFile" accept=".xlsx,.xls">
+            </div>
+            <div class="action-group" style="justify-content:flex-end">
+                <span class="action-label">&nbsp;</span>
+                <button type="button" id="uploadBtn" class="issue-button-excel" onclick="UploadAllEmployeeExcel()">
+                    <i class="fa-solid fa-upload"></i> Upload Employees
+                </button>
+            </div>
+            <div id="uploadStatus" style="display:none;width:100%;">
+                <span id="uploadText" style="font-size:13px;color:var(--text-2);">Uploading…</span>
+                <div class="progress-track"><div id="progressBar" style="width:0%;height:6px;background:var(--accent);border-radius:10px;"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delete Employee -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-user-minus"></i><h2>Delete Employee</h2></div>
+        </div>
+        <div class="action-bar">
+            <div class="action-group">
+                <span class="action-label">Employee ID</span>
+                <div class="action-row">
+                    <input type="text" class="input-contaner" id="EmployeeId" placeholder="Enter Employee ID">
+                    <button type="button" id="ScanEmployeeId" class="button-cont"><i class="fa-solid fa-qrcode"></i> Scan</button>
+                    <button type="button" class="reject-btn" onclick="DeleteEmployee()"><i class="fa-solid fa-trash"></i> Delete</button>
                 </div>
             </div>
         </div>
+    </section>
 
-
-        <div class="courses" id="issued">
-            <h3>Employee Info By Id
-                <input type="text" name="Employee_Id" id="Employee_Id" class="input-EmployeeId"
-                    placeholder="Enter Employee Id">
-                 <button type="button" class="button-cont" onclick="GeneratePDFFromId()">Generate PDF</button>
-            </h3>
-
-            <div class="personalinfo overflowy" id="ScrollContaner">
-                <div class="course-card">
-                    <div class="inner-table">
-                        <table>
-                            <tr>
-                                <th>Created At</th>
-                                <th>Employee Id</th>
-                                <th>Name</th>
-                                <th>DOB</th>
-                                <th>Age</th>
-                                <th>Post</th>
-                                <th>Department</th>
-                                <th>Email</th>
-                                <th>Phone No.</th>
-                            </tr>
-                            <tbody id="EmployeeInfoByPRN"></tbody>
-
-                        </table>
-                    </div>
-                    <!-- <button>View</button> -->
-                </div>
+    <!-- Search by Name -->
+    <section class="data-section" id="issued">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-magnifying-glass"></i><h2>Employee Info by Name</h2></div>
+            <div class="section-controls">
+                <input type="text" name="Employee_Name" id="Employee_Name" class="input-contaner" placeholder="Type employee name…">
+                <button type="button" class="button-cont-PDF" onclick="GeneratePDFFromName()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
             </div>
         </div>
+        <div class="table-wrapper" id="ScrollContanerByName">
+            <table>
+                <thead><tr>
+                    <th>Created At</th><th>Employee ID</th><th>Name</th>
+                    <th>DOB</th><th>Age</th><th>Post</th><th>Department</th>
+                    <th>Email</th><th>Phone</th>
+                </tr></thead>
+                <tbody id="EmployeeInfoByName"></tbody>
+            </table>
+        </div>
+    </section>
 
+    <!-- Search by ID -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-id-badge"></i><h2>Employee Info by ID</h2></div>
+            <div class="section-controls">
+                <input type="text" name="Employee_Id" id="Employee_Id" class="input-contaner" placeholder="Type employee ID…">
+                <button type="button" class="button-cont-PDF" onclick="GeneratePDFFromId()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+            </div>
+        </div>
+        <div class="table-wrapper" id="ScrollContaner">
+            <table>
+                <thead><tr>
+                    <th>Created At</th><th>Employee ID</th><th>Name</th>
+                    <th>DOB</th><th>Age</th><th>Post</th><th>Department</th>
+                    <th>Email</th><th>Phone</th>
+                </tr></thead>
+                <tbody id="EmployeeInfoByPRN"></tbody>
+            </table>
+        </div>
+    </section>
 
-
-        <div class="courses" id="issued">
-            <h3>Employee Info
-                <select class="requester_type" id="departmentFilter">
-                    <option value="">All (Select Department)</option>
+    <!-- All Employees -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-table-list"></i><h2>All Employees</h2></div>
+            <div class="section-controls">
+                <select class="filter-select" id="departmentFilter">
+                    <option value="">All Departments</option>
                 </select>
-                <select class="requester_type" id="PostFilter">
-                    <option value="">All (Select Post)</option>
-
+                <select class="filter-select" id="PostFilter">
+                    <option value="">All Posts</option>
                 </select>
-                 <button type="button" class="button-cont" onclick="GeneratePDFFromFilters()">Generate PDF</button>
-            </h3>
-
-            <div class="personalinfo overflowy" id="ScrollEmployeeContaner">
-                <div class="course-card">
-                    <div class="inner-table">
-                        <table>
-                            <tr>
-                                <th>Employee Id</th>
-                                <th>Name</th>
-                                <th>DOB</th>
-                                <th>Age</th>
-                                <th>Post</th>
-                                <th>Department</th>
-                                <th>Email</th>
-                                <th>Phone No.</th>
-                            </tr>
-                            <tbody id="AllEmployeeInfo"></tbody>
-
-                        </table>
-                    </div>
-                    <!-- <button>View</button> -->
-                </div>
+                <button type="button" class="button-cont-PDF" onclick="GeneratePDFFromFilters()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
             </div>
         </div>
+        <div class="table-wrapper" id="ScrollEmployeeContaner">
+            <table>
+                <thead><tr>
+                    <th>Employee ID</th><th>Name</th><th>DOB</th><th>Age</th>
+                    <th>Post</th><th>Department</th><th>Email</th><th>Phone</th>
+                </tr></thead>
+                <tbody id="AllEmployeeInfo"></tbody>
+            </table>
+        </div>
+    </section>
 
+</div>
 
-    </div>
+<script src="employee_management.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+<script src="employee_data_excel_base_upload.js"></script>
+<script src="employee_management_PDF_generator.js"></script>
 
-    </div>
-
-
-    <script src="employee_management.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
-    <script src="employee_data_excel_base_upload.js"></script>
-    <script src="employee_management_PDF_generator.js"></script>
 </body>
-
 </html>

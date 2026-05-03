@@ -1,210 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>librarian Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-    <link rel="stylesheet" href="QR_generator.css">
+    <title>Librarian — QR Generator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- shared design system -->
+    <link rel="stylesheet" href="shared.css">
+    <!-- QR-specific styles (untouched — required for QR rendering) -->
     <link rel="stylesheet" href="QR_CSS.css">
 </head>
-
 <body>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="logo">
-            <span class="logo-icon">🎓</span>
-            <span class="logo-text">QR Generator</span>
-        </div>
-
-        <ul>
-            <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
-            </li>
-            <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
-            <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
-            <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
-
-            <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
-            <li><a href="info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
-            <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
-            <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a></li>
-            <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee Management</a>
-            </li>
-            <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
-            <li><a href="backup_management.html"><img src="../images/backup.png" alt="B">Backup Management</a></li>
-        </ul>
-        <div class="logout" onclick="logout()"><img src="../images/logout.png" alt="">Logout</div>
-
+<aside class="sidebar">
+    <div class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-book-open-reader"></i></span>
+        <span class="logo-text">LibraryOS</span>
     </div>
+    <nav><ul>
+        <li><a href="librarian_dashboard.html"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></li>
+        <li><a href="librarian_profile.html"><i class="fa-solid fa-circle-user"></i><span>Profile</span></a></li>
+        <li><a href="librarian_penalty.html"><i class="fa-solid fa-triangle-exclamation"></i><span>Penalty</span></a></li>
+        <li><a href="issue-return.html"><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Transaction</span></a></li>
+        <li class="active"><a href="QR-generator.html"><i class="fa-solid fa-qrcode"></i><span>QR Generator</span></a></li>
+        <li><a href="info-enter.html"><i class="fa-solid fa-keyboard"></i><span>Info Enter</span></a></li>
+        <li><a href="password_change.html"><i class="fa-solid fa-lock"></i><span>Password Change</span></a></li>
+        <li><a href="student_management.html"><i class="fa-solid fa-user-graduate"></i><span>Students</span></a></li>
+        <li><a href="employee_management.html"><i class="fa-solid fa-users"></i><span>Employees</span></a></li>
+        <li><a href="books_management.html"><i class="fa-solid fa-book"></i><span>Books</span></a></li>
+        <li><a href="backup_management.html"><i class="fa-solid fa-database"></i><span>Backup</span></a></li>
+    </ul></nav>
+    <div class="logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></div>
+</aside>
 
+<div class="main-content">
 
-    <!-- Main content -->
-    <div class="main-content">
-        <div class="header">
+    <header class="header">
+        <div class="header-left">
+            <button class="toggle_btn"><i class="fa-solid fa-bars"></i></button>
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search Available book..." />
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Search books by title…" autocomplete="off"/>
                 <div id="suggestions" class="suggestions-box"></div>
             </div>
-            <div class="profile">
-                <img src="../images/gcoeystu.png" alt="profile">
-                <div>
-                    <strong id="short_name"></strong><br />
-                    <small><span id="department"></span> Department</small>
+        </div>
+        <div class="header-right">
+            <div class="profile-chip">
+                <div class="profile-avatar"><img src="../images/gcoeystu.png" alt="profile"></div>
+                <div class="profile-info">
+                    <strong id="short_name">Your Name</strong>
+                    <small id="department">Department</small>
                 </div>
-            </div>
-            <div class="toggle_btn">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-            <div class="dropdown_manue">
-
-                <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
-                </li>
-                <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
-                <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
-                <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
-
-                <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
-                <li><a href="info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
-                <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
-                <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a>
-                </li>
-                <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee
-                        Management</a></li>
-                <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
-                <li><a href="backup_management.html"><img src="../images/backup.png" alt="B">Backup Management</a></li>
-
-                <li onclick="logout()">
-                    <img src="../images/logout.png" alt="" />Logout
-                </li>
             </div>
         </div>
-
-        <div class="courses" id="Student-QR-Generator">
-            <h3>Student QR Generator</h3>
-            <div class="personalinfo">
-                <div class="issue-contaner">
-                    <div>
-                        <div class="book-id">
-                            <h4>Student PRN</h4>
-                            <input type="text" id="studentPrnInput" class="input-contaner"
-                                placeholder="Enter Student PRN">
-                            <button type="button" class="button-cont" onclick="MakeQrByStudentPrn()">Make QR</button>
-                        </div>
-
-                    </div>
-                    <div>
-                        <div class="book-id">
-                            <h4>Student Name</h4>
-                            <input type="text" id="studentNameInput" class="input-contaner"
-                                placeholder="Enter Student Name">
-                            <button type="button" class="button-cont" onclick="MakeQrByStudentName()">Make QR</button>
-                        </div>
-
-                    </div>
-                    <div>
-                        <div class="book-id">
-                            <h4>Student Branch and Semester</h4>
-                            <select class="requester_type" id="branch2">
-                                <option value="">All (Select Branch)</option>
-                            </select>
-                            <select class="requester_type" id="semFilter">
-                                <option value="">All (Select Semester)</option>
-                                <option value="1">1 Semester</option>
-                                <option value="2">2 Semester</option>
-                                <option value="3">3 Semester</option>
-                                <option value="4">4 Semester</option>
-                                <option value="5">5 Semester</option>
-                                <option value="6">6 Semester</option>
-                                <option value="7">7 Semester</option>
-                                <option value="8">8 Semester</option>
-
-                            </select>
-                            <button type="button" class="button-cont" onclick="MakeQrByStudentBranchAndSemester()">Make
-                                QR</button>
-                        </div>
-
-                    </div>
-
-
-                </div>
-            </div>
-
-
-
+        <div class="dropdown_manue">
+            <a href="librarian_dashboard.html"><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
+            <a href="librarian_profile.html"><i class="fa-solid fa-circle-user"></i>Profile</a>
+            <a href="librarian_penalty.html"><i class="fa-solid fa-triangle-exclamation"></i>Penalty</a>
+            <a href="issue-return.html"><i class="fa-solid fa-arrow-right-arrow-left"></i>Transaction</a>
+            <a href="QR-generator.html"><i class="fa-solid fa-qrcode"></i>QR Generator</a>
+            <a href="info-enter.html"><i class="fa-solid fa-keyboard"></i>Info Enter</a>
+            <a href="password_change.html"><i class="fa-solid fa-lock"></i>Password Change</a>
+            <a href="student_management.html"><i class="fa-solid fa-user-graduate"></i>Students</a>
+            <a href="employee_management.html"><i class="fa-solid fa-users"></i>Employees</a>
+            <a href="books_management.html"><i class="fa-solid fa-book"></i>Books</a>
+            <a href="backup_management.html"><i class="fa-solid fa-database"></i>Backup</a>
+            <a onclick="logout()" style="cursor:pointer;"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
         </div>
-        <div class="courses" id="Employee-QR-Generator">
-            <h3>Employee QR Generator</h3>
-            <div class="personalinfo">
-                <div class="issue-contaner">
-                    <div class="book-id">
-                        <h4>Employee ID</h4>
-                        <input type="text" id="employeeIDInput" class="input-contaner" placeholder="Enter Employee ID">
-                        <button type="button" class="button-cont" onclick="MakeQRByEmployeeId()">Make QR</button>
-                    </div>
+    </header>
 
-                    <div class="book-id">
-                        <h4>Employee Name</h4>
-                        <input type="text" id="employeeNameInput" class="input-contaner"
-                            placeholder="Enter Employee Name">
-                        <button type="button" class="button-cont" onclick="MakeQRByEmployeeName()">Make QR</button>
-                    </div>
-
-                    <div class="book-id">
-                        <h4>Employee Department and Post</h4>
-                        <select class="requester_type" id="departmentFilter">
-                            <option value="">All (Select Department)</option>
-                        </select>
-                        <select class="requester_type" id="PostFilter">
-                            <option value="">All (Select Post)</option>
-
-                        </select>
-                        <button type="button" class="button-cont" onclick="MakeQRByEmployeeDepartmentAndPost()">Make
-                            QR</button>
-                    </div>
-
-
-                </div>
+    <!-- Student QR Generator -->
+    <section class="data-section" id="Student-QR-Generator">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-user-graduate"></i>
+                <h2>Student QR Generator</h2>
             </div>
-
-            <div class="courses" id="Books-QR">
-                <h3>Books QR Generator</h3>
-                <div class="personalinfo">
-                    <div class="issue-contaner">
-                        <div class="book-id">
-                            <h4>Book Accesstion Number</h4>
-                            <input type="text" id="bookAccessionInput" class="input-contaner"
-                                placeholder="Enter Book Accession Number">
-                            <button type="button" class="button-cont" onclick="MakeQRByBookAccesstionNumber()">Make
-                                QR</button>
-                        </div>
-
-                        <div class="book-id">
-                            <h4>Book Name</h4>
-                            <input type="text" id="BookNameInput" class="input-contaner" placeholder="Enter Book Name">
-                            <button type="button" class="button-cont" onclick="MakeQRByBookName()">Make QR</button>
-                        </div>
-
-                        <div class="book-id">
-                            <h4>Books All</h4>
-                            <button type="button" class="button-cont" onclick="MakeQRByBooksAll()">Make QR</button>
-                        </div>
-                    </div>
-                </div>
-
-
-            </div>
-
-
         </div>
+        <div class="action-bar">
+            <!-- By PRN -->
+            <div class="action-group">
+                <span class="action-label">By PRN</span>
+                <div class="action-row">
+                    <input type="text" id="studentPrnInput" class="input-contaner" placeholder="Enter Student PRN">
+                    <button type="button" class="button-cont" onclick="MakeQrByStudentPrn()">
+                        <i class="fa-solid fa-qrcode"></i> Make QR
+                    </button>
+                </div>
+            </div>
+            <!-- By Name -->
+            <div class="action-group">
+                <span class="action-label">By Name</span>
+                <div class="action-row">
+                    <input type="text" id="studentNameInput" class="input-contaner" placeholder="Enter Student Name">
+                    <button type="button" class="button-cont" onclick="MakeQrByStudentName()">
+                        <i class="fa-solid fa-qrcode"></i> Make QR
+                    </button>
+                </div>
+            </div>
+            <!-- By Branch & Semester -->
+            <div class="action-group">
+                <span class="action-label">By Branch &amp; Semester</span>
+                <div class="action-row">
+                    <select class="filter-select" id="branch2">
+                        <option value="">All Branches</option>
+                    </select>
+                    <select class="filter-select" id="semFilter">
+                        <option value="">All Semesters</option>
+                        <option value="1">Sem 1</option>
+                        <option value="2">Sem 2</option>
+                        <option value="3">Sem 3</option>
+                        <option value="4">Sem 4</option>
+                        <option value="5">Sem 5</option>
+                        <option value="6">Sem 6</option>
+                        <option value="7">Sem 7</option>
+                        <option value="8">Sem 8</option>
+                    </select>
+                    <button type="button" class="button-cont" onclick="MakeQrByStudentBranchAndSemester()">
+                        <i class="fa-solid fa-qrcode"></i> Make QR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-        <script src="QR_genrator.js"></script>
+    <!-- Employee QR Generator -->
+    <section class="data-section" id="Employee-QR-Generator">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-users"></i>
+                <h2>Employee QR Generator</h2>
+            </div>
+        </div>
+        <div class="action-bar">
+            <!-- By ID -->
+            <div class="action-group">
+                <span class="action-label">By Employee ID</span>
+                <div class="action-row">
+                    <input type="text" id="employeeIDInput" class="input-contaner" placeholder="Enter Employee ID">
+                    <button type="button" class="button-cont" onclick="MakeQRByEmployeeId()">
+                        <i class="fa-solid fa-qrcode"></i> Make QR
+                    </button>
+                </div>
+            </div>
+            <!-- By Name -->
+            <div class="action-group">
+                <span class="action-label">By Name</span>
+                <div class="action-row">
+                    <input type="text" id="employeeNameInput" class="input-contaner" placeholder="Enter Employee Name">
+                    <button type="button" class="button-cont" onclick="MakeQRByEmployeeName()">
+                        <i class="fa-solid fa-qrcode"></i> Make QR
+                    </button>
+                </div>
+            </div>
+            <!-- By Department & Post -->
+            <div class="action-group">
+                <span class="action-label">By Department &amp; Post</span>
+                <div class="action-row">
+                    <select class="filter-select" id="departmentFilter">
+                        <option value="">All Departments</option>
+                    </select>
+                    <select class="filter-select" id="PostFilter">
+                        <option value="">All Posts</option>
+                    </select>
+                    <button type="button" class="button-cont" onclick="MakeQRByEmployeeDepartmentAndPost()">
+                        <i class="fa-solid fa-qrcode"></i> Make QR
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Books QR Generator -->
+    <section class="data-section" id="Books-QR">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-book"></i>
+                <h2>Books QR Generator</h2>
+            </div>
+        </div>
+        <div class="action-bar">
+            <!-- By Accession Number -->
+            <div class="action-group">
+                <span class="action-label">By Accession No.</span>
+                <div class="action-row">
+                    <input type="text" id="bookAccessionInput" class="input-contaner" placeholder="Enter Accession No.">
+                    <button type="button" class="button-cont" onclick="MakeQRByBookAccesstionNumber()">
+                        <i class="fa-solid fa-qrcode"></i> Make QR
+                    </button>
+                </div>
+            </div>
+            <!-- By Book Name -->
+            <div class="action-group">
+                <span class="action-label">By Book Title</span>
+                <div class="action-row">
+                    <input type="text" id="BookNameInput" class="input-contaner" placeholder="Enter Book Name">
+                    <button type="button" class="button-cont" onclick="MakeQRByBookName()">
+                        <i class="fa-solid fa-qrcode"></i> Make QR
+                    </button>
+                </div>
+            </div>
+            <!-- All Books -->
+            <div class="action-group">
+                <span class="action-label">All Books</span>
+                <button type="button" class="button-cont" onclick="MakeQRByBooksAll()">
+                    <i class="fa-solid fa-qrcode"></i> Make QR for All
+                </button>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="QR_genrator.js"></script>
+
 </body>
-
 </html>

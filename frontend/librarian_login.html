@@ -1,76 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-    <title>Library Login · Library ID & Password</title>
-    <!-- Inter font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 -->
+    <title>Librarian Login · LibraryOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="librarian_login.css">
+    <link rel="stylesheet" href="login.css">
+    <style>
+        /* Librarian accent — teal */
+        :root {
+            --accent:      #14B8A6;
+            --accent-dim:  rgba(20,184,166,0.14);
+            --accent-glow: rgba(20,184,166,0.25);
+        }
+    </style>
 </head>
-
 <body>
-    <!-- background image + overlay -->
-    <div class="bg-container">
-        <img class="bg-img" src="../images/Librarian_Login_Image.jpeg" alt="Library workspace – librarian login">
+
+<div class="login-wrapper">
+
+    <!-- Left: Visual panel -->
+    <div class="login-visual">
+        <img class="bg-img" src="../images/Librarian_Login_Image.jpeg" alt="Library workspace">
         <div class="bg-overlay"></div>
+        <div class="visual-content">
+            <div class="visual-badge">
+                <i class="fas fa-shield-halved"></i> LibraryOS — Librarian Portal
+            </div>
+            <h1>Manage your<br><span>library</span> with ease.</h1>
+            <p>Issue books, track overdue records, manage students and employees — all from one place.</p>
+            <div class="visual-dots">
+                <span class="active"></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </div>
 
-    <!-- PAGE TITLE – icon and text separate -->
-    <div class="page-title">
-        <i class="fas fa-id-badge"></i> Librarian Login
-    </div>
+    <!-- Right: Form panel -->
+    <div class="login-panel">
+        <div class="login-header">
+            <div class="portal-icon">
+                <i class="fas fa-id-badge"></i>
+            </div>
+            <h2>Librarian Login</h2>
+            <p>Sign in with your librarian credentials to access the dashboard.</p>
+        </div>
 
-    <!-- LOGIN CARD -->
-    <div class="login-card">
         <form id="loginForm" novalidate>
-            <!-- Employee ID (or Librarian ID) -->
             <div class="field">
                 <label for="employeeId">
                     <i class="fas fa-id-card"></i> Librarian ID
                 </label>
                 <div class="input-wrapper">
-                    <input type="text" id="employeeId" name="employeeId" placeholder="Enter your librarian ID"
+                    <input type="text" id="employeeId" name="employeeId"
+                        placeholder="Enter your librarian ID"
                         autocomplete="off" spellcheck="false">
                 </div>
             </div>
 
-            <!-- Password with eye toggle -->
             <div class="field">
                 <label for="password">
                     <i class="fas fa-lock"></i> Password
                 </label>
                 <div class="input-wrapper">
-                    <input type="password" id="password" name="password" placeholder="Enter your password"
+                    <input type="password" id="password" name="password"
+                        placeholder="Enter your password"
                         autocomplete="current-password">
-                    <button type="button" class="password-toggle" id="togglePassword" tabindex="-1"
-                        aria-label="Toggle password visibility">
+                    <button type="button" class="password-toggle" id="togglePassword"
+                        tabindex="-1" aria-label="Toggle password visibility">
                         <i class="fas fa-eye"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Login button -->
             <button type="submit" class="login-btn">
-                <i class="fas fa-arrow-right-to-bracket"></i> LOGIN
+                <i class="fas fa-arrow-right-to-bracket"></i> Login
             </button>
 
             <div class="login-links">
-                <a href="index.html" class="back-link">← Back</a>
+                <a href="index.html">← Back</a>
                 <a href="register.html">Register</a>
                 <a href="forgot_password.html">Forgot Password?</a>
             </div>
         </form>
-        <div id="message" class="msg" style="display:none;"></div>
+
+        <div id="message" class="msg"></div>
+
         <div class="footer-simple">
-            <i class="fas fa-shield-halved"></i> Librarian portal · secure, transparent
+            <i class="fas fa-shield-halved"></i> Librarian portal · secure &amp; encrypted
         </div>
     </div>
 
-    <script src="librarian_login.js"></script>
-</body>
+</div>
 
+<script src="librarian_login.js"></script>
+</body>
 </html>

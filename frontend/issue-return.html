@@ -1,275 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>librarian Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <link rel="stylesheet" href="issue-return.css">
+    <title>Librarian — Transaction</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared.css">
 </head>
-
 <body>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="logo">
-            <span class="logo-icon">🎓</span>
-            <span class="logo-text">Transaction</span>
-        </div>
-
-        <ul>
-            <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
-            </li>
-            <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
-            <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
-            <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
-
-            <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
-            <li><a href="info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
-            <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
-            <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a></li>
-            <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee Management</a></li>
-            <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
-            <li><a href="backup_management.html"><img src="../images/backup.png" alt="B">Backup Management</a></li>
-            
-        </ul>
-        <div class="logout" onclick="logout()"><img src="../images/logout.png" alt="">Logout</div>
-
+<aside class="sidebar">
+    <div class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-book-open-reader"></i></span>
+        <span class="logo-text">LibraryOS</span>
     </div>
+    <nav><ul>
+        <li><a href="librarian_dashboard.html"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></li>
+        <li><a href="librarian_profile.html"><i class="fa-solid fa-circle-user"></i><span>Profile</span></a></li>
+        <li><a href="librarian_penalty.html"><i class="fa-solid fa-triangle-exclamation"></i><span>Penalty</span></a></li>
+        <li class="active"><a href="issue-return.html"><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Transaction</span></a></li>
+        <li><a href="QR-generator.html"><i class="fa-solid fa-qrcode"></i><span>QR Generator</span></a></li>
+        <li><a href="info-enter.html"><i class="fa-solid fa-keyboard"></i><span>Info Enter</span></a></li>
+        <li><a href="password_change.html"><i class="fa-solid fa-lock"></i><span>Password Change</span></a></li>
+        <li><a href="student_management.html"><i class="fa-solid fa-user-graduate"></i><span>Students</span></a></li>
+        <li><a href="employee_management.html"><i class="fa-solid fa-users"></i><span>Employees</span></a></li>
+        <li><a href="books_management.html"><i class="fa-solid fa-book"></i><span>Books</span></a></li>
+        <li><a href="backup_management.html"><i class="fa-solid fa-database"></i><span>Backup</span></a></li>
+    </ul></nav>
+    <div class="logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></div>
+</aside>
 
+<div class="main-content">
 
-    <!-- Main content -->
-    <div class="main-content">
-        <div class="header">
+    <header class="header">
+        <div class="header-left">
+            <button class="toggle_btn"><i class="fa-solid fa-bars"></i></button>
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search Available book..." />
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Search books by title…" autocomplete="off"/>
                 <div id="suggestions" class="suggestions-box"></div>
             </div>
-            <div class="profile">
-                <img src="../images/gcoeystu.png" alt="profile">
-                <div>
-                    <strong id="short_name"></strong><br />
-                    <small><span id="department"></span> Department</small>
+        </div>
+        <div class="header-right">
+            <div class="profile-chip">
+                <div class="profile-avatar"><img src="../images/gcoeystu.png" alt="profile"></div>
+                <div class="profile-info">
+                    <strong id="short_name">Your Name</strong>
+                    <small id="department">Department</small>
                 </div>
             </div>
-            <div class="toggle_btn">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-            <div class="dropdown_manue">
-
-                <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
-                </li>
-                <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
-                <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
-                <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
-   
-                <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
-                <li><a href="info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
-                <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
-                <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a>
-                </li>
-                <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee
-                        Management</a></li>
-                <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
-                <li><a href="backup_management.html"><img src="../images/backup.png" alt="B">Backup Management</a></li>
-                
-                <li onclick="logout()">
-                    <img src="../images/logout.png" alt="" />Logout
-                </li>
-            </div>
         </div>
+        <div class="dropdown_manue">
+            <a href="librarian_dashboard.html"><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
+            <a href="librarian_profile.html"><i class="fa-solid fa-circle-user"></i>Profile</a>
+            <a href="librarian_penalty.html"><i class="fa-solid fa-triangle-exclamation"></i>Penalty</a>
+            <a href="issue-return.html"><i class="fa-solid fa-arrow-right-arrow-left"></i>Transaction</a>
+            <a href="QR-generator.html"><i class="fa-solid fa-qrcode"></i>QR Generator</a>
+            <a href="info-enter.html"><i class="fa-solid fa-keyboard"></i>Info Enter</a>
+            <a href="password_change.html"><i class="fa-solid fa-lock"></i>Password Change</a>
+            <a href="student_management.html"><i class="fa-solid fa-user-graduate"></i>Students</a>
+            <a href="employee_management.html"><i class="fa-solid fa-users"></i>Employees</a>
+            <a href="books_management.html"><i class="fa-solid fa-book"></i>Books</a>
+            <a href="backup_management.html"><i class="fa-solid fa-database"></i>Backup</a>
+            <a onclick="logout()" style="cursor:pointer;"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+        </div>
+    </header>
 
-        <div class="courses top-margin" id="issue">
-            <h3>Issue Book Student</h3>
-            <div class="personalinfo">
-                <div class="issue-contaner">
-                    <div class="book-id">
-                        <h4>Book ID</h4>
-                        <input type="text" id="BookAccessation" class="input-contaner" placeholder="Enter Book ID">
-                        <button type="button" onclick="scanBookQR()" class="button-cont">Scan Book Id</button>
-                    </div>
-                    <div class="user-id">
-                        <h4>User ID</h4>
-                        <input type="text" id="StudentID" class="input-contaner" placeholder="Enter User ID">
-                        <button type="button" onclick="scanStudentQR()" class="button-cont">Scan User Id</button>
-                    </div>
-
-                    <div class="days-limit">
-                        <h4>Days Limit</h4>
-                        <input type="number" id="DaysLimit" class="input-contaner" placeholder="Enter Days (e.g. 7)">
-                    </div>
-                    <div class="issue">
-                        <h4>Issue</h4>
-                        <button type="button" onclick="IssueStudentBook()" class="issue-button">Issue Book</button>
-                    </div>
+    <!-- Issue Student -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-user-graduate"></i><h2>Issue Book — Student</h2></div>
+        </div>
+        <div class="action-bar">
+            <div class="action-group">
+                <span class="action-label">Book ID</span>
+                <div class="action-row">
+                    <input type="text" id="BookAccessation" class="input-contaner" placeholder="Enter Book ID">
+                    <button type="button" onclick="scanBookQR()" class="button-cont"><i class="fa-solid fa-qrcode"></i> Scan</button>
                 </div>
             </div>
-
-        </div>
-
-        <div class="courses" id="issue">
-            <h3>Issue Book Employee</h3>
-            <div class="personalinfo">
-                <div class="issue-contaner">
-                    <div class="book-id">
-                        <h4>Book ID</h4>
-                        <input type="text" id="EmployeeBookID" class="input-contaner" placeholder="Enter Book ID">
-                        <button type="button" onclick="scanBookQR()" class="button-cont">Scan Book Id</button>
-                    </div>
-
-                    <div class="user-id">
-                        <h4>Employee ID</h4>
-                        <input type="text" id="EmployeeUserID" class="input-contaner" placeholder="Enter Employee ID">
-                        <button type="button" onclick="scanEmployeeQR()" class="button-cont">Scan User Id</button>
-                    </div>
-
-                    <div class="days-limit">
-                        <h4>Days Limit</h4>
-                        <input type="number" id="EmployeeDaysLimit" class="input-contaner"
-                            placeholder="Enter Days (e.g. 7)">
-                    </div>
-
-                    <div class="issue">
-                        <h4>Issue</h4>
-                        <button type="button" onclick="IssueEmployeeBook()" class="issue-button">
-                            Issue Book
-                        </button>
-                    </div>
+            <div class="action-group">
+                <span class="action-label">User ID</span>
+                <div class="action-row">
+                    <input type="text" id="StudentID" class="input-contaner" placeholder="Enter Student ID">
+                    <button type="button" onclick="scanStudentQR()" class="button-cont"><i class="fa-solid fa-qrcode"></i> Scan</button>
                 </div>
             </div>
-
+            <div class="action-group">
+                <span class="action-label">Days Limit</span>
+                <input type="number" id="DaysLimit" class="input-contaner" placeholder="e.g. 7" style="width:100px">
+            </div>
+            <div class="action-group" style="justify-content:flex-end">
+                <span class="action-label">&nbsp;</span>
+                <button type="button" onclick="IssueStudentBook()" class="issue-button"><i class="fa-solid fa-check"></i> Issue Book</button>
+            </div>
         </div>
+    </section>
 
-        <div class="courses" id="return">
-            <h3>Return Book</h3>
-            <div class="personalinfo">
-                <div class="issue-contaner">
-                    <div class="book-id">
-                        <h4>Book ID</h4>
-                        <input type="text" id="ReturnBookID" class="input-contaner" placeholder="Enter Book ID">
-                        <button type="button" onclick="scanBookQR()" class="button-cont">Scan Book Id</button>
-                    </div>
-                    <div class="user-id">
-                        <h4>User ID</h4>
-                        <input type="text" id="ReturnUserID" class="input-contaner" placeholder="Enter User ID">
-                        <button type="button" onclick="scanUserQR()" class="button-cont">Scan User Id</button>
-                    </div>
-
-                    <div class="return">
-                        <h4>Return</h4>
-                        <button type="button" onclick="ReturnBook()" class="issue-button">Return Book</button>
-                    </div>
+    <!-- Issue Employee -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-users"></i><h2>Issue Book — Employee</h2></div>
+        </div>
+        <div class="action-bar">
+            <div class="action-group">
+                <span class="action-label">Book ID</span>
+                <div class="action-row">
+                    <input type="text" id="EmployeeBookID" class="input-contaner" placeholder="Enter Book ID">
+                    <button type="button" onclick="scanBookQR()" class="button-cont"><i class="fa-solid fa-qrcode"></i> Scan</button>
                 </div>
             </div>
-
-        </div>
-
-
-
-        <div class="courses" id="return">
-            <h3>Renew Book</h3>
-            <div class="personalinfo">
-                <div class="issue-contaner">
-                    <div class="book-id">
-                        <h4>Book ID</h4>
-                        <input type="text" id="RenewBookID" class="input-contaner" placeholder="Enter Book ID">
-                        <button type="button" onclick="scanBookQR()" class="button-cont">Scan Book Id</button>
-                    </div>
-                    <div class="user-id">
-                        <h4>User ID</h4>
-                        <input type="text" id="RenewUserID" class="input-contaner" placeholder="Enter User ID">
-                        <button type="button" onclick="scanUserQR()" class="button-cont">Scan User Id</button>
-                    </div>
-
-                    <div class="user-id">
-                        <h4>User Type</h4>
-                        <select class="input-contaner" id="Usertype">
-                            <option value="">Select User type</option>
-                            <option value="student">Student</option>
-                            <option value="employee">Employee</option>
-                        </select>
-                    </div>
-
-                    <div class="days-limit">
-                        <h4>Days Limit</h4>
-                        <input type="number" id="RenewDaysLimit" class="input-contaner"
-                            placeholder="Enter Renew Days (e.g. 7)">
-                    </div>
-
-                    <div class="return">
-                        <h4>Renew</h4>
-                        <button type="button" onclick="RenewBook()" class="issue-button">Renew Book</button>
-                    </div>
+            <div class="action-group">
+                <span class="action-label">Employee ID</span>
+                <div class="action-row">
+                    <input type="text" id="EmployeeUserID" class="input-contaner" placeholder="Enter Employee ID">
+                    <button type="button" onclick="scanEmployeeQR()" class="button-cont"><i class="fa-solid fa-qrcode"></i> Scan</button>
                 </div>
             </div>
-
+            <div class="action-group">
+                <span class="action-label">Days Limit</span>
+                <input type="number" id="EmployeeDaysLimit" class="input-contaner" placeholder="e.g. 7" style="width:100px">
+            </div>
+            <div class="action-group" style="justify-content:flex-end">
+                <span class="action-label">&nbsp;</span>
+                <button type="button" onclick="IssueEmployeeBook()" class="issue-button"><i class="fa-solid fa-check"></i> Issue Book</button>
+            </div>
         </div>
+    </section>
 
-        <div class="courses" id="course">
-            <h3>Issued Info <select class="requester_type" id="borrowerIssuedFilter">
-                    <option value="">All (Select User type)</option>
+    <!-- Return Book -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-rotate-left"></i><h2>Return Book</h2></div>
+        </div>
+        <div class="action-bar">
+            <div class="action-group">
+                <span class="action-label">Book ID</span>
+                <div class="action-row">
+                    <input type="text" id="ReturnBookID" class="input-contaner" placeholder="Enter Book ID">
+                    <button type="button" onclick="scanBookQR()" class="button-cont"><i class="fa-solid fa-qrcode"></i> Scan</button>
+                </div>
+            </div>
+            <div class="action-group">
+                <span class="action-label">User ID</span>
+                <div class="action-row">
+                    <input type="text" id="ReturnUserID" class="input-contaner" placeholder="Enter User ID">
+                    <button type="button" onclick="scanUserQR()" class="button-cont"><i class="fa-solid fa-qrcode"></i> Scan</button>
+                </div>
+            </div>
+            <div class="action-group" style="justify-content:flex-end">
+                <span class="action-label">&nbsp;</span>
+                <button type="button" onclick="ReturnBook()" class="issue-button"><i class="fa-solid fa-check"></i> Return Book</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Renew Book -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-arrows-rotate"></i><h2>Renew Book</h2></div>
+        </div>
+        <div class="action-bar">
+            <div class="action-group">
+                <span class="action-label">Book ID</span>
+                <div class="action-row">
+                    <input type="text" id="RenewBookID" class="input-contaner" placeholder="Enter Book ID">
+                    <button type="button" onclick="scanBookQR()" class="button-cont"><i class="fa-solid fa-qrcode"></i> Scan</button>
+                </div>
+            </div>
+            <div class="action-group">
+                <span class="action-label">User ID</span>
+                <div class="action-row">
+                    <input type="text" id="RenewUserID" class="input-contaner" placeholder="Enter User ID">
+                    <button type="button" onclick="scanUserQR()" class="button-cont"><i class="fa-solid fa-qrcode"></i> Scan</button>
+                </div>
+            </div>
+            <div class="action-group">
+                <span class="action-label">User Type</span>
+                <select class="filter-select" id="Usertype">
+                    <option value="">Select Type</option>
                     <option value="student">Student</option>
                     <option value="employee">Employee</option>
-                </select></h3>
-            <div class="personalinfo overflowy" id="issuedScrollContainer">
-                <div class="course-card">
-                    <div class="inner-table">
-                        <table>
-                            <tr>
-                                <th>Accession Number</th>
-                                <th>Book</th>
-                                <th>Borrower Id</th>
-                                <th>Borrower Name</th>
-                                <th>Borrower Type</th>
-                                <th>Issued Date</th>
-                                <th>Due Date</th>
-                            </tr>
-                            <tbody id="IssuedBookInfo"></tbody>
-
-                        </table>
-                    </div>
-                </div>
-
+                </select>
+            </div>
+            <div class="action-group">
+                <span class="action-label">Days Limit</span>
+                <input type="number" id="RenewDaysLimit" class="input-contaner" placeholder="e.g. 7" style="width:100px">
+            </div>
+            <div class="action-group" style="justify-content:flex-end">
+                <span class="action-label">&nbsp;</span>
+                <button type="button" onclick="RenewBook()" class="issue-button"><i class="fa-solid fa-check"></i> Renew Book</button>
             </div>
         </div>
+    </section>
 
-        <div class="courses" id="course">
-            <h3>Returned Info <select class="requester_type" id="borrowerReturnedFilter">
-                    <option value="">All (Select User type)</option>
+    <!-- Issued Info -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-book-open"></i><h2>Issued Books</h2></div>
+            <div class="section-controls">
+                <select class="filter-select" id="borrowerIssuedFilter">
+                    <option value="">All Types</option>
                     <option value="student">Student</option>
                     <option value="employee">Employee</option>
-                </select></h3>
-            <div class="personalinfo overflowy" id="returnedScrollContainer">
-                <div class="course-card">
-                    <div class="inner-table">
-                        <table>
-                            <tr>
-                                <th>Accession Number</th>
-                                <th>Book</th>
-                                <th>Borrower Id</th>
-                                <th>Borrower Name</th>
-                                <th>Borrower Type</th>
-                                <th>Issued Date</th>
-                                <th>Due Date</th>
-                                <th>Returned Date</th>
-                            </tr>
-                            <tbody id="returnedInfoBody"></tbody>
-
-                        </table>
-                    </div>
-                </div>
-
+                </select>
             </div>
         </div>
+        <div class="table-wrapper" id="issuedScrollContainer">
+            <table>
+                <thead><tr>
+                    <th>Accession No.</th><th>Book</th><th>Borrower ID</th>
+                    <th>Name</th><th>Type</th><th>Issued Date</th><th>Due Date</th>
+                </tr></thead>
+                <tbody id="IssuedBookInfo"></tbody>
+            </table>
+        </div>
+    </section>
 
-    </div>
+    <!-- Returned Info -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-rotate-left"></i><h2>Returned Books</h2></div>
+            <div class="section-controls">
+                <select class="filter-select" id="borrowerReturnedFilter">
+                    <option value="">All Types</option>
+                    <option value="student">Student</option>
+                    <option value="employee">Employee</option>
+                </select>
+            </div>
+        </div>
+        <div class="table-wrapper" id="returnedScrollContainer">
+            <table>
+                <thead><tr>
+                    <th>Accession No.</th><th>Book</th><th>Borrower ID</th>
+                    <th>Name</th><th>Type</th><th>Issued</th><th>Due</th><th>Returned</th>
+                </tr></thead>
+                <tbody id="returnedInfoBody"></tbody>
+            </table>
+        </div>
+    </section>
 
+</div>
 
-    <script src="issue-return.js"></script>
+<script src="issue-return.js"></script>
+
 </body>
-
 </html>

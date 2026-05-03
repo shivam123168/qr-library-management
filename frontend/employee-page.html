@@ -1,339 +1,337 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Employee Page</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=dashboard_2" />
-
-  <link rel="stylesheet" href="employee-page.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Reuse the shared student portal CSS -->
+    <link rel="stylesheet" href="student.css">
+    <style>
+        /* ── Employee portal accent override: teal ── */
+        :root {
+            --accent:     #14B8A6;
+            --accent-dim: rgba(20,184,166,0.12);
+            --accent-2:   #0D9488;
+            --sidebar-active: rgba(20,184,166,0.18);
+        }
+        .wel1 h2 span { color: #99F6E4; }
+        .logo-icon { background: var(--accent); }
+        .section-title i { color: var(--accent); }
+        .stat-icon.indigo { background: var(--accent-dim); color: var(--accent); }
+        .update-btn { background: var(--accent); }
+        .sidebar ul li.active { background: var(--sidebar-active); color: var(--accent); }
+    </style>
 </head>
-
 <body>
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="logo">🏢 Staff Portal</div>
 
+<aside class="sidebar">
+    <div class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-briefcase"></i></span>
+        <span style="font-family:var(--font-display);font-size:17px;font-weight:700;color:#fff;">Staff Portal</span>
+    </div>
+    <nav>
         <ul>
-            <li onclick="navigateTo('#personal')">
-                <img src="../images/profile.png" alt="" />Profile
+            <li class="active" onclick="navigateTo('#personal')">
+                <i class="fa-solid fa-circle-user"></i><span>Profile</span>
             </li>
             <li onclick="navigateToPage('auth_changes_employee.html')">
-                <img src="../images/auth_change.png" alt="" />Auth changes
+                <i class="fa-solid fa-sliders"></i><span>Auth Changes</span>
             </li>
         </ul>
-        <div class="logout" onclick="logout()">
-            <img src="../images/logout.png" alt="" />Logout
-        </div>
+    </nav>
+    <div class="logout" onclick="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
     </div>
+</aside>
 
-    <!-- Main content -->
-    <div class="main-content">
-        <div class="header">
+<div class="main-content">
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <button class="toggle_btn"><i class="fa-solid fa-bars"></i></button>
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search book..." />
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Search books…" autocomplete="off"/>
                 <div id="suggestions" class="suggestions-box"></div>
             </div>
-            <div class="profile">
-                <img src="../images/gcoeystu.png" alt="profile" />
-                <div>
-                    <strong id="short_name"></strong><br />
-                    <small><span id="department"></span> Department</small>
+        </div>
+        <div class="header-right">
+            <div class="profile-chip">
+                <div class="profile-avatar"><img src="../images/gcoeystu.png" alt="profile"></div>
+                <div class="profile-info">
+                    <strong id="short_name">Employee</strong>
+                    <small><span id="department">—</span> Department</small>
                 </div>
-            </div>
-            <div class="toggle_btn">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-            <div class="dropdown_manue">
-                <li onclick="navigateTo('#personal')">
-                    <img src="../images/profile.png" alt="" />Profile
-                </li>
-                <li onclick="navigateToPage('auth_changes_employee.html')">
-                    <img src="../images/auth_change.png" alt="" />Auth changes
-                </li>
-                <li onclick="logout()">
-                    <img src="../images/logout.png" alt="" />Logout
-                </li>
             </div>
         </div>
+        <div class="dropdown_manue">
+            <li onclick="navigateTo('#personal')"><i class="fa-solid fa-circle-user"></i>Profile</li>
+            <li onclick="navigateToPage('auth_changes_employee.html')"><i class="fa-solid fa-sliders"></i>Auth Changes</li>
+            <li onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i>Logout</li>
+        </div>
+    </header>
 
-        <div class="welcome">
-            <div class="wel1">
-                <div>
-                    <h2>Welcome back, <span id="first_name"></span>! 👋</h2>
-                    <p>Access your professional records and department stats.</p>
-                </div>
-
-                <div class="btn">
-                    <button type="button" onclick="downloadQR()">⬇️ Download QR</button>
-                </div>
+    <!-- Welcome Banner -->
+    <section class="welcome">
+        <div class="wel1">
+            <div>
+                <p class="welcome-label">Staff Portal</p>
+                <h2>Welcome back, <span id="first_name">—</span>!</h2>
+                <p>Access your professional records and borrowing history.</p>
             </div>
-            <div class="wel2">
-                <img id="qrImage" alt="QR Code" />
+            <div class="btn">
+                <button type="button" onclick="downloadQR()">
+                    <i class="fa-solid fa-download"></i> Download QR
+                </button>
             </div>
         </div>
+        <div class="wel2">
+            <img id="qrImage" alt="QR Code"/>
+        </div>
+    </section>
 
-        <div class="dashboard-scroll" id="dashboard">
-            <div class="courses" id="personal">
-                <h3>Employee Identity</h3>
-                <div class="personalinfo">
-                    <div class="course-card">
-                        <div class="inner-course">
-                            <h4>Employee ID: <span id="emp_id"></span></h4>
-                        </div>
-                        <div class="inner-course">
-                            <h4>Created at: <span id="employee_creation_time"></span></h4>
-                        </div>
-                        <div class="inner-course">
-                            <h4>Full Name: <span id="full_name"></span></h4>
-                        </div>
-                        <div class="inner-course">
-                            <h4>Date of Birth: <span id="dob"></span></h4>
-                        </div>
-                        <div class="inner-course">
-                            <h4>Age: <span id="age"></span></h4>
-                        </div>                       
-                        <div class="inner-course">
-                            <h4>Email: <span id="gmail"></span></h4>
-                        </div>
-                        <div class="inner-course">
-                            <h4>Phone No.: <span id="phone_no"></span></h4>
-                        </div>
-                        <div class="inner-course">
-                            <h4>Designation: <span id="post_name"></span></h4>
-                        </div>
-                    </div>
-                </div>
+    <!-- Transaction Stats -->
+    <div class="stats-row">
+        <div class="stat-card">
+            <div class="stat-icon teal"><i class="fa-solid fa-book-open"></i></div>
+            <div>
+                <div class="stat-value" id="total_books_borrowed">0</div>
+                <div class="stat-label">Total Borrowed</div>
             </div>
-
-            <div class="courses" id="work">
-                <h3>Department Info</h3>
-                <div class="personalinfo">
-                    <div class="course-card">
-                        <div class="inner-course">
-                            <h4>Department Name: <span id="dept_id"></span></h4>
-                        </div>
-                        <div class="inner-course">
-                            <h4>Post Name: <span id="post_id"></span></h4>
-                        </div>
-                    </div>
-                </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon indigo"><i class="fa-solid fa-bookmark"></i></div>
+            <div>
+                <div class="stat-value" id="currently_borrowed">0</div>
+                <div class="stat-label">Currently Issued</div>
             </div>
-
-            <div class="courses" id="transaction">
-                <h3>Transaction Info</h3>
-                <div class="personalinfo">
-                    <div class="course-card">
-                        <div class="inner-course">
-                            <h4>
-                                Total Books Borrowed: <span id="total_books_borrowed"></span>
-                            </h4>
-                        </div>
-                        <div class="inner-course">
-                            <h4>
-                                Currently Borrowed: <span id="currently_borrowed"></span>
-                            </h4>
-                        </div>
-                        <div class="inner-course">
-                            <h4>
-                                Currently Overdue: <span id="currently_overdue"></span>
-                            </h4>
-                        </div>
-                        <div class="inner-course">
-                            <h4>Total Penalties: <span id="total_penalties"></span></h4>
-                        </div>
-                        <div class="inner-course">
-                            <h4>Unpaid Penalties: <span id="unpaid_penalties"></span></h4>
-                        </div>
-                        <div class="inner-course">
-                            <h4>
-                                Total Unpaid Amount: <span id="total_unpaid_amount"></span>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon rose"><i class="fa-solid fa-clock"></i></div>
+            <div>
+                <div class="stat-value" id="currently_overdue">0</div>
+                <div class="stat-label">Overdue</div>
             </div>
-
-            <div class="courses" id="issued">
-                <h3>Issued Books</h3>
-                <div class="personalinfo overflowy">
-                    <div class="course-card">
-                        <div class="inner-table">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Accessation number</th>
-                                        <th>Book</th>
-                                        <th>Issued Date</th>
-                                        <th>Deadline</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="issuedBooksBody">
-                                    <!-- JS will insert rows here -->
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- <button>View</button> -->
-                    </div>
-                </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon amber"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <div>
+                <div class="stat-value" id="total_penalties">0</div>
+                <div class="stat-label">Total Penalties</div>
             </div>
-
-            <div class="courses" id="returned">
-                <h3>Returned Books</h3>
-                <div class="personalinfo overflowy">
-                    <div class="course-card">
-                        <div class="inner-table">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Accessation number</th>
-                                        <th>Book</th>
-                                        <th>Issued Date</th>
-                                        <th>Returned Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="returnedBooksBody">
-                                    <!-- JS will insert rows here -->
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <!-- <button>View</button> -->
-                    </div>
-                </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon purple"><i class="fa-solid fa-circle-xmark"></i></div>
+            <div>
+                <div class="stat-value" id="unpaid_penalties">0</div>
+                <div class="stat-label">Unpaid</div>
             </div>
-
-            <div class="courses" id="issued">
-                <h3>Overdue Books</h3>
-                <div class="personalinfo overflowy">
-                    <div class="course-card">
-                        <div class="inner-table">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Accessation number</th>
-                                        <th>Book</th>
-                                        <th>Due Date</th>
-                                        <th>Overdue Days</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="overdueBooksBody">
-                                    <!-- JS will insert rows here -->
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- <button>View</button> -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="courses" id="issued">
-                <h3>Penalty</h3>
-                <div class="personalinfo overflowy">
-                    <div class="course-card">
-                        <div class="inner-table">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Accessation number</th>
-                                        <th>Book</th>
-                                        <th>Penalty Amount</th>
-                                        <th>Penalty status</th>
-                                        <th>Excuse</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="penaltyBooksBody">
-                                    <!-- JS will insert rows here -->
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- <button>View</button> -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="courses" id="issued">
-                <h3>Pending Requests</h3>
-                <div class="personalinfo overflowy">
-                    <div class="course-card">
-                        <div class="inner-table">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>request Id</th>
-                                        <th>Accession Number</th>
-                                        <th>Book</th>
-                                        <th>Request Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="pendingBooksBody">
-                                    <!-- JS will insert rows here -->
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- <button>View</button> -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="courses" id="issued">
-                <h3>Approved Requests</h3>
-                <div class="personalinfo overflowy">
-                    <div class="course-card">
-                        <div class="inner-table">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>request Id</th>
-                                        <th>Accession Number</th>
-                                        <th>Book</th>
-                                        <th>Request Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="approvedBooksBody">
-                                    <!-- JS will insert rows here -->
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- <button>View</button> -->
-                    </div>
-                </div>
-            </div>
-
-            <div class="courses" id="issued">
-                <h3>Rejected Requests</h3>
-                <div class="personalinfo overflowy">
-                    <div class="course-card">
-                        <div class="inner-table">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>request Id</th>
-                                        <th>Accession Number</th>
-                                        <th>Book</th>
-                                        <th>Request Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="rejectedBooksBody">
-                                    <!-- JS will insert rows here -->
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- <button>View</button> -->
-                    </div>
-                </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon rose"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+            <div>
+                <div class="stat-value" id="total_unpaid_amount">₹0</div>
+                <div class="stat-label">Amount Due</div>
             </div>
         </div>
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
+    <!-- Employee Identity -->
+    <section class="data-section" id="personal">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-id-card"></i>
+                <h2>Employee Identity</h2>
+            </div>
+        </div>
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-label">Employee ID</div>
+                <div class="info-value" id="emp_id">—</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Created At</div>
+                <div class="info-value" id="employee_creation_time">—</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Full Name</div>
+                <div class="info-value" id="full_name">—</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Date of Birth</div>
+                <div class="info-value" id="dob">—</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Age</div>
+                <div class="info-value" id="age">—</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Email</div>
+                <div class="info-value" id="gmail">—</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Phone No.</div>
+                <div class="info-value" id="phone_no">—</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Designation</div>
+                <div class="info-value" id="post_name">—</div>
+            </div>
+        </div>
+    </section>
 
-    <script src="employee-page.js"></script>
+    <!-- Department Info -->
+    <section class="data-section" id="work">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-building"></i>
+                <h2>Department Info</h2>
+            </div>
+        </div>
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-label">Department</div>
+                <div class="info-value" id="dept_id">—</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Post</div>
+                <div class="info-value" id="post_id">—</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Issued Books -->
+    <section class="data-section" id="issued">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-book-open"></i>
+                <h2>Issued Books</h2>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr>
+                    <th>Accession No.</th><th>Book</th><th>Issued Date</th><th>Deadline</th>
+                </tr></thead>
+                <tbody id="issuedBooksBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Returned Books -->
+    <section class="data-section" id="returned">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-rotate-left"></i>
+                <h2>Returned Books</h2>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr>
+                    <th>Accession No.</th><th>Book</th><th>Issued Date</th><th>Returned Date</th>
+                </tr></thead>
+                <tbody id="returnedBooksBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Overdue Books -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <h2>Overdue Books</h2>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr>
+                    <th>Accession No.</th><th>Book</th><th>Due Date</th><th>Overdue Days</th>
+                </tr></thead>
+                <tbody id="overdueBooksBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Penalties -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <h2>Penalties</h2>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr>
+                    <th>Accession No.</th><th>Book</th><th>Amount</th><th>Status</th><th>Excuse</th>
+                </tr></thead>
+                <tbody id="penaltyBooksBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Pending Requests -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-hourglass-half"></i>
+                <h2>Pending Requests</h2>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr>
+                    <th>Request ID</th><th>Accession No.</th><th>Book</th><th>Request Date</th>
+                </tr></thead>
+                <tbody id="pendingBooksBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Approved Requests -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-circle-check"></i>
+                <h2>Approved Requests</h2>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr>
+                    <th>Request ID</th><th>Accession No.</th><th>Book</th><th>Request Date</th>
+                </tr></thead>
+                <tbody id="approvedBooksBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Rejected Requests -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-circle-xmark"></i>
+                <h2>Rejected Requests</h2>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr>
+                    <th>Request ID</th><th>Accession No.</th><th>Book</th><th>Request Date</th>
+                </tr></thead>
+                <tbody id="rejectedBooksBody"></tbody>
+            </table>
+        </div>
+    </section>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="employee-page.js"></script>
 </body>
-
 </html>

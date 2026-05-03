@@ -1,152 +1,187 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Student Dashboard</title>
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=dashboard_2" />
-
-      <link rel="stylesheet" href="auth_changes_student.css">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student — Account Settings</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="student.css">
 </head>
-
 <body>
-  <div class="sidebar">
-    <div class="logo">🎓 Student</div>
 
-    <ul>
-      <li onclick="navigateToPage('student-page.html')"><img src="../images/profile.png" alt="">Profile</li>
-      <li onclick="navigateToPage('auth_changes_student.html')"><img src="../images/auth_change.png" alt="">Auth
-        changes</li>
-    </ul>
-    <div class="logout" onclick="logout()"><img src="../images/logout.png" alt="">Logout</div>
-  </div>
-
-  <div class="main-content">
-    <div class="header">
-      <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search book..." />
-        <div id="suggestions" class="suggestions-box"></div>
-      </div>
-
-      <div class="profile">
-        <img src="../images/gcoeystu.png" alt="profile" onerror="this.src='https://via.placeholder.com/40'" />
-        <div>
-          <strong id="short_name">Student Name</strong><br />
-          <small><span id="sem1">3rd</span> semester</small>
-        </div>
-      </div>
-
-      <div class="toggle_btn">
-        <i class="fa-solid fa-bars"></i>
-      </div>
-      <div class="dropdown_manue">
-        <li onclick="navigateToPage('student-page.html')">
-          <img src="../images/profile.png" alt="" />Profile
-        </li>
-        <li onclick="navigateToPage('auth_changes_student.html')">
-          <img src="../images/auth_change.png" alt="" />Auth changes
-        </li>
-        <li onclick="logout()">
-          <img src="../images/logout.png" alt="" />Logout
-        </li>
-      </div>
+<aside class="sidebar">
+    <div class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-user-graduate"></i></span>
+        <span style="font-family:var(--font-display);font-size:17px;font-weight:700;color:#fff;">Student</span>
     </div>
-
-    <div class="welcome">
-      <div class="wel1">
-        <div>
-          <h2>Welcome back, <span id="first_name">Student</span>! 👋</h2>
-          <p>Always stay updated in your student portal</p>
-        </div>
-
-        <div class="btn">
-          <button type="button" onclick="downloadQR()">⬇️ Download QR</button>
-        </div>
-      </div>
-      <div class="wel2">
-        <img id="qrImage" alt="QR Code" />
-      </div>
+    <nav>
+        <ul>
+            <li onclick="navigateToPage('student-page.html')">
+                <i class="fa-solid fa-circle-user"></i><span>Profile</span>
+            </li>
+            <li class="active" onclick="navigateToPage('auth_changes_student.html')">
+                <i class="fa-solid fa-sliders"></i><span>Auth Changes</span>
+            </li>
+        </ul>
+    </nav>
+    <div class="logout" onclick="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
     </div>
+</aside>
 
-    <div class="dashboard-scroll" id="dashboard">
-      <div class="courses" id="edit-profile">
-        <h3>Update Information</h3>
-        <div class="course-card edit-container">
+<div class="main-content">
 
-          <div class="update-row">
-            <div class="input-group">
-              <div class="form-group">
-                <label for="edit-email">Email Address</label>
-                <input type="email" id="edit-email" placeholder="Enter new email" />
-              </div>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-left">
+            <button class="toggle_btn"><i class="fa-solid fa-bars"></i></button>
+            <div class="search-container">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Search books…" autocomplete="off"/>
+                <div id="suggestions" class="suggestions-box"></div>
             </div>
-            <button class="update-btn" onclick="updateEmail()">Update Email</button>
-          </div>
-
-          <hr class="divider" />
-
-          <div class="update-row">
-            <div class="input-group">
-              <div class="form-group">
-                <label for="old-password">Old Password</label>
-                <input type="password" id="old-password" placeholder="Old password" />
-              </div>
-              <div class="form-group">
-                <label for="new-password">New Password</label>
-                <input type="password" id="new-password" placeholder="New password" />
-              </div>
-            </div>
-            <button class="update-btn" onclick="updatePassword()">Update Password</button>
-          </div>
-
-          <hr class="divider" />
-
-          <div class="update-row">
-            <div class="input-group">
-              <div class="form-group">
-                <label for="edit-semester">Semester</label>
-                <select id="edit-semester">
-                  <option value="" disabled selected>Select semester</option>
-                  <option value="1">1st Semester</option>
-                  <option value="2">2nd Semester</option>
-                  <option value="3">3rd Semester</option>
-                  <option value="4">4th Semester</option>
-                  <option value="5">5th Semester</option>
-                  <option value="6">6th Semester</option>
-                  <option value="7">7th Semester</option>
-                  <option value="8">8th Semester</option>
-                </select>
-              </div>
-            </div>
-            <button class="update-btn" onclick="updateSemester()">Update Semester</button>
-          </div>
-
-          <hr class="divider" />
-
-          <div class="update-row">
-            <div class="input-group">
-              <div class="form-group">
-                <label for="edit-phone">Phone Number</label>
-                <input type="tel" id="edit-phone" placeholder="Enter new phone number" />
-              </div>
-            </div>
-            <button class="update-btn" onclick="updatePhone()">Update Phone</button>
-          </div>
-
         </div>
-      </div>
-    </div>
-  </div>
+        <div class="header-right">
+            <div class="profile-chip">
+                <div class="profile-avatar"><img src="../images/gcoeystu.png" alt="profile"></div>
+                <div class="profile-info">
+                    <strong id="short_name">Student</strong>
+                    <small><span id="sem1">—</span> Semester</small>
+                </div>
+            </div>
+        </div>
+        <div class="dropdown_manue">
+            <li onclick="navigateToPage('student-page.html')"><i class="fa-solid fa-circle-user"></i>Profile</li>
+            <li onclick="navigateToPage('auth_changes_student.html')"><i class="fa-solid fa-sliders"></i>Auth Changes</li>
+            <li onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i>Logout</li>
+        </div>
+    </header>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Welcome Banner (compact) -->
+    <section class="welcome" style="padding:24px 32px;">
+        <div class="wel1">
+            <div>
+                <p class="welcome-label">Account Settings</p>
+                <h2>Update your <span id="first_name">information</span></h2>
+                <p>Keep your contact details and credentials up to date.</p>
+            </div>
+        </div>
+        <div class="wel2" style="padding:10px;">
+            <img id="qrImage" alt="QR Code" style="width:90px;height:90px;"/>
+        </div>
+    </section>
 
-  <script src="student-page.js"></script>
+    <!-- Update Email -->
+    <section class="data-section" id="edit-profile">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-envelope"></i>
+                <h2>Update Email</h2>
+            </div>
+        </div>
+        <div class="edit-container">
+            <div class="update-row" style="padding-top:4px;">
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="edit-email">New Email Address</label>
+                        <input type="email" id="edit-email" placeholder="Enter new email address"/>
+                    </div>
+                </div>
+                <button class="update-btn" onclick="updateEmail()">
+                    <i class="fa-solid fa-floppy-disk"></i> Save Email
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Update Password -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-lock"></i>
+                <h2>Update Password</h2>
+            </div>
+        </div>
+        <div class="edit-container">
+            <div class="update-row" style="padding-top:4px;">
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="old-password">Current Password</label>
+                        <input type="password" id="old-password" placeholder="Enter current password"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password">New Password</label>
+                        <input type="password" id="new-password" placeholder="Enter new password"/>
+                    </div>
+                </div>
+                <button class="update-btn" onclick="updatePassword()">
+                    <i class="fa-solid fa-floppy-disk"></i> Save Password
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Update Semester -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <h2>Update Semester</h2>
+            </div>
+        </div>
+        <div class="edit-container">
+            <div class="update-row" style="padding-top:4px;">
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="edit-semester">Current Semester</label>
+                        <select id="edit-semester">
+                            <option value="" disabled selected>Select semester</option>
+                            <option value="1">1st Semester</option>
+                            <option value="2">2nd Semester</option>
+                            <option value="3">3rd Semester</option>
+                            <option value="4">4th Semester</option>
+                            <option value="5">5th Semester</option>
+                            <option value="6">6th Semester</option>
+                            <option value="7">7th Semester</option>
+                            <option value="8">8th Semester</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="update-btn" onclick="updateSemester()">
+                    <i class="fa-solid fa-floppy-disk"></i> Save Semester
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Update Phone -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title">
+                <i class="fa-solid fa-mobile-screen"></i>
+                <h2>Update Phone Number</h2>
+            </div>
+        </div>
+        <div class="edit-container">
+            <div class="update-row" style="padding-top:4px;">
+                <div class="input-group">
+                    <div class="form-group">
+                        <label for="edit-phone">Phone Number</label>
+                        <input type="tel" id="edit-phone" placeholder="Enter new phone number"/>
+                    </div>
+                </div>
+                <button class="update-btn" onclick="updatePhone()">
+                    <i class="fa-solid fa-floppy-disk"></i> Save Phone
+                </button>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="auth_changes_student.js"></script>
+
 </body>
-
 </html>

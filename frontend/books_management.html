@@ -1,352 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>librarian Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-<link rel="stylesheet" href="books_management.css">
+    <title>Librarian — Books Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared.css">
 </head>
-
 <body>
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-        <div class="logo">
-            <span class="logo-icon">🎓</span>
-            <span class="logo-text">Books</span>
-        </div>
-
-        <ul>
-            <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
-            </li>
-            <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
-            <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
-            <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
- 
-            <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
-            <li><a href="info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
-            <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
-            <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a></li>
-            <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee Management</a>
-            </li>
-            <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
-            <li><a href="backup_management.html"><img src="../images/backup.png" alt="B">Backup Management</a></li>
-            
-        </ul>
-        <div class="logout" onclick="logout()"><img src="../images/logout.png" alt="">Logout</div>
-
+<aside class="sidebar">
+    <div class="logo">
+        <span class="logo-icon"><i class="fa-solid fa-book-open-reader"></i></span>
+        <span class="logo-text">LibraryOS</span>
     </div>
+    <nav><ul>
+        <li><a href="librarian_dashboard.html"><i class="fa-solid fa-gauge-high"></i><span>Dashboard</span></a></li>
+        <li><a href="librarian_profile.html"><i class="fa-solid fa-circle-user"></i><span>Profile</span></a></li>
+        <li><a href="librarian_penalty.html"><i class="fa-solid fa-triangle-exclamation"></i><span>Penalty</span></a></li>
+        <li><a href="issue-return.html"><i class="fa-solid fa-arrow-right-arrow-left"></i><span>Transaction</span></a></li>
+        <li><a href="QR-generator.html"><i class="fa-solid fa-qrcode"></i><span>QR Generator</span></a></li>
+        <li><a href="info-enter.html"><i class="fa-solid fa-keyboard"></i><span>Info Enter</span></a></li>
+        <li><a href="password_change.html"><i class="fa-solid fa-lock"></i><span>Password Change</span></a></li>
+        <li><a href="student_management.html"><i class="fa-solid fa-user-graduate"></i><span>Students</span></a></li>
+        <li><a href="employee_management.html"><i class="fa-solid fa-users"></i><span>Employees</span></a></li>
+        <li class="active"><a href="books_management.html"><i class="fa-solid fa-book"></i><span>Books</span></a></li>
+        <li><a href="backup_management.html"><i class="fa-solid fa-database"></i><span>Backup</span></a></li>
+    </ul></nav>
+    <div class="logout" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i><span>Logout</span></div>
+</aside>
 
+<div class="main-content">
 
-    <!-- Main content -->
-    <div class="main-content">
-        <div class="header">
+    <header class="header">
+        <div class="header-left">
+            <button class="toggle_btn"><i class="fa-solid fa-bars"></i></button>
             <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Search Available book..." />
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="searchInput" placeholder="Search books by title…" autocomplete="off"/>
                 <div id="suggestions" class="suggestions-box"></div>
             </div>
-            <div class="profile">
-                <img src="../images/gcoeystu.png" alt="profile">
-                <div>
-                    <strong id="short_name"></strong><br />
-                    <small><span id="department"></span> Department</small>
-                </div>
-            </div>
-            <div class="toggle_btn">
-                <i class="fa-solid fa-bars"></i>
-            </div>
-            <div class="dropdown_manue">
-                <li><a href="librarian_dashboard.html"><img src="../images/dashboard.png" alt="" srcset="">Dashboard</a>
-                </li>
-                <li><a href="librarian_profile.html"><img src="../images/profile.png" alt="">Profile</a></li>
-                <li><a href="librarian_penalty.html"><img src="../images/penalty.png" alt="">Penalty</a></li>
-                <li><a href="issue-return.html"><img src="../images/transasction.png" alt="">Transaction</a></li>
-          
-                <li><a href="QR-generator.html"><img src="../images/qr.png" alt="">QR Generator</a></li>
-                <li><a href="info-enter.html"><img src="../images/info-enter.png" alt="">Info Enter</a></li>
-                <li><a href="password_change.html"><img src="../images/password.png" alt="">Password Change</a></li>
-                <li><a href="student_management.html"><img src="../images/student.png" alt="">Student Management</a>
-                </li>
-                <li><a href="employee_management.html"><img src="../images/employee (1).png" alt="">Employee
-                        Management</a></li>
-                <li><a href="books_management.html"><img src="../images/book.png" alt="">Books Management</a></li>
-                <li><a href="backup_management.html"><img src="../images/backup.png" alt="B">Backup Management</a></li>
-                
-                <li onclick="logout()">
-                    <img src="../images/logout.png" alt="" />Logout
-                </li>
-
-            </div>
         </div>
-
-
-
-        <div class="courses" id="personal">
-            <h3>Add New Book</h3>
-            <div class="personalinfo">
-                <div class="form-card">
-                    <div class="form-container">
-                        <form>
-
-                            <div class="form-group">
-                                <div class="get_accesstion_number">
-                                    <label for="accesstionnumber">Accesstion Id</label>
-                                    <button type="button" class="GetBook" onclick="GetBook()">Get
-                                        Book</button>
-                                </div>
-                                <input type="number" id="accesstion_number" name="accesstion_number" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="book-title">Book Title</label>
-                                <input type="text" id="fname" name="book-title" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="total-copy">Total Copy</label>
-                                <input type="number" id="total_copy" name="total-copy" min="1" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="copy_number">Copy Number</label>
-                                <input type="number" id="copy_number" name="copy_number" min="1" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="total-pages">Total Pages</label>
-                                <input type="number" id="total_pages" name="total-pages" min="1" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="book_cost">Book Cost</label>
-                                <input type="number" id="book_cost" name="book_cost" min="0" step="0.01" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="publisher-name">Publisher Name</label>
-                                <select id="publisher-name" name="publisher-name" required>
-                                    <option value="">Select Publisher</option>
-                                    <option value="1">Penguin Random House</option>
-                                    <option value="2">HarperCollins</option>
-                                    <option value="3">Simon & Schuster</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="author-name">Author Name</label>
-                                <select id="author-name" name="author-name" multiple required>
-                                    <option value="">Select Author</option>
-                                    <option value="1">J.K. Rowling</option>
-                                    <option value="2">George Orwell</option>
-                                    <option value="3">Agatha Christie</option>
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="publish-place">Publish Place</label>
-                                <input type="text" id="publish_place" name="publish-place" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="rack-location">Rack Location</label>
-                                <input type="text" id="rack_location" name="rack-location" min="1" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="self-location">Self Location</label>
-                                <input type="text" id="self_location" name="self-location" min="1" required>
-                            </div>
-
-                            <div class="sub-btn">
-                                <button type="button" class="submit-btn" onclick="AddBook()">Add Book</button>
-                                <button type="button" class="submit-btn" onclick="UpdateBook()">Update Book</button>
-                            </div>
-
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-        <div class="courses">
-            <h3>Books Add through Excel</h3>
-
-            <div class="personalinfo">
-                <div class="issue-contaner">
-
-                    <div class="book-id">
-                        <h4>Books Bulk Upload</h4>
-                        <input type="file" class="input-contaner" id="BookExcelFile"  accept=".xlsx, .xls">
-                    </div>
-
-                    <div class="delete-student">
-                        <button type="button" id="uploadBtn" class="issue-button-excel" onclick="UploadAllBookExcel()">
-                            Upload Books Data
-                        </button>
-                        <!-- Progress UI -->
-                        <div id="uploadStatus" style="display:none; margin-top:10px;">
-                            <span id="uploadText">Uploading...</span>
-
-                            <div style="width:100%; background:#ddd; margin-top:5px;">
-                                <div id="progressBar" style="width:0%; height:10px; background:green;"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-
-            </div>
-        </div>
-
-
-        <div class="courses">
-            <h3>Delete Book</h3>
-            <div class="personalinfo">
-                <div class="issue-contaner">
-                    <div class="book-id">
-                        <h4>Book ID</h4>
-                        <input type="text" id="accesstion_number1" class="input-contaner" placeholder="Enter Book ID">
-                      
-                    </div>
-
-                    <button type="button" class="issue-button" onclick="DeleteBook()">Delete Book</button>
+        <div class="header-right">
+            <div class="profile-chip">
+                <div class="profile-avatar"><img src="../images/gcoeystu.png" alt="profile"></div>
+                <div class="profile-info">
+                    <strong id="short_name">Your Name</strong>
+                    <small id="department">Department</small>
                 </div>
             </div>
         </div>
+        <div class="dropdown_manue">
+            <a href="librarian_dashboard.html"><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
+            <a href="librarian_profile.html"><i class="fa-solid fa-circle-user"></i>Profile</a>
+            <a href="librarian_penalty.html"><i class="fa-solid fa-triangle-exclamation"></i>Penalty</a>
+            <a href="issue-return.html"><i class="fa-solid fa-arrow-right-arrow-left"></i>Transaction</a>
+            <a href="QR-generator.html"><i class="fa-solid fa-qrcode"></i>QR Generator</a>
+            <a href="info-enter.html"><i class="fa-solid fa-keyboard"></i>Info Enter</a>
+            <a href="password_change.html"><i class="fa-solid fa-lock"></i>Password Change</a>
+            <a href="student_management.html"><i class="fa-solid fa-user-graduate"></i>Students</a>
+            <a href="employee_management.html"><i class="fa-solid fa-users"></i>Employees</a>
+            <a href="books_management.html"><i class="fa-solid fa-book"></i>Books</a>
+            <a href="backup_management.html"><i class="fa-solid fa-database"></i>Backup</a>
+            <a onclick="logout()" style="cursor:pointer;"><i class="fa-solid fa-right-from-bracket"></i>Logout</a>
+        </div>
+    </header>
 
-        <div class="courses">
-            <h3>Book Info By Accesstion Number
-                <input type="text" name="Accesstion_number" id="Accesstion_number" class="input-Books-Contaner"
-                    placeholder="Enter Accesstion Number">
-                <button type="button" class="button-cont" onclick="GenerateBookInfoPDFByAccesstionNumber()">Generate PDF</button>
-            </h3>
-
-            <div class="personalinfo overflowy">
-                <div class="course-card">
-                    <div class="inner-table">
-                        <table>
-                            <tr>
-                                <th>Accesstion Number</th>
-                                <th>Book Upload Time</th>
-                                <th>Rack Location</th>
-                                <th>Self Location</th>
-                                <th>Copy Number</th>
-                                <th>Status</th>
-                                <th>Title</th>
-                                <th>Author</th>
-                                <th>Publisher Place</th>
-                                <th>Publisher Name</th>
-                                <th>Total pages</th>
-                                <th>Total Copy</th>
-                                <th>Book Cost</th>
-
-                            </tr>
-                            <tbody id="BookInfoByAccesstion"></tbody>
-
-                        </table>
+    <!-- Add / Update Book -->
+    <section class="data-section" id="personal">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-book-medical"></i><h2>Add / Update Book</h2></div>
+        </div>
+        <div class="form-section">
+            <div class="form-grid">
+                <div class="form-group">
+                    <div class="get-row">
+                        <label for="accesstion_number">Accession ID</label>
+                        <button type="button" class="GetBook" onclick="GetBook()"><i class="fa-solid fa-download"></i> Get Book</button>
                     </div>
-                    <!-- <button>View</button> -->
+                    <input type="number" id="accesstion_number" name="accesstion_number" required>
+                </div>
+                <div class="form-group">
+                    <label for="fname">Book Title</label>
+                    <input type="text" id="fname" name="book-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="total_copy">Total Copies</label>
+                    <input type="number" id="total_copy" name="total-copy" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="copy_number">Copy Number</label>
+                    <input type="number" id="copy_number" name="copy_number" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="total_pages">Total Pages</label>
+                    <input type="number" id="total_pages" name="total-pages" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="book_cost">Book Cost (₹)</label>
+                    <input type="number" id="book_cost" name="book_cost" min="0" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="publisher-name">Publisher</label>
+                    <select id="publisher-name" name="publisher-name" required>
+                        <option value="">Select Publisher</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="author-name">Author(s) <small style="font-weight:400;text-transform:none;">(hold Ctrl for multi-select)</small></label>
+                    <select id="author-name" name="author-name" multiple required style="height:90px;">
+                        <option value="">Select Author</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="publish_place">Publish Place</label>
+                    <input type="text" id="publish_place" name="publish-place" required>
+                </div>
+                <div class="form-group">
+                    <label for="rack_location">Rack Location</label>
+                    <input type="text" id="rack_location" name="rack-location" required>
+                </div>
+                <div class="form-group">
+                    <label for="self_location">Shelf Location</label>
+                    <input type="text" id="self_location" name="self-location" required>
+                </div>
+            </div>
+            <div class="form-actions" style="margin-top:20px;">
+                <button type="button" class="submit-btn" onclick="AddBook()"><i class="fa-solid fa-plus"></i> Add Book</button>
+                <button type="button" class="submit-btn" onclick="UpdateBook()" style="background:var(--indigo);"><i class="fa-solid fa-pen"></i> Update Book</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bulk Upload -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-file-excel"></i><h2>Bulk Upload via Excel</h2></div>
+        </div>
+        <div class="action-bar">
+            <div class="action-group">
+                <span class="action-label">Excel File</span>
+                <input type="file" class="input-contaner" id="BookExcelFile" accept=".xlsx,.xls">
+            </div>
+            <div class="action-group" style="justify-content:flex-end">
+                <span class="action-label">&nbsp;</span>
+                <button type="button" id="uploadBtn" class="issue-button-excel" onclick="UploadAllBookExcel()">
+                    <i class="fa-solid fa-upload"></i> Upload Books
+                </button>
+            </div>
+            <div id="uploadStatus" style="display:none;width:100%;">
+                <span id="uploadText" style="font-size:13px;color:var(--text-2);">Uploading…</span>
+                <div class="progress-track"><div id="progressBar" style="width:0%;height:6px;background:var(--accent);border-radius:10px;"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delete Book -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-book-skull"></i><h2>Delete Book</h2></div>
+        </div>
+        <div class="action-bar">
+            <div class="action-group">
+                <span class="action-label">Book Accession ID</span>
+                <div class="action-row">
+                    <input type="text" id="accesstion_number1" class="input-contaner" placeholder="Enter Book ID">
+                    <button type="button" class="reject-btn" onclick="DeleteBook()"><i class="fa-solid fa-trash"></i> Delete</button>
                 </div>
             </div>
         </div>
+    </section>
 
-        
+    <!-- Search by Accession -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-barcode"></i><h2>Book Info by Accession No.</h2></div>
+            <div class="section-controls">
+                <input type="text" name="Accesstion_number" id="Accesstion_number" class="input-contaner" placeholder="Enter accession no. + Enter">
+                <button type="button" class="button-cont-PDF" onclick="GenerateBookInfoPDFByAccesstionNumber()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
+            </div>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead><tr>
+                    <th>Accession No.</th><th>Uploaded</th><th>Rack</th><th>Shelf</th>
+                    <th>Copy No.</th><th>Status</th><th>Title</th><th>Author(s)</th>
+                    <th>Pub. Place</th><th>Publisher</th><th>Pages</th><th>Copies</th><th>Cost</th>
+                </tr></thead>
+                <tbody id="BookInfoByAccesstion"></tbody>
+            </table>
+        </div>
+    </section>
 
-        <div class="courses" id="course">
-            <h3>Returned Info <select class="requester_type" id="borrowerReturnedFilter">
-                    <option value="">All (Select User type)</option>
+    <!-- Returned Books -->
+    <section class="data-section">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-rotate-left"></i><h2>Returned Books</h2></div>
+            <div class="section-controls">
+                <select class="filter-select" id="borrowerReturnedFilter">
+                    <option value="">All Types</option>
                     <option value="student">Student</option>
                     <option value="employee">Employee</option>
                 </select>
-                <button type="button" class="button-cont" onclick="GenerateReturnedBooksPDF()">Generate PDF</button>
-            </h3>
-            <div class="personalinfo overflowy" id="returnedScrollContainer">
-                <div class="course-card">
-                    <div class="inner-table">
-                        <table>
-                            <tr>
-                                <th>Accession Number</th>
-                                <th>Book</th>
-                                <th>Rack Location</th>
-                                <th>Self Location</th>
-                                <th>Borrower Id</th>
-                                <th>Borrower Name</th>
-                                <th>Borrower Type</th>
-                                <th>Issued Date</th>
-                                <th>Due Date</th>
-                                <th>Returned Date</th>
-                            </tr>
-                            <tbody id="returnedInfoBody"></tbody>
-
-                        </table>
-                    </div>
-                </div>
-
+                <button type="button" class="button-cont-PDF" onclick="GenerateReturnedBooksPDF()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
             </div>
         </div>
+        <div class="table-wrapper" id="returnedScrollContainer">
+            <table>
+                <thead><tr>
+                    <th>Accession No.</th><th>Book</th><th>Rack</th><th>Shelf</th>
+                    <th>Borrower ID</th><th>Name</th><th>Type</th>
+                    <th>Issued</th><th>Due</th><th>Returned</th>
+                </tr></thead>
+                <tbody id="returnedInfoBody"></tbody>
+            </table>
+        </div>
+    </section>
 
-
-        <div class="courses" id="issued">
-            <h3>Books Info
-                <select class="requester_type" id="StatusFilter">
-                    <option value="">All (Select Status)</option>
+    <!-- All Books -->
+    <section class="data-section" id="issued">
+        <div class="section-header">
+            <div class="section-title"><i class="fa-solid fa-table-list"></i><h2>All Books</h2></div>
+            <div class="section-controls">
+                <select class="filter-select" id="StatusFilter">
+                    <option value="">All Status</option>
                     <option value="Available">Available</option>
                     <option value="Issued">Issued</option>
-
                 </select>
-                <input type="text" name="Book_Title" id="Book_Title" class="input-Books-Contaner"
-                    placeholder="Enter Book Title">
-                 <button type="button" class="button-cont" onclick="GenerateBooksInfoPDFByFilters()">Generate PDF</button>
-            </h3>
-
-            <div class="personalinfo overflowy" id="ScrollBookContaner">
-                <div class="course-card">
-                    <div class="inner-table">
-                        <table>
-                            <tr>
-                                <th>Accesstion Number</th>
-                                <th>Book Upload Time</th>
-                                <th>Rack Location</th>
-                                <th>Self Location</th>
-                                <th>Copy Number</th>
-                                <th>Status</th>
-                                <th>Title</th>
-                                <th>Author</th>
-                                <th>Publisher Place</th>
-                                <th>Publisher Name</th>
-                                <th>Total pages</th>
-                                <th>Total Copy</th>
-                                <th>Book Cost</th>
-                            </tr>
-                            <tbody id="AllBookInfo"></tbody>
-
-                        </table>
-                    </div>
-                    
-                </div>
+                <input type="text" name="Book_Title" id="Book_Title" class="input-contaner" placeholder="Search by title…">
+                <button type="button" class="button-cont-PDF" onclick="GenerateBooksInfoPDFByFilters()"><i class="fa-solid fa-file-pdf"></i> PDF</button>
             </div>
         </div>
+        <div class="table-wrapper" id="ScrollBookContaner">
+            <table>
+                <thead><tr>
+                    <th>Accession No.</th><th>Uploaded</th><th>Rack</th><th>Shelf</th>
+                    <th>Copy No.</th><th>Status</th><th>Title</th><th>Author(s)</th>
+                    <th>Pub. Place</th><th>Publisher</th><th>Pages</th><th>Copies</th><th>Cost</th>
+                </tr></thead>
+                <tbody id="AllBookInfo"></tbody>
+            </table>
+        </div>
+    </section>
 
+</div>
 
+<script src="books_management.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+<script src="book_management_generate_pdf.js"></script>
+<script src="books_data_excel_base_upload.js"></script>
 
-    </div>
-
-   
-    <script src="books_management.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
-    <script src="book_management_generate_pdf.js"></script>
-    <script src="books_data_excel_base_upload.js"></script>
 </body>
-
 </html>

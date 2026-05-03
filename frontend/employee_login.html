@@ -3,66 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
-    <title>Employee Login · Employee ID & Password</title>
-    <!-- Inter font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome 6 -->
+    <title>Employee Login · LibraryOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="employee_login.css">
+    <link rel="stylesheet" href="login.css">
+    <style>
+        /* Employee accent — amber/warm */
+        :root {
+            --accent:      #F59E0B;
+            --accent-dim:  rgba(245,158,11,0.13);
+            --accent-glow: rgba(245,158,11,0.22);
+        }
+    </style>
 </head>
 <body>
-    <!-- background image + overlay -->
-    <div class="bg-container">
-        <img class="bg-img" src="../images/Employee Login Image.jpeg" 
-             alt="Office workspace – employee login">
+
+<div class="login-wrapper">
+
+    <!-- Left: Visual panel -->
+    <div class="login-visual">
+        <img class="bg-img" src="../images/Employee Login Image.jpeg" alt="Office workspace">
         <div class="bg-overlay"></div>
+        <div class="visual-content">
+            <div class="visual-badge">
+                <i class="fas fa-briefcase"></i> LibraryOS — Staff Portal
+            </div>
+            <h1>Your library,<br>your <span>records.</span></h1>
+            <p>Track issued books, penalties, and requests — everything you need in one place.</p>
+            <div class="visual-dots">
+                <span class="active"></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </div>
 
-    <!-- PAGE TITLE -->
-    <div class="page-title">
-        <i class="fas fa-id-badge"></i> Employee Login
-    </div>
+    <!-- Right: Form panel -->
+    <div class="login-panel">
+        <div class="login-header">
+            <div class="portal-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <h2>Employee Login</h2>
+            <p>Sign in with your employee credentials to access the staff portal.</p>
+        </div>
 
-    <!-- LOGIN CARD -->
-    <div class="login-card">
         <form id="loginForm" novalidate>
-            <!-- Employee ID -->
             <div class="field">
                 <label for="employeeId">
                     <i class="fas fa-id-card"></i> Employee ID
                 </label>
                 <div class="input-wrapper">
-                    <input type="text" id="employeeId" name="employeeId" 
-                           placeholder="Enter your employee ID" autocomplete="off" spellcheck="false">
+                    <input type="text" id="employeeId" name="employeeId"
+                        placeholder="Enter your employee ID"
+                        autocomplete="off" spellcheck="false">
                 </div>
             </div>
 
-            <!-- Password with eye toggle -->
             <div class="field">
                 <label for="password">
                     <i class="fas fa-lock"></i> Password
                 </label>
                 <div class="input-wrapper">
-                    <input type="password" id="password" name="password" 
-                           placeholder="Enter Your Password" autocomplete="current-password">
-                    <button type="button" class="password-toggle" id="togglePassword" tabindex="-1" aria-label="Toggle password visibility">
+                    <input type="password" id="password" name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password">
+                    <button type="button" class="password-toggle" id="togglePassword"
+                        tabindex="-1" aria-label="Toggle password visibility">
                         <i class="fas fa-eye"></i>
                     </button>
                 </div>
             </div>
 
-            <!-- Login button -->
             <button type="submit" class="login-btn">
-                <i class="fas fa-arrow-right-to-bracket"></i> LOGIN
+                <i class="fas fa-arrow-right-to-bracket"></i> Login
             </button>
         </form>
+
         <div id="message" class="msg"></div>
 
         <div class="footer-simple">
-            <i class="fas fa-shield-halved"></i> Employee portal · secure, transparent
+            <i class="fas fa-shield-halved"></i> Employee portal · secure &amp; encrypted
         </div>
     </div>
 
-  <script src="employee_login.js"></script>
+</div>
+
+<script src="employee_login.js"></script>
 </body>
 </html>
