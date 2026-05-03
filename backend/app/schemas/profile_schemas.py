@@ -106,7 +106,7 @@ class EmployeeProfileResponse(BaseModel):
 
 class UpdateStudentProfileRequest(BaseModel):
     """Update student profile information"""
-    Gmail: Optional[str] = None
+    gmail: Optional[str] = None
     Phone_no: Optional[str] = None
     sem: Optional[int] = None
     
