@@ -129,14 +129,13 @@ document.addEventListener("DOMContentLoaded", async function () {
 });
 
 
-async function manual_backup() {
+async function downloadBackup() {
     try {
         const token = localStorage.getItem("access_token");
 
         const response = await fetch(`${apiBaseUrl}/api/backup/backup/manual`, {
             headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-Type": "application/json"
+                "Authorization": `Bearer ${token}`
             }
         });
 
@@ -146,31 +145,13 @@ async function manual_backup() {
 
         const blob = await response.blob();
 
-        //  Get filename from backend headers
-        const contentDisposition = response.headers.get("content-disposition");
-        let filename = "backup.sql";
-
-        if (contentDisposition && contentDisposition.includes("filename=")) {
-            filename = contentDisposition
-                .split("filename=")[1]
-                .replace(/"/g, "");
-        }
-
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-
-        //  use backend filename
-        a.download = filename;
-
-        document.body.appendChild(a);
+        a.download = "library_backup.sql";
         a.click();
 
-        a.remove();
-        window.URL.revokeObjectURL(url);
-
     } catch (error) {
-        console.error(error);
         alert("Backup failed");
     }
 }
