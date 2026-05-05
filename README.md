@@ -2038,7 +2038,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 👨‍💼 Author
 
-**Shivam Kumar Singh**
+**Shivam Manoj Sharma**
 
 - GitHub: [@shivam123168](https://github.com/shivam123168)
 - Project: [QR Library Management](https://github.com/shivam123168/qr-library-management)
