@@ -205,7 +205,9 @@ body {
 
 .dropdown_manue {
     display: none; position: fixed;
-    top: 62px; right: 16px; width: 200px;
+    top: 62px;
+    /* right: 16px;  */
+    width: 200px;
     background: var(--sidebar-bg); border-radius: var(--radius-md);
     box-shadow: var(--shadow-md); padding: 8px; z-index: 999;
     max-height: 0; opacity: 0; overflow: hidden;
