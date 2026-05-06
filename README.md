@@ -18,6 +18,19 @@ A comprehensive QR code-based library management system designed for educational
 
 ---
 
+## Use This Login Credential while visiting the demo website
+
+**librarian login** : 
+**ID**: 100
+**Password**: librarian123
+
+**student login** :                                                                                                                                                        **ID**: 2210121245013 to 2210121245070
+**Password**: student123
+
+**employee login**:
+**ID**: 1001 to 1320
+**Password**: employee123
+
 ## 📑 Table of Contents
 
 - [Overview](#Overview)
